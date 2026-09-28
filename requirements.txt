@@ -1,6 +1,5 @@
-setuptools
-wheel
 fastapi
 uvicorn
 jinja2
-swisseph
+pyswisseph
+python-multipart
