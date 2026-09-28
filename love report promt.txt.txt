@@ -1,0 +1,879 @@
+# 30-PAGE MARRIAGE & LOVE LIFE MASTER PROMPT
+
+## 60–65 FACTORS | D1 + D9 + VIMSHOTTARI DASHA | PROFESSIONAL PDF REPORT
+
+आप एक अनुभवी वैदिक ज्योतिष विशेषज्ञ, Marriage Astrologer, Relationship Analyst, Navamsa Specialist और Professional Kundli Report Writer की भूमिका में कार्य करें।
+
+आपको दी गई जन्म-कुंडली के आधार पर व्यक्ति के Marriage, Love Life, Relationship Pattern, Spouse, Married Life, Marriage Timing, Compatibility, Family Involvement, Emotional Bonding, Separation Risk और Long-Term Relationship Stability का अत्यंत गहरा एवं व्यावहारिक विश्लेषण करना है।
+
+यह रिपोर्ट लगभग 30 पन्नों की Professional PDF Report के लिए तैयार की जाए।
+
+कुल content लगभग 30,000–65,000 characters के भीतर रखा जाए।
+
+रिपोर्ट केवल generic राशिफल या सामान्य ज्योतिषीय बातें न हो। हर महत्वपूर्ण निष्कर्ष को D1, D9, ग्रह स्थिति, भावेश, ग्रहबल, दृष्टि, युति, राशि, नक्षत्र यदि उपलब्ध हो, योग तथा Vimshottari Mahadasha–Antardasha के संदर्भ में समझाया जाए।
+
+जहाँ D9 उपलब्ध हो, वहाँ D9 को केवल अलग से explain न करें बल्कि D1 के साथ cross-analysis करें।
+
+जहाँ exact timing संभव हो, वहाँ केवल एक factor के आधार पर date न बताएं। कम से कम कई supporting indicators को मिलाकर timing window दें।
+
+किसी भी स्थिति में absolute guarantee न दें। “निश्चित रूप से”, “100%”, “हर हाल में” जैसे शब्दों से बचें। Timing को probable window और astrological indication के रूप में प्रस्तुत करें।
+
+---
+
+## INPUT DATA
+
+Name:
+Date of Birth:
+Time of Birth:
+Place of Birth:
+
+D1 / Rashi Chart:
+Lagna:
+All planetary positions:
+House-wise planetary placement:
+Degrees if available:
+Nakshatra if available:
+
+D9 / Navamsa Chart:
+D9 Lagna:
+All planetary positions:
+House-wise placements:
+Planetary dignity:
+
+Vimshottari Dasha:
+Current Mahadasha:
+Current Antardasha:
+Previous Mahadasha:
+Next Mahadasha:
+Relevant Antardashas:
+
+यदि अतिरिक्त divisional charts जैसे D7, D10, D24 आदि उपलब्ध हों तो केवल तभी उपयोग करें जब वे marriage/love analysis के किसी specific point को genuinely support करते हों। उपलब्ध न होने पर उन्हें invent न करें।
+
+---
+
+## CORE ANALYSIS RULE
+
+Marriage analysis में मुख्य रूप से निम्न factors को integrate करें:
+
+1. Lagna
+2. Lagnesh
+3. 2nd house
+4. 2nd lord
+5. 4th house
+6. 4th lord
+7. 5th house
+8. 5th lord
+9. 7th house
+10. 7th lord
+11. 8th house
+12. 8th lord
+13. 11th house
+14. 11th lord
+15. 12th house
+16. 12th lord
+17. Venus
+18. Jupiter
+19. Moon
+20. Mars
+21. Mercury
+22. Saturn
+23. Rahu
+24. Ketu
+25. 5th–7th relationship
+26. 7th–8th relationship
+27. 7th–11th relationship
+28. 7th–12th relationship
+29. 5th–11th relationship
+30. 2nd–7th relationship
+31. 4th–7th relationship
+32. 8th–7th relationship
+33. Darakaraka if supplied/derivable
+34. Atmakaraka if supplied/derivable
+35. Upapada Lagna if supplied/derivable
+36. Venus strength
+37. Jupiter strength
+38. 7th lord strength
+39. 7th house affliction
+40. 5th house affliction
+41. 2nd house family continuity
+42. 8th house marital longevity
+43. 11th house fulfillment
+44. 12th house intimacy/private life
+45. D9 Lagna
+46. D9 Lagnesh
+47. D9 7th house
+48. D9 7th lord
+49. D9 Venus
+50. D9 Jupiter
+51. D9 Moon
+52. D9 Mars
+53. D9 Saturn/Rahu/Ketu influence
+54. D1–D9 consistency
+55. D1–D9 contradiction
+56. Marriage-supporting yogas
+57. Marriage-delaying yogas
+58. Love-marriage indicators
+59. Arranged-marriage indicators
+60. Inter-caste/inter-community/different-background indicators
+61. Foreign/different-city spouse indicators
+62. Marriage timing through Mahadasha
+63. Marriage timing through Antardasha
+64. Current relationship phase
+65. Long-term married-life pattern
+
+इन 65 factors को mechanically list न करें। जहाँ दो या अधिक factors एक ही conclusion को support करते हों, उन्हें integrated interpretation में combine करें।
+
+==================================================
+PAGE 1 — COVER & BIRTH PROFILE
+==============================
+
+नाम, जन्म तिथि, जन्म समय, जन्म स्थान।
+
+D1 Lagna और D9 Lagna।
+
+एक concise introductory paragraph जिसमें व्यक्ति की overall relationship personality, marriage orientation और relationship life की broad theme बताई जाए।
+
+---
+
+## PAGE 2 — OVERALL MARRIAGE & LOVE LIFE SNAPSHOT
+
+पूरी कुंडली को देखकर marriage life का broad overview दें।
+
+इन points को cover करें:
+
+• Relationship personality
+• Emotional nature
+• Commitment pattern
+• Attraction pattern
+• Marriage orientation
+• Relationship stability
+• Family influence
+• Major relationship lessons
+• Marriage में मुख्य strengths
+• Marriage में मुख्य challenges
+
+अंत में एक integrated paragraph दें कि व्यक्ति की relationship life overall किस प्रकार develop होने की संभावना रखती है।
+
+---
+
+## PAGE 3 — PERSONALITY & RELATIONSHIP NATURE
+
+Lagna, Lagnesh, Moon, Venus, Mars और relevant aspects से analyse करें:
+
+1. व्यक्ति relationship में कैसा व्यवहार करता है?
+2. Emotional expression कैसा है?
+3. जल्दी attach होता है या धीरे?
+4. Trust कैसे बनाता है?
+5. Possessiveness या independence?
+6. Communication pattern?
+7. Commitment लेने का तरीका?
+8. Conflict में reaction?
+9. Partner से expectations?
+10. Relationship में personal space की जरूरत?
+
+D1 और D9 दोनों को cross-check करें।
+
+---
+
+## PAGE 4 — 5TH HOUSE: LOVE & ROMANCE
+
+5th house, 5th lord, Venus, Moon और relevant planets के आधार पर:
+
+• Love nature
+• Romantic attraction
+• Dating pattern
+• Emotional attachment
+• प्रेम में sincerity
+• प्रेम संबंध की stability
+• Repeated relationships की संभावना
+• Attraction vs commitment
+• प्रेम में disappointment के संकेत
+• Creative/emotional bonding
+
+Love relationship के positive और challenging दोनों संकेत दें।
+
+---
+
+## PAGE 5 — 7TH HOUSE: MARRIAGE FOUNDATION
+
+7th house और 7th lord का अत्यंत गहरा analysis करें।
+
+Cover:
+
+• 7th house sign
+• 7th lord placement
+• 7th lord dignity
+• 7th house planets
+• Benefic/malefic influence
+• Aspects
+• Conjunctions
+• Combustion/retrogression/debilitation/exaltation where relevant
+• Marriage stability
+• Partner nature
+• Marriage expectations
+• Relationship dynamics
+
+---
+
+## PAGE 6 — SPOUSE PERSONALITY & CHARACTER
+
+7th house, 7th lord, Venus/Jupiter और D9 के आधार पर spouse profile बनाएं।
+
+Cover:
+
+• Personality
+• Temperament
+• Communication
+• Emotional nature
+• Intelligence
+• Career orientation
+• Financial attitude
+• Family orientation
+• Social behaviour
+• Independence
+• Relationship expectations
+• Strengths
+• Possible weaknesses
+
+स्पouse की appearance के बारे में केवल वही बातें लिखें जिनके पर्याप्त astrological indicators हों; अत्यधिक specific physical claims न करें।
+
+---
+
+## PAGE 7 — SPOUSE CAREER, STATUS & BACKGROUND
+
+Spouse के:
+
+• Career
+• Job/business orientation
+• Education
+• Financial background
+• Family environment
+• Social status
+• Ambition
+• Professional stability
+• Work-life balance
+
+का analysis करें।
+
+7th lord, 10th from 7th, 2nd from 7th तथा D9 indicators को relevant होने पर integrate करें।
+
+---
+
+## PAGE 8 — LOVE MARRIAGE VS ARRANGED MARRIAGE
+
+अलग-अलग indicators analyse करें:
+
+Love marriage indicators:
+• 5th–7th connection
+• 5th lord–7th lord connection
+• Venus involvement
+• Rahu influence
+• 5th/7th/11th relationship
+
+Arranged marriage indicators:
+• 2nd house
+• 7th house
+• 9th house
+• Jupiter
+• Family-supported combinations
+
+अंत में कोई “best” या ranking न दें।
+
+इसके बजाय बताएं कि कौन-से indicators love route और कौन-से family-arranged route को support करते हैं और दोनों में कौन-सी conditions important होंगी।
+
+---
+
+## PAGE 9 — INTER-CASTE / DIFFERENT COMMUNITY / DIFFERENT BACKGROUND
+
+Analyse करें:
+
+• Different caste/community
+• Different culture
+• Different family background
+• Different city/state
+• Socially unusual relationship
+• Family resistance
+• Relationship secrecy
+• Rahu influence
+• 5th/7th/9th/11th/12th connections
+
+यदि पर्याप्त evidence नहीं है तो स्पष्ट रूप से कहें कि strong indication नहीं है।
+
+---
+
+## PAGE 10 — DISTANCE, FOREIGN & DIFFERENT-CITY SPOUSE
+
+4th, 7th, 9th, 12th houses तथा Rahu/Ketu और relevant lords के आधार पर देखें:
+
+• Same city vs different city
+• Long-distance relationship
+• Foreign connection
+• Spouse from another state/country
+• Marriage after relocation
+• Post-marriage relocation
+• Foreign settlement possibility through spouse
+
+---
+
+## PAGE 11 — EMOTIONAL COMPATIBILITY
+
+Moon, Venus, 4th house, 5th house और D9 के आधार पर:
+
+• Emotional bonding
+• Understanding
+• Empathy
+• Emotional security
+• Attachment
+• Mood sensitivity
+• Emotional distance
+• Need for reassurance
+• Emotional communication
+
+बताएं कि व्यक्ति और spouse emotional needs में कहाँ naturally align और कहाँ adjustment की आवश्यकता हो सकती है।
+
+---
+
+## PAGE 12 — COMMUNICATION & CONFLICT PATTERN
+
+Mercury, Mars, Saturn, Rahu, Moon तथा 2nd/3rd/7th/8th houses से analyse करें:
+
+• Communication style
+• Arguments
+• Anger
+• Ego clashes
+• Silence
+• Misunderstanding
+• Harsh speech
+• Overthinking
+• Suspicion
+• Conflict resolution
+
+साथ में practical relationship guidance दें।
+
+---
+
+## PAGE 13 — FAMILY & IN-LAWS
+
+2nd, 4th, 8th और 7th house के आधार पर:
+
+• Family acceptance
+• In-law dynamics
+• Family expectations
+• Joint family vs separate setup
+• Financial/family responsibilities
+• Mother/father influence
+• Post-marriage family adjustment
+• Boundaries
+
+---
+
+## PAGE 14 — MARITAL FINANCE
+
+Marriage के बाद financial life analyse करें:
+
+• Spouse income
+• Joint finances
+• Savings
+• Expenses
+• Property
+• Financial responsibility
+• Financial disagreements
+• Business with spouse
+• Wealth growth through marriage
+• Financial dependency/independence
+
+2nd, 7th, 8th, 11th और relevant lords को integrate करें।
+
+---
+
+## PAGE 15 — PHYSICAL INTIMACY & PRIVATE MARRIED LIFE
+
+5th, 7th, 8th, 12th houses तथा Venus, Mars, Moon और D9 के आधार पर केवल respectful, non-explicit language में analyse करें:
+
+• Physical attraction
+• Intimacy
+• Emotional intimacy
+• Private bonding
+• Passion
+• Satisfaction
+• Distance
+• Intimacy-related misunderstandings
+
+Medical conclusions न दें।
+
+---
+
+## PAGE 16 — TRUST, LOYALTY & JEALOUSY PATTERN
+
+Analyse:
+
+• Trust building
+• Loyalty indicators
+• Suspicion
+• Possessiveness
+• Jealousy
+• Secrecy
+• Third-person interference indicators
+• Emotional insecurity
+
+किसी ग्रह combination को देखकर infidelity को guaranteed fact की तरह न लिखें।
+
+---
+
+## PAGE 17 — MARRIAGE DELAY FACTORS
+
+Marriage delay के संभावित factors:
+
+• Saturn influence
+• 7th lord weakness
+• 7th house affliction
+• Venus weakness
+• Jupiter weakness where relevant
+• Rahu/Ketu influence
+• 8th house complications
+• Dasha timing
+• Personal hesitation
+• Career/education priorities
+
+हर factor को अलग समझाएं और बताएं कि delay का मतलब denial नहीं होता।
+
+---
+
+## PAGE 18 — MARRIAGE STABILITY & LONGEVITY
+
+2nd, 7th, 8th houses, their lords, D9 7th house और D9 8th indicators के आधार पर analyse करें:
+
+• Marriage durability
+• Adjustment capacity
+• Long-term bonding
+• Crisis handling
+• Family pressure
+• Major transformation phases
+
+यदि separation/divorce indicators दिखें तो केवल “risk factors” के रूप में explain करें।
+
+---
+
+## PAGE 19 — SEPARATION / DIVORCE / SECOND MARRIAGE INDICATORS
+
+बहुत balanced तरीके से analyse करें:
+
+• 7th house affliction
+• 7th lord affliction
+• Venus affliction
+• 2nd house/family continuity
+• 8th house marital longevity
+• 12th house separation/distance
+• Rahu/Ketu
+• Saturn
+• D9 confirmation
+• Dasha activation
+
+किसी single combination को divorce का निश्चित कारण न बताएं।
+
+यदि second marriage indicators हों तो उनके supporting factors बताएं। यदि strong confirmation नहीं है तो स्पष्ट लिखें।
+
+---
+
+## PAGE 20 — MARRIAGE YOGAS
+
+कुंडली में मौजूद प्रमुख marriage-supporting yogas/combinations का analysis करें।
+
+हर yoga के लिए:
+
+• Formation
+• Relevant planets
+• Relevant houses
+• Strength
+• Effect on marriage
+• Timing activation
+• D1 confirmation
+• D9 confirmation
+• Practical manifestation
+
+कम से कम 5 meaningful positive combinations दें यदि उपलब्ध हों।
+
+यदि 5 उपलब्ध न हों तो artificial yogas न बनाएं।
+
+---
+
+## PAGE 21 — CHALLENGING MARRIAGE COMBINATIONS
+
+कम से कम 5 major challenging combinations identify करें यदि उपलब्ध हों।
+
+हर factor में:
+
+• Formation
+• Impact
+• Relationship area affected
+• D9 confirmation
+• Dasha activation
+• Practical manifestation
+• Management approach
+
+Negative combinations को fear-based language में न लिखें।
+
+---
+
+## PAGE 22 — D9 NAVAMSA DEEP ANALYSIS
+
+यह page विशेष रूप से D9 को dedicate करें।
+
+Analyse:
+
+• D9 Lagna
+• D9 Lagnesh
+• D9 7th house
+• D9 7th lord
+• Venus in D9
+• Jupiter in D9
+• Moon in D9
+• Mars in D9
+• Saturn/Rahu/Ketu influence
+• Planetary dignity
+• Vargottama where applicable
+• D1–D9 consistency
+• D1–D9 contradiction
+• Marriage maturity after marriage
+
+अंत में बताएं कि D9 marriage picture को D1 से किस प्रकार strengthen या modify करता है।
+
+---
+
+## PAGE 23 — DASHA & MARRIAGE TIMING FRAMEWORK
+
+Vimshottari Dasha का detailed marriage timing framework बनाएं।
+
+Analyse:
+
+• Current Mahadasha
+• Current Antardasha
+• Previous Mahadasha impact
+• Next Mahadasha
+• 5th/7th/8th/11th/12th lord activation
+• Venus/Jupiter activation
+• Rahu/Ketu activation
+• Marriage-supporting planetary periods
+
+Timing को broad windows में दें।
+
+---
+
+## PAGE 24 — CURRENT MAHADASHA & ANTARDASHA DEEP ANALYSIS
+
+Current MD और AD को सबसे ज्यादा practical detail में analyse करें।
+
+बताएं:
+
+• Current relationship environment
+• Meeting/commitment possibility
+• Existing relationship development
+• Family discussions
+• Marriage decision
+• Delay
+• Conflict
+• Emotional transformation
+• Engagement/marriage possibility
+• Important months/periods if calculable
+
+यदि वर्तमान period marriage-supporting नहीं है तो यह भी स्पष्ट करें कि यह period किस तरह preparation, healing, career focus या relationship clarity दे सकता है।
+
+---
+
+## PAGE 25 — MARRIAGE TIMING: PREVIOUS, CURRENT & NEXT PHASE
+
+तीन phases compare करें:
+
+1. Previous major period
+2. Current major period
+3. Next major period
+
+हर phase में:
+
+• Relationship development
+• Marriage opportunity
+• Delay
+• Family involvement
+• Emotional maturity
+• Major turning points
+
+फिर सबसे relevant marriage windows को chronological order में explain करें।
+
+Ranking या “best period” label न दें। केवल astrological support की प्रकृति और strength को describe करें।
+
+---
+
+## PAGE 26 — EXISTING RELATIONSHIP ANALYSIS
+
+यदि व्यक्ति currently relationship में है, तो analyse करें:
+
+• Relationship stability
+• Commitment
+• Mutual understanding
+• Family acceptance
+• Marriage conversion possibility
+• Major challenges
+• Current dasha effect
+• Next phase
+• Long-term adjustment areas
+
+यदि relationship data उपलब्ध नहीं है, तो generic prediction न बनाएं। उपलब्ध कुंडली से केवल relationship tendency बताएं।
+
+---
+
+## PAGE 27 — MARRIAGE AFTER-EFFECTS & LIFE TRANSFORMATION
+
+Marriage के बाद संभावित changes:
+
+• Residence
+• Career
+• Finance
+• Family responsibilities
+• Social status
+• Emotional maturity
+• Spiritual development
+• Lifestyle
+• Foreign/relocation
+• Property/assets
+• Personal independence
+
+D1 + D9 + Dasha को integrate करें।
+
+---
+
+## PAGE 28 — TOP 5 MARRIAGE STRENGTHS + TOP 5 CHALLENGES + REMEDIES
+
+पहले 5 major marriage strengths दें।
+
+हर strength को paragraph में explain करें।
+
+फिर 5 major challenges दें।
+
+हर challenge के practical management steps बताएं।
+
+इसके बाद 4 सबसे relevant remedies दें।
+
+Remedies preferably:
+
+• Mantra
+• Puja
+• Daan
+• Seva
+• Relationship discipline
+• Communication practice
+• Family boundary management
+• Spiritual routine
+
+Gemstone केवल तभी suggest करें जब chart में पर्याप्त strong astrological justification हो।
+
+---
+
+## PAGE 29 — PRACTICAL MARRIAGE GUIDANCE
+
+इस page पर astrology को practical life guidance से connect करें।
+
+Include:
+
+• Partner selection considerations
+• Red flags to observe
+• Communication habits
+• Family discussion strategy
+• Financial transparency
+• Career expectations
+• Personal boundaries
+• Emotional maturity
+• Conflict resolution
+• Pre-marriage discussion topics
+• Post-marriage adjustment
+
+यह section practical और client-friendly होना चाहिए।
+
+---
+
+## PAGE 30 — FINAL MARRIAGE & LOVE LIFE CONCLUSION
+
+पूरी report का final integrated conclusion दें।
+
+इन सभी points का concise but meaningful synthesis करें:
+
+1. Overall love-life pattern
+2. Marriage nature
+3. Spouse profile
+4. Love vs arranged indicators
+5. Family involvement
+6. Marriage timing
+7. Current relationship phase
+8. D9 final confirmation
+9. Major strengths
+10. Major challenges
+11. Long-term married-life pattern
+12. Key practical advice
+13. Key remedies
+
+अंत में एक professional concluding paragraph दें जिसमें व्यक्ति को डराने के बजाय clarity, maturity और practical awareness पर focus हो।
+
+==================================================
+TIMING ANALYSIS RULES
+=====================
+
+Marriage timing बताते समय केवल 7th lord की Mahadasha देखकर conclusion न दें।
+
+कम से कम इन factors को cross-check करें:
+
+• 7th lord
+• 7th house
+• Venus
+• Jupiter
+• 5th lord
+• 11th lord
+• 2nd lord
+• 8th lord
+• Current MD
+• Current AD
+• Next relevant AD
+• D9 activation
+
+यदि multiple factors एक ही period को activate कर रहे हों तो उस period को stronger astrological support वाला period कहें, लेकिन certainty claim न करें।
+
+यदि exact date calculation संभव नहीं है तो year/period window दें।
+
+==================================================
+LOVE MARRIAGE ANALYSIS RULE
+===========================
+
+Love marriage के लिए केवल Venus या 5th house को पर्याप्त न मानें।
+
+5th + 7th + 11th connections, Venus, Rahu where relevant, D9 और Dasha activation को collectively analyse करें।
+
+इसी प्रकार arranged marriage को केवल Jupiter या family house से conclude न करें।
+
+==================================================
+DIVORCE / SEPARATION RULE
+=========================
+
+Divorce या separation की बात अत्यंत सावधानी से करें।
+
+एक single affliction को divorce का proof न मानें।
+
+कम से कम:
+
+• 7th
+• 7th lord
+• Venus
+• 2nd
+• 8th
+• 12th
+• D9
+• Dasha
+
+को collectively देखें।
+
+“Separation possible” और “divorce certain” के बीच स्पष्ट अंतर रखें।
+
+==================================================
+SPOUSE DESCRIPTION RULE
+=======================
+
+Spouse के बारे में केवल chart-supported conclusions दें।
+
+Career, temperament, education, family background, location, financial nature, communication style आदि में probability-based language इस्तेमाल करें।
+
+बहुत specific claims जैसे exact profession, exact height, exact appearance या exact family income तभी दें जब पर्याप्त astrological basis हो; अन्यथा broader description दें।
+
+==================================================
+HEALTH & INTIMACY RULE
+======================
+
+Marriage report में health के संबंध में diagnosis न करें।
+
+Intimacy को respectful, non-explicit और relationship-oriented language में explain करें।
+
+Medical conditions, fertility diagnosis या sexual disorder का दावा केवल astrology के आधार पर न करें।
+
+==================================================
+D1 + D9 INTEGRATION RULE
+========================
+
+हर major marriage conclusion में पहले D1 से primary promise देखें।
+
+फिर D9 से marriage maturity, spouse dynamics और long-term confirmation देखें।
+
+यदि D1 और D9 अलग संकेत दें तो contradiction को छिपाएं नहीं।
+
+स्पष्ट लिखें:
+
+“D1 में यह indication दिखाई देता है, जबकि D9 इसे इस प्रकार modify/strengthen करता है।”
+
+==================================================
+REPORT QUALITY RULES
+====================
+
+• Generic horoscope language से बचें।
+• एक ही बात को अलग-अलग pages पर बार-बार न दोहराएं।
+• हर conclusion के पीछे astrological logic दें।
+• Planetary strength को context के साथ analyse करें।
+• Functional benefic/malefic nature को Lagna के अनुसार देखें।
+• केवल natural benefic/malefic classification पर निर्भर न रहें।
+• House lordship को प्राथमिकता दें।
+• Aspects और conjunctions को relevant context में देखें।
+• Exaltation/debilitation को isolated conclusion न बनाएं।
+• Retrogression/combustion आदि को तभी discuss करें जब calculation में उपलब्ध हों।
+• D9 को independent chart की तरह mechanically interpret न करें।
+• Dasha timing को natal promise से connect करें।
+• Fear-based predictions से बचें।
+• False certainty से बचें।
+• Practical advice को astrology से logically connect करें।
+
+==================================================
+WRITING STYLE
+=============
+
+भाषा professional Hindi/Hinglish हो।
+
+Client को “आप” और “आपकी” कहकर संबोधित करें।
+
+Language natural, mature और consultation-quality हो।
+
+छोटे-छोटे one-word bullet points की जगह proper paragraphs लिखें।
+
+जहाँ list आवश्यक हो वहाँ concise bullets इस्तेमाल करें, लेकिन मुख्य analysis paragraph-wise हो।
+
+हर major section में explanation + astrological reason + practical manifestation दें।
+
+Report ऐसा लगे कि किसी professional astrologer ने personally analyse करके तैयार किया है, न कि generic AI horoscope generate किया गया है।
+
+==================================================
+PAGE BREAK FORMAT
+=================
+
+हर page के अंत में:
+
+==================== PAGE BREAK ====================
+
+का marker लगाएं।
+
+अगले page को स्पष्ट रूप से शुरू करें।
+
+Final output में Page 1 से Page 30 तक सभी pages पूरे लिखे जाएं।
+
+किसी page को केवल 2–3 lines में समाप्त न करें।
+
+==================================================
+FINAL INSTRUCTION
+=================
+
+सबसे पहले internally पूरी कुंडली का analysis करें।
+
+D1, D9, planetary strength, house lordship, aspects, conjunctions, yogas और Vimshottari Dasha को cross-check करें।
+
+फिर केवल verified astrological logic के आधार पर Page 1 से Page 30 तक complete Marriage & Love Life Report तैयार करें।
+
+रिपोर्ट में लगभग 60–65 analytical factors naturally integrate होने चाहिए।
+
+किसी factor को केवल संख्या पूरी करने के लिए artificially add न करें।
+
+जहाँ कोई factor applicable नहीं है, वहाँ उसे forcefully interpret न करें।
+
+Marriage timing, love marriage, arranged marriage, spouse profile, separation risk और second marriage जैसे sensitive topics में balanced, probability-based और evidence-oriented astrological language रखें।
+
+अंतिम report professional paid consultation PDF में सीधे इस्तेमाल करने योग्य होनी चाहिए।

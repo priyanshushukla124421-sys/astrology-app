@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AstroPulse India</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0f172a; color: #f8fafc; margin: 0; padding: 0; }
+        .header { background-color: #1e293b; padding: 20px; text-align: center; border-bottom: 3px solid #fbbf24; }
+        .logo { font-size: 2.5rem; font-weight: bold; color: #fbbf24; margin: 0; letter-spacing: 2px; }
+        .subtitle { font-size: 1.1rem; color: #94a3b8; margin-top: 5px; font-style: italic; }
+        .container { max-width: 900px; margin: 40px auto; background-color: #1e293b; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+        .form-row { display: flex; gap: 15px; margin-bottom: 15px; flex-wrap: wrap;}
+        .form-group { flex: 1; min-width: 140px; position: relative;}
+        label { display: block; margin-bottom: 5px; color: #cbd5e1; font-size: 0.95rem; }
+        input, select { width: 100%; padding: 10px; border: 1px solid #334155; border-radius: 5px; background-color: #0f172a; color: white; box-sizing: border-box; font-size: 1rem;}
+        
+        #suggestions-list {
+            position: absolute; top: 100%; left: 0; right: 0;
+            background-color: #1e293b; border: 1px solid #fbbf24; border-top: none;
+            border-radius: 0 0 5px 5px; max-height: 150px; overflow-y: auto; z-index: 1000; display: none;
+        }
+        .suggestion-item { padding: 10px; cursor: pointer; color: #f8fafc; border-bottom: 1px solid #334155; font-size: 0.9rem; }
+        .suggestion-item:hover { background-color: #334155; color: #fbbf24; }
+
+        .main-btn { width: 100%; padding: 12px; background-color: #fbbf24; color: #0f172a; font-size: 1.1rem; font-weight: bold; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px; transition: 0.3s; }
+        .main-btn:hover { background-color: #f59e0b; }
+        
+        #dashboard { display: none; margin-top: 30px; }
+        .section-header-row { display: flex; justify-content: space-between; align-items: center; margin-top: 35px; border-bottom: 1px solid #334155; padding-bottom: 5px; }
+        .section-title { color: #fbbf24; margin: 0; font-size: 1.5rem; border: none; }
+        
+        .save-chart-btn { background-color: #10b981; color: white; border: none; padding: 6px 15px; border-radius: 5px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .save-chart-btn:hover { background-color: #059669; }
+
+        .profile-box { background-color: #1e293b; border: 2px solid #fbbf24; border-radius: 8px; padding: 15px; margin-top: 20px; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 10px; text-align: center; }
+        .profile-item { font-size: 0.95rem; color: #cbd5e1; }
+        .profile-item span { color: #fbbf24; font-weight: bold; }
+
+        .chart-controls { display: flex; gap: 20px; justify-content: center; margin-top: 15px; background: #1e293b; padding: 10px; border-radius: 5px; }
+        .chart-controls label { cursor: pointer; color: #cbd5e1; font-size: 0.9rem; display: flex; align-items: center; gap: 5px; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; background-color: #0f172a; text-align: center; font-size: 0.95rem; }
+        th, td { border: 1px solid #334155; padding: 10px; }
+        th { background-color: #334155; color: #fbbf24; }
+        
+        .charts-container { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+        .chart-box { text-align: center; background-color: #0f172a; padding: 15px; border-radius: 8px; border: 1px solid #334155; position: relative; }
+        .chart-title { font-weight: bold; margin-bottom: 10px; color: #cbd5e1; }
+        
+        .action-buttons { display: flex; gap: 10px; justify-content: center; margin-top: 40px; flex-wrap: wrap; }
+        .action-btn { flex: 1; min-width: 90px; max-width: 130px; background-color: #0f172a; border: 2px solid #334155; border-radius: 12px; padding: 12px 5px; text-align: center; cursor: pointer; transition: 0.3s; color: #fbbf24; font-weight: bold; user-select: none; }
+        .action-btn:hover { background-color: #1e293b; border-color: #fbbf24; transform: translateY(-3px); }
+        .action-btn .icon { font-size: 1.8rem; margin-bottom: 6px; }
+
+        #dasha-wrapper { display: none; margin-top: 30px; background-color: #0f172a; border: 1px solid #fbbf24; border-radius: 8px; padding: 20px; }
+        .dasha-header { color: #fbbf24; text-align: center; font-size: 1.3rem; margin-top: 0; border-bottom: 1px solid #334155; padding-bottom: 10px; }
+        details { margin-bottom: 8px; padding: 5px; border-radius: 5px; }
+        summary { cursor: pointer; font-weight: bold; padding: 5px 0; font-size: 1.05rem; }
+        .dasha-level-1 { margin-left: 20px; border-left: 1px dashed #334155; padding-left: 15px; margin-top: 5px; }
+        .md-block { border: 1px solid #334155; padding: 10px; border-radius: 5px; margin-bottom: 10px; }
+        
+        .progress-container { background: #334155; border-radius: 4px; height: 8px; width: 100%; margin: 8px 0; overflow: hidden; }
+        .progress-bar { background: #10b981; height: 100%; width: 0%; transition: width 0.5s ease; }
+
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; }
+        .modal-content { background: #1e293b; padding: 25px; border-radius: 10px; width: 90%; max-width: 750px; border: 2px solid #fbbf24; max-height: 85vh; overflow-y: auto; }
+        .close-modal { float: right; cursor: pointer; color: #ef4444; font-size: 1.2rem; font-weight: bold; }
+
+        .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 20px; }
+        .service-card { background: #0f172a; border: 1px solid #334155; padding: 15px; border-radius: 8px; cursor: pointer; transition: 0.3s; text-align: center; }
+        .service-card:hover { border-color: #fbbf24; background: #172033; }
+        .service-card h4 { margin: 0 0 5px 0; color: #fbbf24; }
+        .service-card p { margin: 0; font-size: 0.85rem; color: #94a3b8; }
+
+        .pdf-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 15px; }
+        .pdf-card { background: #0f172a; border: 1px solid #334155; padding: 12px; border-radius: 6px; cursor: pointer; transition: 0.3s; text-align: left; }
+        .pdf-card:hover { border-color: #10b981; background: #172033; }
+        .pdf-card h4 { margin: 0 0 3px 0; color: #10b981; font-size: 1rem; }
+        .pdf-card p { margin: 0; font-size: 0.8rem; color: #94a3b8; }
+
+        .view-btn { background: #3b82f6; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; }
+        .del-btn { background: #ef4444; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; }
+
+        #custom-alert { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 3000; justify-content: center; align-items: center; }
+        .alert-box { background: #1e293b; border: 2px solid #fbbf24; padding: 25px; border-radius: 8px; width: 350px; text-align: center; }
+        .alert-box h3 { color: #fbbf24; margin-top: 0; }
+        .alert-box button { background: #fbbf24; color: #0f172a; border: none; padding: 8px 20px; font-weight: bold; border-radius: 5px; cursor: pointer; margin-top: 15px; }
+
+        .text-red { color: #ef4444 !important; }
+        .text-green { color: #10b981 !important; }
+        .text-blue { color: #3b82f6 !important; }
+        .text-gray { color: #94a3b8 !important; }
+        
+        #raw-json { display: none; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1 class="logo">AstroPulse India</h1>
+        <p class="subtitle">(Staff's Office)</p>
+    </div>
+
+    <div id="custom-alert">
+        <div class="alert-box">
+            <h3>AstroPulse India</h3>
+            <p id="alert-msg" style="color: #f8fafc; margin: 15px 0;"></p>
+            <button onclick="closeCustomAlert()">ठीक है (OK)</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="form-row">
+            <div class="form-group">
+                <label>जातक का नाम (Full Name):</label>
+                <input type="text" id="name" value="राहुल शर्मा" placeholder="नाम दर्ज करें...">
+            </div>
+            <div class="form-group">
+                <label>लिंग (Gender):</label>
+                <select id="gender">
+                    <option value="पुरुष (Male)">पुरुष (Male)</option>
+                    <option value="महिला (Female)">महिला (Female)</option>
+                    <option value="अन्य (Other)">अन्य (Other)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group" style="flex:2;">
+                <label>शहर, राज्य (City, State):</label>
+                <input type="text" id="city" value="Raebareli, UP" placeholder="शहर का नाम लिखें..." autocomplete="off" oninput="searchCity(this.value)">
+                <div id="suggestions-list"></div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>तारीख (Date):</label>
+                <input type="number" id="day" value="15" min="1" max="31">
+            </div>
+            <div class="form-group">
+                <label>महीना (Month):</label>
+                <input type="number" id="month" value="8" min="1" max="12">
+            </div>
+            <div class="form-group">
+                <label>वर्ष (Year):</label>
+                <input type="number" id="year" value="1990" min="1900" max="2100">
+            </div>
+            <div class="form-group">
+                <label>समय - घंटा (Hour 0-23):</label>
+                <input type="number" id="hour" value="14" min="0" max="23">
+            </div>
+            <div class="form-group">
+                <label>मिनट (Minute):</label>
+                <input type="number" id="minute" value="30" min="0" max="59">
+            </div>
+        </div>
+        
+        <button class="main-btn" onclick="generateChart()" id="generate-btn">कुंडली बनाएं (Generate Chart)</button>
+
+        <div id="dashboard">
+            <div class="profile-box" id="profile-box"></div>
+
+            <div class="chart-controls">
+                <label><input type="checkbox" id="show-signs" checked onchange="refreshCharts()"> राशियाँ दिखाएं (Show Signs)</label>
+            </div>
+
+            <h2 class="section-title">✨ ग्रह स्थिति (Planetary Positions)</h2>
+            <div style="overflow-x:auto;">
+                <table id="planet-table">
+                    <thead>
+                        <tr>
+                            <th>ग्रह (Planet)</th>
+                            <th>D1 डिग्री</th>
+                            <th>D1 भाव</th>
+                            <th>D1 राशि</th>
+                            <th>D9 डिग्री</th>
+                            <th>D9 भाव</th>
+                            <th>D9 राशि</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <div class="section-header-row">
+                <h2 class="section-title">💠 कुण्डली (D1 & D9 Charts)</h2>
+                <button class="save-chart-btn" onclick="saveCurrentChart()">💾 सेव करें</button>
+            </div>
+
+            <div class="charts-container">
+                <div class="chart-box">
+                    <div class="chart-title">D1 Chart (लग्न)</div>
+                    <div id="d1-svg-container"></div>
+                </div>
+                <div class="chart-box">
+                    <div class="chart-title">D9 Chart (नवमांश)</div>
+                    <div id="d9-svg-container"></div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <div class="action-btn" onclick="toggleDasha()">
+                    <div class="icon">⏳</div>
+                    <div>विंशोत्तरी दशा</div>
+                </div>
+                <div class="action-btn" id="copy-btn" onclick="copyJSON()">
+                    <div class="icon">🤖</div>
+                    <div>AI डेटा इंजन</div>
+                </div>
+                <div class="action-btn" style="border-color: #10b981;" onclick="openPdfModal()">
+                    <div class="icon" style="color: #10b981;">📄</div>
+                    <div style="color: #10b981;">PDF रिपोर्ट्स</div>
+                </div>
+                <div class="action-btn" onclick="openServicesModal()">
+                    <div class="icon">🛠️</div>
+                    <div>सर्विसेज</div>
+                </div>
+                <div class="action-btn" onclick="openSavedModal()">
+                    <div class="icon">📁</div>
+                    <div>सेव्ड</div>
+                </div>
+            </div>
+
+            <div id="dasha-wrapper">
+                <h3 class="dasha-header">⏳ विस्तृत विंशोत्तरी दशा</h3>
+                <div id="dasha-content"></div>
+            </div>
+
+            <pre id="raw-json"></pre>
+        </div>
+    </div>
+
+    <!-- Saved Charts Modal -->
+    <div id="saved-modal" class="modal">
+        <div class="modal-content" style="max-width: 800px;">
+            <span class="close-modal" onclick="closeModal('saved-modal')">✖ बंद करें</span>
+            <h3 style="color:#fbbf24; margin-top:0;">📁 सहेजी गई कुंडलियाँ (Saved Charts)</h3>
+            <div id="saved-list-container">लोड हो रहा है...</div>
+        </div>
+    </div>
+
+    <!-- Services Hub Modal -->
+    <div id="services-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('services-modal')">✖ बंद करें</span>
+            <h3 style="color:#fbbf24; margin-top:0;">🛠️ एस्ट्रोलॉजर सर्विसेज हब</h3>
+            <div class="services-grid">
+                <div class="service-card" onclick="runService('Mangal Dosh Analysis')"><h4>🔴 मंगल दोष विश्लेषण</h4><p>कुण्डली में मंगल दोष जांचें</p></div>
+                <div class="service-card" onclick="runService('Kaal Sarp Dosh Yoga')"><h4>🐍 काल सर्प दोष योग</h4><p>राहु-केतु बंधन देखें</p></div>
+                <div class="service-card" onclick="runService('Shani Sade Sati')"><h4>🪐 शनि साढ़े साती</h4><p>साढ़े साती की वर्तमान स्थिति</p></div>
+                <div class="service-card" onclick="runService('Pitra Dosh')"><h4>⚱️ पितृ दोष</h4><p>कुंडली में पितृ दोष की जांच</p></div>
+            </div>
+            <div id="service-result-box" style="margin-top:20px; background:#0f172a; padding:15px; border-radius:6px; border:1px solid #334155; display:none; color:#f8fafc; font-size: 0.95rem; line-height: 1.5; white-space: pre-line;"></div>
+        </div>
+    </div>
+
+    <!-- PDF Reports Modal (6 Options) -->
+    <div id="pdf-modal" class="modal">
+        <div class="modal-content" style="max-width: 750px;">
+            <span class="close-modal" onclick="closeModal('pdf-modal')">✖ बंद करें</span>
+            <h3 style="color:#10b981; margin-top:0;">📄 पीडीएफ रिपोर्ट्स जनरेटर (PDF Reports Hub)</h3>
+            <p style="color:#94a3b8; font-size:0.9rem;">जातक के डेटा के आधार पर प्रोफेशनल रिपोर्ट जनरेट करें:</p>
+            <div class="pdf-grid">
+                <div class="pdf-card" onclick="generateReport('लग्न रिपोर्ट')"><h4>1. लग्न रिपोर्ट</h4><p>व्यक्तित्व और शारीरिक गठन</p></div>
+                <div class="pdf-card" onclick="generateReport('करियर रिपोर्ट')"><h4>2. करियर रिपोर्ट</h4><p>आजीविका और व्यवसाय</p></div>
+                <div class="pdf-card" onclick="generateReport('मैरिज और लव रिपोर्ट')"><h4>3. मैरिज और लव रिपोर्ट</h4><p>वैवाहिक जीवन और प्रेम संबंध</p></div>
+                <div class="pdf-card" onclick="generateReport('हेल्थ एंड क्वालिटी ऑफ लाइफ')"><h4>4. हेल्थ एंड क्वालिटी ऑफ लाइफ</h4><p>स्वास्थ्य और दीर्घायु</p></div>
+                <div class="pdf-card" onclick="generateReport('महादशा अंतर्दशा एनालिसिस')"><h4>5. महादशा अंतर्दशा एनालिसिस</h4><p>दशा फल और भविष्य</p></div>
+                <div class="pdf-card" onclick="generateReport('प्रीमियम कुंडली रिपोर्ट')"><h4>6. प्रीमियम कुंडली रिपोर्ट</h4><p>विस्तृत व्यापक महा-कुंडली</p></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showAstroAlert(msg) {
+            document.getElementById('alert-msg').innerText = msg;
+            document.getElementById('custom-alert').style.display = 'flex';
+        }
+        function closeCustomAlert() {
+            document.getElementById('custom-alert').style.display = 'none';
+        }
+
+        const ZODIACS = ["Aries (मेष)", "Taurus (वृषभ)", "Gemini (मिथुन)", "Cancer (कर्क)", "Leo (सिंह)", "Virgo (कन्या)", "Libra (तुला)", "Scorpio (वृश्चिक)", "Sagittarius (धनु)", "Capricorn (मकर)", "Aquarius (कुंभ)", "Pisces (मीन)"];
+        const SIGN_SHORT = ["मेष", "वृषभ", "मिथुन", "कर्क", "सिंह", "कन्या", "तुला", "वृश्चिक", "धनु", "मकर", "कुंभ", "मीन"];
+        const PL_HINDI = { "Sun": "सूर्य", "Moon": "चंद्र", "Mars": "मंगल", "Mercury": "बुध", "Jupiter": "गुरु", "Venus": "शुक्र", "Saturn": "शनि", "Rahu": "राहु", "Ketu": "केतु" };
+        const PL_SHORT = { "Sun": "सू", "Moon": "चं", "Mars": "मं", "Mercury": "बु", "Jupiter": "गु", "Venus": "शु", "Saturn": "श", "Rahu": "रा", "Ketu": "के" };
+        
+        const HINDI_MONTHS = ["जनवरी", "फरवरी", "मार्च", "अप्रैल", "मई", "जून", "जुलाई", "अगस्त", "सितंबर", "अक्टूबर", "नवंबर", "दिसंबर"];
+        function formatReadableDate(d, m, y) { return `${d} ${HINDI_MONTHS[m - 1]} ${y}`; }
+        function formatDMS(degDecimal) {
+            let d = Math.floor(degDecimal);
+            let mDecimal = (degDecimal - d) * 60;
+            let m = Math.floor(mDecimal);
+            let s = Math.round((mDecimal - m) * 60);
+            return `${d}° ${m}' ${s}"`;
+        }
+
+        let searchTimer;
+        function searchCity(query) {
+            clearTimeout(searchTimer);
+            const listDiv = document.getElementById('suggestions-list');
+            if (query.length < 2) { listDiv.style.display = 'none'; return; }
+            searchTimer = setTimeout(async () => {
+                try {
+                    let res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&addressdetails=1&limit=5`, {
+                        headers: { 'User-Agent': 'AstroPulseIndia/1.0' }
+                    });
+                    let data = await res.json();
+                    listDiv.innerHTML = '';
+                    if (data.length > 0) {
+                        listDiv.style.display = 'block';
+                        data.forEach(item => {
+                            let div = document.createElement('div');
+                            div.className = 'suggestion-item';
+                            div.innerText = item.display_name;
+                            div.onclick = () => { document.getElementById('city').value = item.display_name; listDiv.style.display = 'none'; };
+                            listDiv.appendChild(div);
+                        });
+                    } else { listDiv.style.display = 'none'; }
+                } catch (e) { listDiv.style.display = 'none'; }
+            }, 300);
+        }
+
+        document.addEventListener('click', function(e) {
+            if (!document.getElementById('city').contains(e.target)) { document.getElementById('suggestions-list').style.display = 'none'; }
+        });
+
+        let globalChartData = null;
+        let savedChartsCache = [];
+
+        async function generateChart() {
+            const btn = document.getElementById('generate-btn');
+            btn.innerText = "Calculating Data...";
+            
+            const d = document.getElementById('day').value;
+            const m = document.getElementById('month').value;
+            const y = document.getElementById('year').value;
+            const h = document.getElementById('hour').value;
+            const min = document.getElementById('minute').value;
+            const city = document.getElementById('city').value;
+            const name = document.getElementById('name').value || "राहुल शर्मा";
+            const gender = document.getElementById('gender').value;
+
+            try {
+                const response = await fetch(`/get_chart?year=${y}&month=${m}&day=${d}&hour=${h}&minute=${min}&city=${encodeURIComponent(city)}&name=${encodeURIComponent(name)}&gender=${encodeURIComponent(gender)}`);
+                const data = await response.json();
+                
+                if(data.status === "success") {
+                    globalChartData = data.data;
+                    renderDashboard(globalChartData);
+                } else { showAstroAlert("Error: " + data.message); }
+            } catch (error) { showAstroAlert("Error connecting to Engine."); }
+            btn.innerText = "कुंडली बनाएं (Generate Chart)";
+        }
+
+        async function saveCurrentChart() {
+            if (!globalChartData) { showAstroAlert("कृपया पहले कुंडली बनाएं!"); return; }
+            
+            const name = document.getElementById('name').value || "अज्ञात";
+            const gender = document.getElementById('gender').value;
+            const d = document.getElementById('day').value;
+            const m = document.getElementById('month').value;
+            const y = document.getElementById('year').value;
+            const dob = formatReadableDate(d, m, y);
+            const tob = `${document.getElementById('hour').value.padStart(2, '0')}:${document.getElementById('minute').value.padStart(2, '0')}`;
+            const city = document.getElementById('city').value;
+
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('gender', gender);
+            formData.append('dob', dob);
+            formData.append('tob', tob);
+            formData.append('city', city);
+            formData.append('chart_data', JSON.stringify(globalChartData));
+
+            try {
+                let res = await fetch('/save_chart', { method: 'POST', body: formData });
+                let result = await res.json();
+                showAstroAlert(result.message);
+            } catch (e) { showAstroAlert("सेव करने में विफल!"); }
+        }
+
+        async function openSavedModal() {
+            document.getElementById('saved-modal').style.display = 'flex';
+            const container = document.getElementById('saved-list-container');
+            container.innerHTML = "लोड हो रहा है...";
+
+            try {
+                let res = await fetch('/get_saved_charts');
+                let data = await res.json();
+                savedChartsCache = data.charts;
+
+                if (savedChartsCache.length === 0) {
+                    container.innerHTML = "<p>कोई सहेजी गई कुंडली नहीं मिली।</p>";
+                    return;
+                }
+
+                let html = "<table style='width:100%'><tr><th>नाम</th><th>लिंग</th><th>जन्म तारीख</th><th>समय</th><th>स्थान</th><th>कार्रवाई (Actions)</th></tr>";
+                savedChartsCache.forEach((c, index) => {
+                    html += `<tr>
+                        <td><b>${c.name}</b></td>
+                        <td>${c.gender}</td>
+                        <td>${c.dob}</td>
+                        <td>${c.tob}</td>
+                        <td>${c.city}</td>
+                        <td>
+                            <button class="view-btn" onclick="viewSavedChart(${index})">👁️ View</button>
+                            <button class="del-btn" onclick="deleteSavedChart(${c.id})">🗑️ Delete</button>
+                        </td>
+                    </tr>`;
+                });
+                html += "</table>";
+                container.innerHTML = html;
+            } catch (e) { container.innerHTML = "<p style='color:red;'>डेटा लोड करने में समस्या आई।</p>"; }
+        }
+
+        function viewSavedChart(index) {
+            let chartItem = savedChartsCache[index];
+            document.getElementById('name').value = chartItem.name;
+            document.getElementById('gender').value = chartItem.gender;
+            document.getElementById('city').value = chartItem.city;
+            
+            globalChartData = JSON.parse(chartItem.chart_data);
+            renderDashboard(globalChartData);
+            closeModal('saved-modal');
+        }
+
+        async function deleteSavedChart(id) {
+            if (!confirm("क्या आप इस कुंडली को डिलीट करना चाहते हैं?")) return;
+            try {
+                let res = await fetch(`/delete_chart/${id}`, { method: 'DELETE' });
+                let result = await res.json();
+                showAstroAlert(result.message);
+                openSavedModal();
+            } catch (e) {
+                showAstroAlert("डिटेल डिलीट करने में असक्षम!");
+            }
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function openServicesModal() {
+            if (!globalChartData) { showAstroAlert("कृपया पहले किसी जातक की कुंडली बनाएं!"); return; }
+            document.getElementById('services-modal').style.display = 'flex';
+            document.getElementById('service-result-box').style.display = 'none';
+        }
+
+        function openPdfModal() {
+            if (!globalChartData) { showAstroAlert("कृपया पहले किसी जातक की कुंडली बनाएं!"); return; }
+            document.getElementById('pdf-modal').style.display = 'flex';
+        }
+
+        function generateReport(reportName) {
+            if (!globalChartData) { showAstroAlert("कृपया पहले कुंडली बनाएं!"); return; }
+            const name = document.getElementById('name').value || "राहुल शर्मा";
+            const d = document.getElementById('day').value;
+            const m = document.getElementById('month').value;
+            const y = document.getElementById('year').value;
+            const h = document.getElementById('hour').value;
+            const min = document.getElementById('minute').value;
+            const city = document.getElementById('city').value;
+            const gender = document.getElementById('gender').value;
+
+            let url = `/generate_report/${encodeURIComponent(reportName)}?year=${y}&month=${m}&day=${d}&hour=${h}&minute=${min}&city=${encodeURIComponent(city)}&name=${encodeURIComponent(name)}&gender=${encodeURIComponent(gender)}`;
+            window.location.href = url;
+            closeModal('pdf-modal');
+        }
+
+        async function runService(serviceType) {
+            if (!globalChartData) { showAstroAlert("कृपया पहले कुंडली बनाएं!"); return; }
+            const resBox = document.getElementById('service-result-box');
+            resBox.style.display = 'block';
+            resBox.innerHTML = "एआई (AI) विश्लेषण कर रहा है, कृपया प्रतीक्षा करें...";
+
+            const d = document.getElementById('day').value;
+            const m = document.getElementById('month').value;
+            const y = document.getElementById('year').value;
+            const h = document.getElementById('hour').value;
+            const min = document.getElementById('minute').value;
+            const city = document.getElementById('city').value;
+
+            try {
+                let res = await fetch(`/check_service/${encodeURIComponent(serviceType)}?year=${y}&month=${m}&day=${d}&hour=${h}&minute=${min}&city=${encodeURIComponent(city)}`);
+                let data = await res.json();
+                if(data.status === "success") {
+                    resBox.innerHTML = `<b>${serviceType} विश्लेषण परिणाम:</b><br><br>` + data.result;
+                } else {
+                    resBox.innerHTML = "एरर: " + data.message;
+                }
+            } catch (e) {
+                resBox.innerHTML = "सर्वर से कनेक्ट करने में विफल!";
+            }
+        }
+
+        function refreshCharts() {
+            if (globalChartData) {
+                drawSVGChart(globalChartData, 'D1', 'd1-svg-container');
+                drawSVGChart(globalChartData, 'D9', 'd9-svg-container');
+            }
+        }
+
+        function renderDashboard(data) {
+            document.getElementById('dashboard').style.display = 'block';
+            document.getElementById('raw-json').innerText = JSON.stringify(data, null, 2);
+            document.getElementById('dasha-wrapper').style.display = 'none';
+
+            const name = document.getElementById('name').value || "अज्ञात";
+            const gender = document.getElementById('gender').value;
+            const d = document.getElementById('day').value;
+            const m = document.getElementById('month').value;
+            const y = document.getElementById('year').value;
+            const h = document.getElementById('hour').value;
+            const min = document.getElementById('minute').value;
+            const city = document.getElementById('city').value;
+
+            document.getElementById('profile-box').innerHTML = `
+                <div class="profile-item">नाम: <span>${name}</span></div>
+                <div class="profile-item">लिंग: <span>${gender}</span></div>
+                <div class="profile-item">जन्म तारीख: <span>${formatReadableDate(d, m, y)}</span></div>
+                <div class="profile-item">समय: <span>${h.padStart(2, '0')}:${min.padStart(2, '0')}</span></div>
+                <div class="profile-item">स्थान: <span>${city}</span></div>
+            `;
+
+            const tbody = document.querySelector('#planet-table tbody');
+            tbody.innerHTML = '';
+            
+            let lagnaD9Val = (data.lagna.absolute_degree * 9) % 30;
+            tbody.innerHTML += `<tr>
+                <td style="color:#fbbf24; font-weight:bold;">Lagna (लग्न)</td>
+                <td>${formatDMS(data.lagna.degree_within_sign)}</td>
+                <td>1</td>
+                <td>${data.lagna.d1_sign}</td>
+                <td>${formatDMS(lagnaD9Val)}</td>
+                <td>1</td>
+                <td>${data.lagna.d9_sign}</td>
+            </tr>`;
+
+            for (let p in data.planets) {
+                let pd = data.planets[p];
+                let d9Val = (pd.absolute_degree * 9) % 30;
+                tbody.innerHTML += `<tr>
+                    <td>${PL_HINDI[p] || p}</td>
+                    <td>${formatDMS(pd.degree_within_sign)}</td>
+                    <td>${pd.d1_house}</td>
+                    <td>${pd.d1_sign}</td>
+                    <td>${formatDMS(d9Val)}</td>
+                    <td>${pd.d9_house}</td>
+                    <td>${pd.d9_sign}</td>
+                </tr>`;
+            }
+
+            refreshCharts();
+
+            const tl = data.dasha_timeline;
+            let dashaHTML = buildMahadashaTree(tl.previous_mahadasha, "🕒 पूर्व", "text-red");
+            dashaHTML += buildMahadashaTree(tl.current_mahadasha, "🟢 वर्तमान", "text-green", true);
+            dashaHTML += buildMahadashaTree(tl.next_mahadasha, "🔮 भविष्य की", "text-blue");
+            
+            document.getElementById('dasha-content').innerHTML = dashaHTML;
+        }
+
+        function buildMahadashaTree(md, prefix, headerColor, showProgress = false) {
+            let mdState = md.is_current ? 'open' : '';
+            let progressHTML = '';
+            if (showProgress) {
+                let startMs = new Date(md.start_date).getTime();
+                let endMs = new Date(md.end_date).getTime();
+                let nowMs = new Date().getTime();
+                let pct = Math.max(0, Math.min(100, ((nowMs - startMs) / (endMs - startMs)) * 100)).toFixed(1);
+                progressHTML = `
+                    <div style="font-size:0.85rem; color:#94a3b8; margin-top:5px;">दशा प्रगति (Progress): ${pct}% बीत चुकी है</div>
+                    <div class="progress-container"><div class="progress-bar" style="width: ${pct}%;"></div></div>
+                `;
+            }
+            
+            let html = `<details ${mdState} class="md-block">
+                <summary class="${headerColor}" style="font-size:1.15rem;">${prefix} ${PL_HINDI[md.lord]} महादशा (${md.start_date} से ${md.end_date})</summary>
+                ${progressHTML}
+                <div class="dasha-level-1">`;
+            
+            md.antardashas_breakdown.forEach(ad => {
+                let adState = ad.is_current ? 'open' : '';
+                let adClass = ad.is_current ? 'text-green' : 'text-gray';
+                html += `<details ${adState}><summary class="${adClass}">▶ ${PL_HINDI[ad.lord]} अंतर्दशा (${ad.start_date} से ${ad.end_date})</summary><div class="dasha-level-1">`;
+                
+                ad.pratyantardashas_breakdown.forEach(pd => {
+                    let pdState = pd.is_current ? 'open' : '';
+                    let pdClass = pd.is_current ? 'text-green' : 'text-gray';
+                    html += `<details ${pdState}><summary class="${pdClass}">▶ ${PL_HINDI[pd.lord]} प्रत्यंतर (${pd.start_date} से ${pd.end_date})</summary><div class="dasha-level-1">`;
+                    
+                    pd.sookshma_dashas_breakdown.forEach(sd => {
+                        let sdClass = sd.is_current ? 'text-green' : 'text-gray';
+                        let cMarker = sd.is_current ? '🟢' : '▪';
+                        html += `<div class="${sdClass}" style="margin-bottom:3px;">${cMarker} ${PL_HINDI[sd.lord]} सूक्ष्म (${sd.start_date} से ${sd.end_date})</div>`;
+                    });
+                    html += `</div></details>`;
+                });
+                html += `</div></details>`;
+            });
+            html += `</div></details>`;
+            return html;
+        }
+
+        function toggleDasha() {
+            const dw = document.getElementById('dasha-wrapper');
+            if (dw.style.display === 'none' || dw.style.display === '') {
+                dw.style.display = 'block';
+                dw.scrollIntoView({ behavior: 'smooth' });
+            } else { dw.style.display = 'none'; }
+        }
+
+        function drawSVGChart(data, chartType, containerId) {
+            let lagnaSignStr = chartType === 'D1' ? data.lagna.d1_sign : data.lagna.d9_sign;
+            let lagnaNum = ZODIACS.indexOf(lagnaSignStr) + 1;
+            
+            let houses = {1:[], 2:[], 3:[], 4:[], 5:[], 6:[], 7:[], 8:[], 9:[], 10:[], 11:[], 12:[]};
+            for (let p in data.planets) {
+                let h = chartType === 'D1' ? data.planets[p].d1_house : data.planets[p].d9_house;
+                houses[h].push(PL_SHORT[p] || p);
+            }
+
+            let showSigns = document.getElementById('show-signs').checked;
+
+            let svg = `<svg width="300" height="300" viewBox="0 0 300 300" style="background:#1e293b;">
+                <text x="150" y="150" fill="#fbbf24" font-size="30" font-weight="bold" text-anchor="middle" alignment-baseline="middle" opacity="0.12" transform="rotate(-45 150 150)">AstroPulse India</text>
+                <rect x="0" y="0" width="300" height="300" fill="none" stroke="#fbbf24" stroke-width="2"/>
+                <line x1="0" y1="0" x2="300" y2="300" stroke="#fbbf24" stroke-width="1"/>
+                <line x1="0" y1="300" x2="300" y2="0" stroke="#fbbf24" stroke-width="1"/>
+                <polygon points="150,0 0,150 150,300 300,150" fill="none" stroke="#fbbf24" stroke-width="1"/>`;
+
+            const POS = { 1:[150,60], 2:[70,35], 3:[35,70], 4:[75,150], 5:[35,230], 6:[70,265], 7:[150,240], 8:[230,265], 9:[265,230], 10:[225,150], 11:[265,70], 12:[230,35] };
+            const NUM_POS = { 1:[150,95], 2:[95,50], 3:[50,95], 4:[105,150], 5:[50,205], 6:[95,250], 7:[150,205], 8:[205,250], 9:[250,205], 10:[195,150], 11:[250,95], 12:[205,50] };
+            const SIGN_POS = { 1:[150,35], 2:[45,25], 3:[25,45], 4:[50,150], 5:[25,255], 6:[45,275], 7:[150,270], 8:[255,275], 9:[275,255], 10:[250,150], 11:[275,45], 12:[255,25] };
+
+            for(let i=1; i<=12; i++) {
+                let signNum = (lagnaNum + i - 2) % 12 + 1;
+                if (showSigns) {
+                    let sName = SIGN_SHORT[signNum - 1];
+                    svg += `<text x="${SIGN_POS[i][0]}" y="${SIGN_POS[i][1]}" style="font-size:10px" text-anchor="middle" alignment-baseline="middle" fill="#38bdf8">${sName}</text>`;
+                }
+                svg += `<text x="${NUM_POS[i][0]}" y="${NUM_POS[i][1]}" style="font-size:11px" text-anchor="middle" alignment-baseline="middle" fill="#94a3b8">${signNum}</text>`;
+                let pList = houses[i];
+                let pText = pList.join(', ');
+                let fontSize = pList.length > 3 ? "11px" : "14px";
+                svg += `<text x="${POS[i][0]}" y="${POS[i][1]}" style="font-size:${fontSize}" font-weight="bold" text-anchor="middle" alignment-baseline="middle" fill="#f8fafc">${pText}</text>`;
+            }
+            svg += `</svg>`;
+            document.getElementById(containerId).innerHTML = svg;
+        }
+
+        function copyJSON() {
+            const text = document.getElementById('raw-json').innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.getElementById('copy-btn');
+                btn.innerHTML = `<div class="icon">✅</div><div>Copied!</div>`;
+                btn.style.borderColor = "#10b981";
+                btn.style.color = "#10b981";
+                setTimeout(() => {
+                    btn.innerHTML = `<div class="icon">🤖</div><div>AI डेटा इंजन</div>`;
+                    btn.style.borderColor = "#334155";
+                    btn.style.color = "#fbbf24";
+                }, 2500);
+            });
+        }
+    </script>
+</body>
+</html>
