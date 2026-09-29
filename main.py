@@ -141,19 +141,39 @@ def check_service(service_type: str, year: int, month: int, day: int, hour: int,
     except Exception as e:
         return {"status": "error", "message": str(e)}
 
-# --- 🚀 PDF REPORT GENERATOR ---
+# --- 🚀 PDF REPORT GENERATOR (Prompt + Vedic Engine JSON + Clean Hierarchy) ---
 @app.get("/generate_report/{report_type}")
-def generate_report(report_type: str, year: int, month: int, day: int, hour: int, minute: int, city: str, name: str, gender: str):
+def generate_report(report_type: str, year: int, month: int, day: int, hour: int, minute: int, city: str, name: str = "जातक", gender: str = "पुरुष"):
     try:
         report_type_decoded = urllib.parse.unquote(report_type)
         chart_data = get_vedic_planets(year, month, day, hour, minute, city)
         
         master_prompt, found_file = get_prompt_content(report_type_decoded)
         
-        final_report_content = f"""{master_prompt}
+        # यहाँ रिपोर्ट की शुरुआत में जातक का पूरा विवरण और दशा पदानुक्रम (Hierarchy) का सख्त निर्देश जोड़ा गया है
+        final_report_content = f"""==================================================
+ASTROPULSE INDIA - AI VEDIC REPORT GENERATOR
+==================================================
+REPORT TITLE: {report_type_decoded}
+--------------------------------------------------
+[1. JAATAK VIVECHAN (USER BIRTH DETAILS)]
+- Full Name (नाम): {name}
+- Gender (लिंग): {gender}
+- Date of Birth (जन्म तिथि): {day}-{month}-{year}
+- Time of Birth (जन्म समय): {hour:02d}:{minute:02d}
+- Birth Place (जन्म स्थान): {city}
+==================================================
+
+[2. STRICT HIERARCHY INSTRUCTION FOR AI ANALYSIS]
+- You must strictly respect the Vimsottari Dasha hierarchy: Mahadasha -> Antardasha -> Pratyantardasha -> Sookshma Dasha. 
+- Do not mix or jumble up sub-periods (e.g., do not place Sookshma levels inside Antardasha or jumble up planetary periods). Maintain clean and strict differentiation across all levels.
 
 ==================================================
-KUNDLI JSON DATA (ENGINE CALCULATED)
+[3. MASTER PROMPT GUIDELINES]
+{master_prompt}
+
+==================================================
+[4. KUNDLI & DASHA JSON DATA (ENGINE CALCULATED)]
 ==================================================
 {json.dumps(chart_data, ensure_ascii=False, indent=2)}
 """
