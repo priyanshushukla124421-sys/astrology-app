@@ -1,918 +1,110 @@
-आप एक अनुभवी वैदिक ज्योतिष विशेषज्ञ, दशा-विश्लेषक और प्रोफेशनल कुंडली रिपोर्ट लेखक की भूमिका में कार्य करें।
+==================================================
+[25-PAGE MAHADASHA MASTER PROMPT - STRICT PARAGRAPH & WORD COUNT RULE]
+==================================================
+आप एक अनुभवी वैदिक ज्योतिष विशेषज्ञ, दशा-विश्लेषक और प्रीमियम कुंडली रिपोर्ट लेखक की भूमिका में कार्य करें।
 
-मुझे नीचे दिए गए जन्म विवरण, D1, D9 और विम्शोत्तरी दशा के आधार पर एक अत्यंत विस्तृत और गहन “विम्शोत्तरी दशा रिपोर्ट” तैयार करनी है।
+मुझे नीचे दिए गए जन्म विवरण, D1, D9 और विम्शोत्तरी दशा के आधार पर एक अत्यंत विस्तृत और प्रोफेशनल “विम्शोत्तरी दशा रिपोर्ट” तैयार करनी है। 
 
-यह रिपोर्ट लगभग 25 पन्नों की होनी चाहिए और लगभग 20,000–60,000 characters के बीच की detailed professional report हो।
-
-इस रिपोर्ट का मुख्य उद्देश्य यह समझना है कि व्यक्ति के जीवन में अलग-अलग महादशाओं और विशेष रूप से वर्तमान महादशा की अंतरदशाओं के दौरान कौन-से जीवन क्षेत्र सक्रिय हो सकते हैं, किन ग्रहों के कारण अवसर बनते हैं, किन ग्रहों के कारण बाधाएं आती हैं और D1 तथा D9 मिलाकर ग्रहों की वास्तविक शक्ति कैसी दिखाई देती है।
+सबसे महत्वपूर्ण निर्देश (STRICT FORMATTING & WORD COUNT RULES):
+1. रिपोर्ट की लंबाई ठीक 25 पन्नों की होनी चाहिए (Page 1 से Page 25 तक)।
+2. PAGE BREAK: हर नए पेज की शुरुआत में स्पष्ट रूप से "==================== PAGE BREAK ====================" लिखें।
+3. NO SUB-HEADINGS & NO BULLETS: किसी भी पेज पर केवल एक मुख्य हेडिंग (Top Heading) होगी। इसके अलावा कोई भी सब-हेडिंग, A-B-C या बुलेट पॉइंट्स (Bullet points) बिल्कुल नहीं होंगे। 
+4. STRICT WORD COUNT & PARAGRAPH FORMAT: पेज 2 से लेकर पेज 25 तक, *हर एक पेज पर अनिवार्य रूप से 350 से 400 शब्द होने चाहिए*। इन 350-400 शब्दों को केवल 3 या 4 पैराग्राफ में बांटकर लिखें (हर पैराग्राफ लगभग 100 शब्दों का हो)। 
+5. केवल दिए गए D1, D9 और विम्शोत्तरी दशा डेटा के आधार पर विश्लेषण करें। अपनी तरफ से कुछ न जोड़ें।
 
 ━━━━━━━━━━━━━━━━━━━━
 जन्म विवरण
 ━━━━━━━━━━━━━━━━━━━━
-
 नाम: [नाम]
-
 जन्म तारीख: [DD/MM/YYYY]
-
 जन्म समय: [समय]
-
 जन्म स्थान: [स्थान]
 
+━━━━━━━━━━━━━━━━━━━━
+D1 और D9 की पूरी ग्रह स्थिति
+━━━━━━━━━━━━━━━━━━━━
+[यहां D1 और D9 की पूरी ग्रह स्थिति डालें]
 
 ━━━━━━━━━━━━━━━━━━━━
-D1 की पूरी ग्रह स्थिति
+विम्शोत्तरी दशा तालिका
 ━━━━━━━━━━━━━━━━━━━━
-
-[यहां D1 की पूरी ग्रह स्थिति डालें]
-
-
-━━━━━━━━━━━━━━━━━━━━
-D9 की पूरी ग्रह स्थिति
-━━━━━━━━━━━━━━━━━━━━
-
-[यहां D9 की पूरी ग्रह स्थिति डालें]
-
-
-━━━━━━━━━━━━━━━━━━━━
-पूरी विम्शोत्तरी दशा तालिका
-━━━━━━━━━━━━━━━━━━━━
-
 [यहां Mahadasha और Antardasha की पूरी तालिका डालें]
 
-
 ━━━━━━━━━━━━━━━━━━━━
-सबसे महत्वपूर्ण चयन नियम
-━━━━━━━━━━━━━━━━━━━━
-
-पूरी विम्शोत्तरी दशा तालिका को देखकर पहले यह निर्धारित करें:
-
-1. वर्तमान में कौन-सी महादशा चल रही है।
-2. वर्तमान में कौन-सी अंतरदशा चल रही है।
-3. वर्तमान महादशा से ठीक पहले कौन-सी महादशा थी।
-4. वर्तमान महादशा के बाद कौन-सी महादशा आएगी।
-
-रिपोर्ट में केवल इन 3 महादशाओं का detailed analysis करें:
-
-1. पिछली/हाल की समाप्त महादशा
-2. वर्तमान महादशा
-3. अगली/आने वाली महादशा
-
-पूरी 120 वर्ष की विम्शोत्तरी महादशा सूची को विस्तार से analyze न करें।
-
-बाकी महादशाओं का केवल तभी उल्लेख करें जब किसी विशेष योग, ग्रह या जीवन घटना को समझाने के लिए उनकी आवश्यकता हो।
-
-━━━━━━━━━━━━━━━━━━━━
-तीन मुख्य महादशाओं का चयन
+रिपोर्ट की कुल संरचना (25-PAGE PDF STRUCTURE)
 ━━━━━━━━━━━━━━━━━━━━
 
-पहली महादशा:
+PAGE 1 — COVER & BIRTH DETAILS
+- मुख्य हेडिंग: "जन्म विवरण एवं दशा रूपरेखा"
+- इसमें नाम, जन्म तारीख, समय, स्थान और वर्तमान महादशा/अंतर्दशा लिखें (यहाँ कोई विश्लेषण नहीं होगा)।
 
-वर्तमान महादशा से तुरंत पहले समाप्त हुई महादशा।
+==================== PAGE BREAK ====================
 
-इसका उद्देश्य यह समझाना है कि व्यक्ति ने पिछले चरण में क्या अनुभव किया और वह चरण वर्तमान जीवन स्थिति को कैसे तैयार करके गया।
+PAGE 2 — OVERALL DASHA OVERVIEW
+- मुख्य हेडिंग: "विम्शोत्तरी दशाओं का समग्र अवलोकन"
+- शब्द सीमा: 350-400 शब्द (3-4 पैराग्राफ)।
+- पिछली, वर्तमान और आगामी महादशा का एक संक्षिप्त सार लिखें कि जीवन का फोकस कैसे बदल रहा है।
 
-दूसरी महादशा:
+==================== PAGE BREAK ====================
 
-वर्तमान में चल रही महादशा।
+PAGE 3 से PAGE 5 — PREVIOUS MAHADASHA (3 Pages Total)
+हर पेज पर ठीक 350-400 शब्द (3-4 पैराग्राफ) होंगे।
+- PAGE 3 हेडिंग: "पिछली महादशा - ज्योतिषीय आधार और शुरुआत" (D1/D9 में ग्रह की स्थिति का वर्णन)।
+- PAGE 4 हेडिंग: "पिछली महादशा - करियर और आर्थिक प्रभाव"
+- PAGE 5 हेडिंग: "पिछली महादशा - व्यक्तिगत जीवन और निष्कर्ष" (यह दशा क्या नींव छोड़कर गई है)।
 
-यह रिपोर्ट का सबसे महत्वपूर्ण हिस्सा होगा।
+==================== PAGE BREAK ====================
 
-इस महादशा का सबसे विस्तृत analysis करें।
+PAGE 6 से PAGE 9 — CURRENT MAHADASHA OVERALL ANALYSIS (4 Pages Total)
+वर्तमान महादशा का सबसे विस्तृत विश्लेषण। हर पेज पर ठीक 350-400 शब्द (3-4 पैराग्राफ)।
+- PAGE 6 हेडिंग: "वर्तमान महादशा - ग्रह की वास्तविक शक्ति और आधार" 
+- PAGE 7 हेडिंग: "वर्तमान महादशा - करियर, व्यवसाय और धन" 
+- PAGE 8 हेडिंग: "वर्तमान महादशा - विवाह, रिश्ते और पारिवारिक जीवन" 
+- PAGE 9 हेडिंग: "वर्तमान महादशा - स्वास्थ्य, चुनौतियां और व्यक्तिगत विकास" 
 
-तीसरी महादशा:
+==================== PAGE BREAK ====================
 
-वर्तमान महादशा के बाद आने वाली अगली महादशा।
+PAGE 10 से PAGE 18 — CURRENT MAHADASHA'S ALL ANTARDASHAS (9 Pages Total)
+वर्तमान महादशा के अंदर आने वाली सभी 9 अंतर्दशाओं का क्रमवार विश्लेषण। (हर अंतर्दशा के लिए 1 पूरा पेज)।
+- हर पेज की मुख्य हेडिंग: "[महादशा ग्रह] महादशा में [अंतर्दशा ग्रह] अंतर्दशा" (साथ में तारीख लिखें)।
+- शब्द सीमा: हर पेज पर 350-400 शब्द (3-4 पैराग्राफ)।
+- दोनों ग्रहों का संबंध, D1/D9 का प्रभाव और करियर/धन/रिश्तों पर पड़ने वाले फल को पैराग्राफ में समझाएं।
 
-इसका उद्देश्य यह बताना है कि वर्तमान phase के बाद जीवन की मुख्य direction किस प्रकार बदल सकती है।
+==================== PAGE BREAK ====================
 
-━━━━━━━━━━━━━━━━━━━━
-महादशा विश्लेषण का CORE FRAMEWORK
-━━━━━━━━━━━━━━━━━━━━
+PAGE 19 से PAGE 20 — CURRENT ANTARDASHA DEEP ANALYSIS (2 Pages Total)
+वर्तमान समय में जो अंतर्दशा चल रही है, उसका डीप प्रैक्टिकल विश्लेषण। हर पेज पर 350-400 शब्द (3-4 पैराग्राफ)।
+- PAGE 19 हेडिंग: "वर्तमान अंतर्दशा - मौजूदा ग्रहों की स्थिति और ऊर्जा"
+- PAGE 20 हेडिंग: "वर्तमान अंतर्दशा - व्यावहारिक मार्गदर्शन और सावधानियां" (क्या करें और क्या न करें)।
 
-प्रत्येक चुनी गई महादशा के लिए लगभग 1500–2500 शब्दों तक का गहन analysis करें।
+==================== PAGE BREAK ====================
 
-हर महादशा को निम्न structure के अनुसार analyze करें:
+PAGE 21 से PAGE 22 — NEXT MAHADASHA ANALYSIS (2 Pages Total)
+आगामी महादशा का विश्लेषण। हर पेज पर 350-400 शब्द (3-4 पैराग्राफ)।
+- PAGE 21 हेडिंग: "आगामी महादशा - जीवन की नई दिशा और अवसर"
+- PAGE 22 हेडिंग: "आगामी महादशा - करियर, धन और पारिवारिक बदलाव"
 
+==================== PAGE BREAK ====================
 
-[महादशा ग्रह का नाम] महादशा
+PAGE 23 — POSITIVE DASHA EFFECTS & YOGAS
+- मुख्य हेडिंग: "दशा के दौरान सक्रिय होने वाले शुभ योग और परिणाम"
+- शब्द सीमा: 350-400 शब्द (3-4 पैराग्राफ)। इस दशा में कौन से राजयोग या धनयोग सक्रिय हो रहे हैं।
 
-1. महादशा का मूल स्वरूप
+==================== PAGE BREAK ====================
 
-सबसे पहले समझाएं कि संबंधित ग्रह सामान्य रूप से क्या दर्शाता है और इस व्यक्ति की कुंडली में वह किस प्रकार का जीवन theme activate करता है।
+PAGE 24 — CHALLENGES & REMEDIES
+- मुख्य हेडिंग: "दशा आधारित चुनौतियां और अचूक उपाय"
+- शब्द सीमा: 350-400 शब्द (3-4 पैराग्राफ)। 
+- पहले 2 पैराग्राफ में चुनौतियां और अंतिम 2 पैराग्राफ में 4 महत्वपूर्ण उपाय लिखें। (कोई बुलेट लिस्ट नहीं, किसी रत्न/Gemstone की सलाह नहीं)।
 
-2. D1 में ग्रह की स्थिति
+==================== PAGE BREAK ====================
 
-विस्तार से बताएं:
-
-• ग्रह किस राशि में है
-• किस भाव में है
-• उस भाव का क्या अर्थ है
-• ग्रह किस भाव का स्वामी है
-• functional benefic या malefic nature क्या है
-• ग्रह उच्च, नीच, स्वगृही, मूलत्रिकोण या सामान्य स्थिति में है
-• ग्रह की dignity कैसी है
-• ग्रह की शक्ति कैसी है
-• ग्रह पर किन ग्रहों की दृष्टि है
-• ग्रह किन भावों को देख रहा है
-• ग्रह किन ग्रहों के साथ युति कर रहा है
-• ग्रह किसी महत्वपूर्ण योग का हिस्सा है या नहीं
-• ग्रह का भावेशत्व महादशा के परिणामों को कैसे बदलता है
-
-3. D9 में स्थिति
-
-D9 में उस ग्रह की:
-
-• राशि
-• भाव
-• dignity
-• स्वामीत्व
-• युति
-• दृष्टि
-• strength
-
-का विश्लेषण करें।
-
-फिर बताएं कि D1 और D9 दोनों को मिलाकर इस ग्रह की वास्तविक शक्ति कैसी दिखाई देती है।
-
-यदि D1 और D9 में ग्रह की स्थिति मजबूत है तो उसकी consistency समझाएं।
-
-यदि D1 मजबूत लेकिन D9 कमजोर है तो बाहरी उपलब्धि और आंतरिक stability के बीच अंतर समझाएं।
-
-यदि D1 कमजोर लेकिन D9 supportive है तो maturity और समय के साथ improvement की संभावना समझाएं।
-
-4. ग्रह की कुल शक्ति
-
-ग्रह को केवल “अच्छा” या “बुरा” न कहें।
-
-उसकी strength को इन factors से judge करें:
-
-• राशि
-• भाव
-• भावेशत्व
-• dignity
-• दृष्टि
-• युति
-• योग
-• D9
-• दशा activation
-
-फिर balanced conclusion दें।
-
-━━━━━━━━━━━━━━━━━━━━
-महादशा के दौरान LIFE AREAS
-━━━━━━━━━━━━━━━━━━━━
-
-हर महादशा में निम्न सभी क्षेत्रों का अलग-अलग गहन विश्लेषण करें:
-
-1. Career / Job
-
-• नौकरी में growth
-• role change
-• promotion
-• instability
-• job switch
-• authority
-• professional reputation
-• skill development
-• work pressure
-• new opportunities
-
-2. Business
-
-• entrepreneurship
-• partnership
-• independent business
-• expansion
-• risk
-• clients
-• competition
-• profit pattern
-• business stability
-
-यदि business का स्पष्ट योग न हो तो इसे जबरदस्ती positive न बनाएं।
-
-3. Marriage
-
-• marriage prospects
-• marital stability
-• spouse-related themes
-• delay
-• responsibility
-• emotional distance
-• relationship transformation
-
-4. Love / Relationship
-
-• attraction
-• emotional bonding
-• commitment
-• misunderstandings
-• separation tendencies
-• reconciliation possibilities
-
-5. Finance
-
-• income
-• savings
-• financial growth
-• expenses
-• debt
-• investment
-• sudden gains/losses
-• financial stability
-
-6. Health
-
-केवल ज्योतिषीय tendencies बताएं।
-
-किसी medical diagnosis का दावा न करें।
-
-• energy
-• stress
-• routine
-• chronic tendency यदि chart से संकेत हो
-• recovery pattern
-• lifestyle sensitivity
-
-7. Family
-
-• parents
-• siblings
-• family responsibility
-• domestic environment
-• family support
-• family-related changes
-
-8. Property / Home
-
-• house
-• land
-• vehicle
-• relocation
-• property investment
-• domestic stability
-
-9. Personal Growth
-
-• confidence
-• maturity
-• spirituality
-• emotional development
-• decision making
-• self-awareness
-• life direction
-
-
-━━━━━━━━━━━━━━━━━━━━
-PAST MAHADASHA ANALYSIS
-━━━━━━━━━━━━━━━━━━━━
-
-पहली selected Mahadasha यानी वर्तमान से पहले वाली Mahadasha में यह विशेष रूप से analyze करें:
-
-• उस समय कौन-से themes activate हुए होंगे
-• व्यक्ति के जीवन में उस period का मुख्य उद्देश्य क्या था
-• कौन-से जीवन क्षेत्रों में pressure आया होगा
-• कौन-से opportunities बने होंगे
-• career पर क्या असर
-• finance पर क्या असर
-• relationship/marriage पर क्या असर
-• family पर क्या असर
-• personal growth पर क्या असर
-
-इसके बाद बताएं:
-
-“यह महादशा वर्तमान महादशा के लिए किस प्रकार की foundation छोड़कर गई।”
-
-यदि user द्वारा कोई past event दिया गया हो तो उसे chart से compare करें, लेकिन घटना स्वयं से invent न करें।
-
-
-━━━━━━━━━━━━━━━━━━━━
-CURRENT MAHADASHA — REPORT का सबसे महत्वपूर्ण भाग
-━━━━━━━━━━━━━━━━━━━━
-
-वर्तमान महादशा को सबसे ज्यादा depth दें।
-
-इस section में लगभग 2500–3500 शब्द तक का analysis किया जा सकता है।
-
-सबसे पहले current Mahadasha की overall theme बताएं।
-
-फिर:
-
-• ग्रह की D1 स्थिति
-• ग्रह की D9 स्थिति
-• भावेशत्व
-• योग
-• दृष्टि
-• युति
-• strength
-• संबंधित भाव
-• संबंधित जीवन क्षेत्रों
-
-को जोड़कर पूरी महादशा का analysis करें।
-
-इसके बाद Career, Business, Marriage, Love, Finance, Health, Family, Property और Personal Growth को अलग-अलग analyze करें।
-
-फिर विशेष रूप से बताएं:
-
-• इस महादशा की सबसे बड़ी opportunity
-• इस महादशा की सबसे बड़ी challenge
-• किस प्रकार के decisions महत्वपूर्ण हो सकते हैं
-• किस क्षेत्र में patience की आवश्यकता होगी
-• किस क्षेत्र में proactive action लाभदायक हो सकता है
-
-
-━━━━━━━━━━━━━━━━━━━━
-CURRENT MAHADASHA की हर ANTARDASHA
-━━━━━━━━━━━━━━━━━━━━
-
-यह इस रिपोर्ट का सबसे महत्वपूर्ण हिस्सा होगा।
-
-वर्तमान महादशा के अंदर आने वाली प्रत्येक अंतरदशा का अलग-अलग detailed analysis करें।
-
-उदाहरण:
-
-Current Mahadasha = Planet A
-
-तो:
-
-A–A
-A–B
-A–C
-A–D
-A–E
-A–F
-A–G
-A–H
-A–I
-
-जितनी वास्तविक Antardashas वर्तमान Mahadasha के अंदर हैं, सभी को analyze करें।
-
-किसी भी Antardasha को केवल नाम लिखकर skip न करें।
-
-हर Antardasha के लिए लगभग 500–900 शब्दों का detailed analysis करें।
-
-━━━━━━━━━━━━━━━━━━━━
-हर ANTARDASHA का FRAMEWORK
-━━━━━━━━━━━━━━━━━━━━
-
-[Mahadasha Lord – Antardasha Lord]
-
-1. अंतरदशा का मूल प्रभाव
-
-बताएं कि Mahadasha planet और Antardasha planet मिलकर किस प्रकार का theme बनाते हैं।
-
-2. दोनों ग्रहों का संबंध
-
-बताएं:
-
-• दोनों ग्रहों की mutual relationship
-• natural friendship/enmity
-• functional relationship
-• D1 में दोनों की स्थिति
-• D9 में दोनों की स्थिति
-• mutual aspect यदि हो
-• conjunction यदि हो
-• house lordship relationship
-• yoga formation
-
-3. D1 Analysis
-
-Antardasha Lord किस भाव में है।
-
-कौन-से भावों का स्वामी है।
-
-उसकी राशि और dignity क्या है।
-
-उस पर किन ग्रहों की दृष्टि है।
-
-वह किन भावों को activate कर रहा है।
-
-4. D9 Analysis
-
-Antardasha Lord की D9 स्थिति बताएं।
-
-फिर समझाएं कि D9 उसकी दशा में मिलने वाले परिणामों की quality को कैसे प्रभावित करती है।
-
-5. Career
-
-इस Antardasha में:
-
-• job
-• promotion
-• job change
-• project
-• authority
-• professional conflict
-• career opportunity
-• business
-
-का संभावित प्रभाव बताएं।
-
-6. Business
-
-यदि relevant हो तो:
-
-• partnership
-• clients
-• expansion
-• profit
-• risk
-• competition
-
-का analysis करें।
-
-7. Marriage
-
-• विवाह के अवसर
-• spouse-related developments
-• commitment
-• tension
-• emotional closeness
-• delay
-• responsibility
-
-का analysis करें।
-
-8. Love
-
-• attraction
-• relationship development
-• communication
-• emotional bonding
-• misunderstanding
-• separation/reconnection possibilities
-
-9. Finance
-
-• income
-• savings
-• expenses
-• debt
-• investment
-• financial opportunity
-• sudden financial pressure
-
-10. Health
-
-केवल general astrological tendencies बताएं।
-
-Medical diagnosis न करें।
-
-11. Family
-
-Parents, siblings, spouse और domestic environment पर संभावित प्रभाव बताएं।
-
-12. Property
-
-यदि ग्रह और भाव relevant हों तो:
-
-• house
-• land
-• vehicle
-• relocation
-• property transaction
-
-का analysis करें।
-
-13. Personal Growth
-
-यह period व्यक्ति को emotionally, mentally और spiritually क्या सिखा सकता है।
-
-14. Overall Antardasha Summary
-
-अंत में 5–8 वाक्यों में बताएं:
-
-• सबसे बड़ा opportunity
-• सबसे बड़ा challenge
-• किस क्षेत्र में ध्यान देना चाहिए
-• किस प्रकार का practical approach रखना चाहिए
-
-
-━━━━━━━━━━━━━━━━━━━━
-CURRENT ANTARDASHA की TIMELINE
-━━━━━━━━━━━━━━━━━━━━
-
-यदि exact dates उपलब्ध हैं तो प्रत्येक Antardasha के साथ उसकी:
-
-Start Date
-End Date
-
-स्पष्ट रूप से लिखें।
-
-यदि current Antardasha चल रही है तो उसे विशेष रूप से identify करें।
-
-वर्तमान Antardasha को बाकी Antardashas की तुलना में अधिक विस्तार दें।
-
-लेकिन किसी event की exact date तभी दें जब दशा data और ज्योतिषीय आधार पर्याप्त हो।
-
-सिर्फ अनुमान के आधार पर exact घटना या तारीख न बनाएं।
-
-
-━━━━━━━━━━━━━━━━━━━━
-CURRENT ANTARDASHA — SPECIAL DEEP ANALYSIS
-━━━━━━━━━━━━━━━━━━━━
-
-जो Antardasha वर्तमान समय में चल रही है, उसका अलग से लगभग 1200–1800 शब्दों का deep analysis दें।
-
-इसमें शामिल करें:
-
-• current Mahadasha planet
-• current Antardasha planet
-• D1
-• D9
-• दोनों ग्रहों का संबंध
-• activated houses
-• relevant yogas
-• current life themes
-• Career
-• Business
-• Marriage
-• Love
-• Finance
-• Health
-• Family
-• Property
-• Personal Growth
-
-फिर बताएं:
-
-“अभी व्यक्ति को किन 5 बातों पर सबसे ज्यादा ध्यान देना चाहिए।”
-
-और:
-
-“अभी किन 5 चीजों से बचना उपयोगी रहेगा।”
-
-
-━━━━━━━━━━━━━━━━━━━━
-NEXT MAHADASHA ANALYSIS
-━━━━━━━━━━━━━━━━━━━━
-
-वर्तमान Mahadasha के बाद आने वाली अगली Mahadasha का भी detailed analysis करें।
-
-बताएं:
-
-• वर्तमान phase से क्या बदलाव आएगा
-• अगला ग्रह किन जीवन क्षेत्रों को activate करेगा
-• Career में संभावित direction
-• Business
-• Finance
-• Marriage
-• Family
-• Property
-• Personal Growth
-• प्रमुख opportunities
-• प्रमुख challenges
-
-फिर “Transition from Current Mahadasha to Next Mahadasha” नाम से एक section दें।
-
-इसमें बताएं कि current Mahadasha के अंत और next Mahadasha की शुरुआत के बीच life themes कैसे बदल सकते हैं।
-
-Exact event prediction से बचें जब तक पर्याप्त आधार न हो।
-
-
-━━━━━━━━━━━━━━━━━━━━
-DASHA-BASED YOGAS
-━━━━━━━━━━━━━━━━━━━━
-
-पूरी रिपोर्ट में ऐसे योगों को identify करें जो दशा के कारण अधिक सक्रिय होते हैं।
-
-विशेष रूप से देखें:
-
-• Rajyoga
-• Dhan Yoga
-• Dharma-Karma relationship
-• Neecha Bhanga यदि वास्तव में बनता हो
-• Vipreet Rajyoga यदि वास्तव में बनता हो
-• Gajakesari आदि केवल वास्तविक formation होने पर
-• Kendra-Trikona relationships
-• 2nd/11th income connections
-• 5th/9th fortune/intelligence connections
-• 7th marriage/business connections
-• 10th career connections
-• 6th/8th/12th challenging connections
-
-किसी योग का नाम केवल इसलिए न लिखें क्योंकि ग्रहों का सामान्य connection दिखाई देता है।
-
-योग की वास्तविक formation verify करें।
-
-
-━━━━━━━━━━━━━━━━━━━━
-POSITIVE DASHA EFFECTS
-━━━━━━━━━━━━━━━━━━━━
-
-पूरी रिपोर्ट के अंत में दशाओं से मिलने वाले 5 प्रमुख सकारात्मक प्रभाव बताएं।
-
-हर point में:
-
-• कौन-सा ग्रह
-• कौन-सी महादशा/अंतरदशा
-• कौन-सा भाव
-• कौन-सा योग
-• कौन-सा संभावित जीवन क्षेत्र
-
-आपस में जोड़कर समझाएं।
-
-
-━━━━━━━━━━━━━━━━━━━━
-CHALLENGING DASHA EFFECTS
-━━━━━━━━━━━━━━━━━━━━
-
-इसके बाद 5 प्रमुख चुनौतीपूर्ण दशा-आधारित प्रभाव बताएं।
-
-हर challenge के लिए:
-
-• ग्रह
-• भाव
-• भावेशत्व
-• D1 स्थिति
-• D9 स्थिति
-• दशा activation
-• संभावित life area
-
-समझाएं।
-
-साथ ही यह भी बताएं कि कोई mitigating factor है या नहीं।
-
-सिर्फ डराने वाली भविष्यवाणी न करें।
-
-
-━━━━━━━━━━━━━━━━━━━━
-4 MOST IMPORTANT REMEDIES
-━━━━━━━━━━━━━━━━━━━━
-
-दशा से संबंधित केवल 4 सबसे महत्वपूर्ण और practical उपाय दें।
-
-हर उपाय के लिए बताएं:
-
-1. किस ग्रह के लिए
-2. किस महादशा/अंतरदशा के कारण आवश्यकता
-3. समस्या या imbalance क्या है
-4. उपाय कैसे करना है
-5. किस दिन
-6. कितनी अवधि
-7. मंत्र हो तो मंत्र
-8. दान/सेवा/पूजा हो तो तरीका
-9. इससे किस प्रकार का positive balancing उद्देश्य है
-
-बहुत ज्यादा remedies की सूची न बनाएं।
-
-उपाय सरल और practical रखें।
-
-रत्न तभी सुझाएं जब उसकी आवश्यकता स्पष्ट रूप से chart से supported हो।
-
-
-━━━━━━━━━━━━━━━━━━━━
-25-PAGE PDF STRUCTURE
-━━━━━━━━━━━━━━━━━━━━
-
-PAGE 1
-Birth Details
-
-नाम
-DOB
-Time
-Place
-D1 Lagna
-D9 Lagna
-
-
-PAGE 2
-Dasha Overview
-
-• Current Mahadasha
-• Current Antardasha
-• Previous Mahadasha
-• Current Mahadasha
-• Next Mahadasha
-• Overall Dasha Timeline
-
-
-PAGE 3–5
-Previous Mahadasha — Deep Analysis
-
-
-PAGE 6–12
-Current Mahadasha — Overall Deep Analysis
-
-
-PAGE 13–20
-Current Mahadasha की सभी Antardashas
-
-
-PAGE 21
-Current Antardasha — Special Deep Analysis
-
-
-PAGE 22
-Next Mahadasha — Deep Analysis
-
-
-PAGE 23
-Dasha-Based Positive Effects
-
-
-PAGE 24
-Dasha-Based Challenges + 4 Important Remedies
-
-
-PAGE 25
-Final Conclusion
-
-
-━━━━━━━━━━━━━━━━━━━━
-FINAL CONCLUSION
-━━━━━━━━━━━━━━━━━━━━
-
-अंतिम पन्ने पर पूरी दशा रिपोर्ट का consolidated conclusion दें।
-
-इसमें बताएं:
-
-1. पिछले महादशा ने क्या दिया/सिखाया
-2. वर्तमान महादशा का मुख्य उद्देश्य/theme
-3. वर्तमान अंतरदशा की सबसे महत्वपूर्ण दिशा
-4. अगली महादशा का मुख्य बदलाव
-5. Career का overall dasha pattern
-6. Finance का overall dasha pattern
-7. Marriage/Love का overall dasha pattern
-8. Family का overall pattern
-9. Property का overall pattern
-10. Personal Growth का overall pattern
-
-इसके बाद:
-
-5 सबसे महत्वपूर्ण सकारात्मक दशा प्रभाव
-
-1.
-2.
-3.
-4.
-5.
-
-5 मुख्य चुनौतीपूर्ण दशा प्रभाव
-
-1.
-2.
-3.
-4.
-5.
-
-इसके बाद “अभी के लिए सबसे महत्वपूर्ण 5 सलाह” दें।
-
-अंत में 7–10 वाक्यों का balanced final conclusion दें।
-
-
-━━━━━━━━━━━━━━━━━━━━
-ANALYTICAL RULES
-━━━━━━━━━━━━━━━━━━━━
-
-पूरी रिपोर्ट में निम्न factors को आवश्यकता के अनुसार integrate करें:
-
-• Lagna
-• Lagnesh
-• Bhavesh
-• Planetary placement
-• House lordship
-• Planetary dignity
-• Exaltation
-• Debilitation
-• Own sign
-• Mooltrikona
-• Combustion यदि उपलब्ध हो
-• Retrogression यदि उपलब्ध हो
-• Planetary aspects
-• Conjunction
-• Functional benefic/malefic nature
-• Kendra
-• Trikona
-• Dusthana
-• Upachaya
-• Maraka
-• D1
-• D9
-• Yogas
-• Mahadasha
-• Antardasha
-• Mahadasha–Antardasha relationship
-
-
-━━━━━━━━━━━━━━━━━━━━
-D1 + D9 RULE
-━━━━━━━━━━━━━━━━━━━━
-
-D1 को बाहरी जीवन की घटनाओं और परिस्थितियों का मुख्य आधार रखें।
-
-D9 को ग्रह की deeper strength, marriage/dharma-related development, maturity और long-term manifestation को समझने के लिए इस्तेमाल करें।
-
-D9 को D1 का replacement न बनाएं।
-
-D1 और D9 में contradiction होने पर दोनों को समझाकर balanced conclusion दें।
-
-
-━━━━━━━━━━━━━━━━━━━━
-PREDICTION RULE
-━━━━━━━━━━━━━━━━━━━━
-
-ज्योतिषीय संभावना को certainty की तरह प्रस्तुत न करें।
-
-“संभावना”, “संकेत”, “योग”, “प्रवृत्ति”, “समय अनुकूल हो सकता है” जैसी भाषा का उचित उपयोग करें।
-
-लेकिन भाषा इतनी vague भी न हो कि कोई practical meaning ही न बचे।
-
-जहां ग्रहों का समर्थन मजबूत हो वहां स्पष्ट रूप से बताएं कि कौन-सा क्षेत्र comparatively supportive है।
-
-जहां चुनौती हो वहां कारण और practical handling दोनों बताएं।
-
-
-━━━━━━━━━━━━━━━━━━━━
-HEALTH RULE
-━━━━━━━━━━━━━━━━━━━━
-
-Health analysis केवल ज्योतिषीय tendencies के स्तर पर करें।
-
-किसी रोग की medical diagnosis न करें।
-
-जहां आवश्यक हो वहां सामान्य preventive lifestyle advice दें और जरूरत पड़ने पर medical professional से consultation की सलाह दें।
-
-
-━━━━━━━━━━━━━━━━━━━━
-WRITING STYLE
-━━━━━━━━━━━━━━━━━━━━
-
-पूरी रिपोर्ट:
-
-• हिंदी/Hinglish में हो।
-• Professional और consultation-ready हो।
-• “आप” का प्रयोग करें।
-• भाषा साफ और समझने योग्य हो।
-• छोटे-छोटे one-word points से बचें।
-• Main analysis paragraph-wise हो।
-• Technical astrology को simple language में explain करें।
-• बहुत अधिक repetition न हो।
-• एक ही ग्रह का वही फल हर जगह copy-paste न करें।
-• प्रत्येक section में नया analytical angle दें।
-• डराने वाली भाषा न हो।
-• अनावश्यक positivity भी न हो।
-• Balanced और realistic interpretation हो।
-
-रिपोर्ट इतनी detailed हो कि इसे सीधे client को professional paid astrology consultation report के रूप में दिया जा सके।
-
-
-━━━━━━━━━━━━━━━━━━━━
-PAGE BREAK RULE
-━━━━━━━━━━━━━━━━━━━━
-
-जहां नया page शुरू होना चाहिए वहां स्पष्ट रूप से:
-
-PAGE BREAK
-
-लिखें।
-
-इससे बाद में document/PDF formatting के दौरान प्रत्येक major section को अलग page पर व्यवस्थित किया जा सके।
-
-
-━━━━━━━━━━━━━━━━━━━━
-CHARACTER / LENGTH TARGET
-━━━━━━━━━━━━━━━━━━━━
-
-पूरी report लगभग 20,000–60,000 characters के बीच रखें।
-
-लेकिन केवल character count पूरा करने के लिए filler या repetition न जोड़ें।
-
-जहां analysis की आवश्यकता है वहां depth बढ़ाएं।
-
-विशेष रूप से:
-
-• Previous Mahadasha — detailed
-• Current Mahadasha — सबसे detailed
-• Current Mahadasha की हर Antardasha — अलग analysis
-• Current Antardasha — सबसे अधिक practical detail
-• Next Mahadasha — detailed
-• Positive/Challenging Dasha Effects — concise but analytical
-• Remedies — practical
-• Conclusion — clear and consolidated
-
+PAGE 25 — FINAL CONCLUSION
+- मुख्य हेडिंग: "संपूर्ण दशा विश्लेषण का अंतिम निष्कर्ष"
+- शब्द सीमा: 350-400 शब्द (3-4 पैराग्राफ)।
+- पूरी रिपोर्ट का सार, जीवन की दिशा, 5 ताकतें और 5 चुनौतियां (सब कुछ पैराग्राफ के अंदर पिरोकर लिखें, कोई बुलेट पॉइंट्स नहीं)।
 
 ━━━━━━━━━━━━━━━━━━━━
 FINAL INSTRUCTION
 ━━━━━━━━━━━━━━━━━━━━
-
-अब ऊपर दिए गए जन्म विवरण, D1, D9 और विम्शोत्तरी दशा data का उपयोग करके पूरी 25-page Dasha Report तैयार करें।
-
-पहले स्वयं दशा तालिका से:
-
-1. Previous Mahadasha
-2. Current Mahadasha
-3. Current Antardasha
-4. Next Mahadasha
-
-सही-सही identify करें।
-
-फिर उसी के आधार पर पूरी रिपोर्ट तैयार करें।
-
-Current Mahadasha की सभी वास्तविक Antardashas को क्रमवार analyze करें।
-
-किसी भी महादशा या अंतरदशा को केवल generic ग्रहफल के रूप में न लिखें।
-
-हर परिणाम को D1 + D9 + Bhavesh + House + Planetary Strength + Yoga + Dasha Activation से जोड़कर explain करें।
-
-पूरी रिपोर्ट को क्रमवार Page 1 से Page 25 तक तैयार करें। 
+अब ऊपर दिए गए सभी नियमों का कड़ाई से पालन करें। "हर पेज पर 350 से 400 शब्द" और "बिना सब-हेडिंग के 3-4 पैराग्राफ" वाले नियम को किसी भी हाल में न तोड़ें। सबसे पहले Page 1 से शुरू करें और क्रमवार Page 25 तक पूरी रिपोर्ट तैयार करें।

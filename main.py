@@ -36,8 +36,11 @@ def get_prompt_content(report_type_decoded):
     target_keyword = ""
     
     report_lower = report_type_decoded.lower()
-    if "lagna" in report_lower or "लग्न" in report_lower:
-        target_keyword = "lagna"
+    
+    if "indu" in report_lower or "इंदु" in report_lower:
+        target_keyword = "indu lagna"
+    elif "d1" in report_lower or "लग्न" in report_lower or "lagna" in report_lower:
+        target_keyword = "d1"
     elif "career" in report_lower or "करियर" in report_lower:
         target_keyword = "career"
     elif "love" in report_lower or "marriage" in report_lower or "मैरिज" in report_lower or "लव" in report_lower:
@@ -48,8 +51,10 @@ def get_prompt_content(report_type_decoded):
         target_keyword = "mahadasha"
     elif "premium" in report_lower or "प्रीमियम" in report_lower:
         target_keyword = "premium"
+    elif "education" in report_lower or "एजुकेशन" in report_lower:
+        target_keyword = "education"
     else:
-        target_keyword = "lagna"
+        target_keyword = "d1"
         
     for file in files:
         if file.endswith(".txt") and target_keyword in file.lower():
@@ -85,7 +90,7 @@ def save_chart(name: str = Form(...), gender: str = Form(...), dob: str = Form(.
     ''', (name, gender, dob, tob, city, chart_data))
     conn.commit()
     conn.close()
-    return {"message": "कुंडली सफलतापूर्वक सेव हो गई है!"}
+    return {"message": "Kundli safalpurvak save ho gayi hai!"}
 
 @app.get("/get_saved_charts")
 def get_saved_charts():
@@ -104,7 +109,7 @@ def delete_chart(chart_id: int):
     cursor.execute('DELETE FROM saved_charts WHERE id = ?', (chart_id,))
     conn.commit()
     conn.close()
-    return {"message": "कुंडली सफलतापूर्वक डिलीट कर दी गई है!"}
+    return {"message": "Kundli safalpurvak delete kar di gayi hai!"}
 
 # --- 🛠️ SERVICES HUB ---
 @app.get("/check_service/{service_type}")
@@ -119,62 +124,41 @@ def check_service(service_type: str, year: int, month: int, day: int, hour: int,
         s_lower = service_decoded.lower()
         if "mangal" in s_lower or "मंगल" in s_lower:
             m_info = doshas.get("manglik", {})
-            result_text = f"🔴 मंगल दोष विश्लेषण:\n\nस्थिति: {'मंगल दोष उपस्थित है' if m_info.get('is_manglik') else 'मंगल दोष नहीं है (शुभ)'}\nविवरण: {m_info.get('details', 'कुण्डली के आधार पर मंगल की स्थिति सामान्य है।')}"
+            result_text = f"🔴 Mangal Dosh Analysis:\n\nSthiti: {'Mangal Dosh upasthit hai' if m_info.get('is_manglik') else 'Mangal Dosh nahi hai (Shubh)'}\nVivaran: {m_info.get('details', 'Kundli ke adhaar par Mangal ki sthiti samanya hai.')}"
         elif "kaal sarp" in s_lower or "काल सर्प" in s_lower:
             k_info = doshas.get("kaal_sarp", {})
-            result_text = f"🐍 काल सर्प दोष योग:\n\nस्थिति: {'काल सर्प योग उपस्थित है' if k_info.get('is_kaal_sarp') else 'काल सर्प दोष नहीं है'}\nविवरण: {k_info.get('details', 'राहु-केतु के मध्य सभी ग्रहों की स्थिति का विश्लेषण पूर्ण है।')}"
+            result_text = f"🐍 Kaal Sarp Dosh Yoga:\n\nSthiti: {'Kaal Sarp yog upasthit hai' if k_info.get('is_kaal_sarp') else 'Kaal Sarp dosh nahi hai'}\nVivaran: {k_info.get('details', 'Rahu-Ketu ke madhya sabhi grahon ki sthiti ka vishleshan purn hai.')}"
         elif "sade sati" in s_lower or "साढ़े साती" in s_lower:
             s_info = doshas.get("sade_sati", {})
-            result_text = f"🪐 शनि साढ़े साती:\n\nविवरण: {s_info.get('details', 'वर्तमान में शनि की गोचर स्थिति और साढ़े साती का प्रभाव सामान्य है।')}"
+            result_text = f"🪐 Shani Sade Sati:\n\nVivaran: {s_info.get('details', 'Vartman mein Shani ki gochar sthiti aur sade sati ka prabhav samanya hai.')}"
         elif "pitra" in s_lower or "पितृ दोष" in s_lower:
             p_info = doshas.get("pitra_dosh", {})
-            result_text = f"⚱️ पितृ दोष जांच:\n\nविवरण: {p_info.get('details', 'कुण्डली में सूर्य, राहु और पितृ भाव के विश्लेषण के अनुसार स्थिति अनुकूल है।')}"
+            result_text = f"⚱️ Pitra Dosh Jaanch:\n\nVivaran: {p_info.get('details', 'Kundli mein Surya, Rahu aur Pitra bhav ke vishleshan ke anusar sthiti anukul hai.')}"
         else:
-            result_text = f"✨ {service_decoded} का ज्योतिषीय विश्लेषण:\n\nग्रहण किए गए डेटा के अनुसार कुण्डली के योग सामान्य रूप से सक्रिय हैं।"
+            result_text = f"✨ {service_decoded} ka Jyotishiya Vishleshan:\n\nGrahan kiye gaye data ke anusar kundli ke yog samanya roop se sakriya hain."
 
         return {"status": "success", "result": result_text}
     except Exception as e:
         return {"status": "error", "message": str(e)}
 
-# --- 🚀 PDF REPORT GENERATOR (Prompt + Vedic Engine JSON) ---
+# --- 🚀 PDF REPORT GENERATOR ---
 @app.get("/generate_report/{report_type}")
-def generate_report(report_type: str, year: int, month: int, day: int, hour: int, minute: int, city: str, name: str = "जातक", gender: str = "पुरुष"):
+def generate_report(report_type: str, year: int, month: int, day: int, hour: int, minute: int, city: str, name: str, gender: str):
     try:
         report_type_decoded = urllib.parse.unquote(report_type)
         chart_data = get_vedic_planets(year, month, day, hour, minute, city)
         
         master_prompt, found_file = get_prompt_content(report_type_decoded)
         
-        final_report_content = f"""
-==================================================
-ASTROPULSE INDIA - PROFESSIONAL VEDIC REPORT
-==================================================
-Report Type: {report_type_decoded}
-Source Master Prompt File: {found_file}
---------------------------------------------------
-JAATAK VIVECHAN (USER DETAILS):
-- Name: {name}
-- Gender: {gender}
-- DOB: {day}-{month}-{year}
-- Time: {hour:02d}:{minute:02d}
-- Birth Place: {city}
-==================================================
-
-[MASTER PROMPT GUIDELINES & FRAMEWORK]
-{master_prompt}
+        final_report_content = f"""{master_prompt}
 
 ==================================================
 KUNDLI JSON DATA (ENGINE CALCULATED)
 ==================================================
 {json.dumps(chart_data, ensure_ascii=False, indent=2)}
-
---------------------------------------------------
-REPORT STATUS: Successfully Compiled & Generated via AstroPulse Engine.
-==================================================
 """
 
-        # Safe filename to prevent latin-1 encoding crashes
-        safe_filename = "AstroPulse_Professional_Report.txt"
+        safe_filename = f"AstroPulse_Report_{abs(hash(report_type_decoded))}.txt"
 
         return Response(
             content=final_report_content,

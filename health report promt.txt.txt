@@ -1,1297 +1,178 @@
+==================================================
+[25-PAGE HEALTH, WEALTH & LIFESTYLE MASTER PROMPT - STRICT PARAGRAPH & WORD COUNT RULE]
+==================================================
 आप एक अनुभवी वैदिक ज्योतिष विशेषज्ञ, वित्तीय-ज्योतिष विश्लेषक और Quality of Life रिपोर्ट लेखक की भूमिका में कार्य करें।
 
-मुझे नीचे दिए गए जन्म विवरण, D1, D9 और विम्शोत्तरी दशा के आधार पर एक अत्यंत विस्तृत, गहन और professional “HEALTH, WEALTH & QUALITY OF LIFE REPORT” तैयार करनी है।
+मुझे नीचे दिए गए जन्म विवरण, D1, D9 और विम्शोत्तरी दशा के आधार पर एक अत्यंत विस्तृत, गहन और प्रोफेशनल “HEALTH, WEALTH & QUALITY OF LIFE REPORT” तैयार करनी है।
 
-यह रिपोर्ट लगभग 25 पन्नों की PDF के लिए तैयार की जाए और कुल content लगभग 20,000–60,000 characters के भीतर रखा जाए।
-
-रिपोर्ट का उद्देश्य केवल “धन कितना होगा” या “स्वास्थ्य कैसा रहेगा” बताना नहीं है।
-
-पूरी कुंडली को इस दृष्टि से analyze करें कि व्यक्ति:
-
-• पैसा कैसे कमाता है
-• पैसा किन sources से आ सकता है
-• पैसा कितना टिकता है
-• savings क्यों बनती या टूटती हैं
-• debt की प्रवृत्ति कैसी है
-• job/business से wealth pattern कैसा है
-• property और assets का योग कैसा है
-• health और lifestyle का आपस में क्या संबंध है
-• family environment quality of life को कैसे प्रभावित करता है
-• emotional/mental balance की ज्योतिषीय tendencies क्या हैं
-• व्यक्ति को किस तरह की lifestyle ज्यादा suit कर सकती है
-• कौन-से ग्रह जीवन की quality बढ़ाते हैं
-• कौन-से ग्रह unnecessary pressure पैदा कर सकते हैं
-• दशाओं के दौरान wealth और health themes कैसे बदलते हैं
-
-रिपोर्ट केवल generic राशिफल न हो।
-
-D1 + D9 + भावेश + ग्रह शक्ति + दृष्टि + युति + योग + दशा को एक integrated framework में analyze करें।
+सबसे महत्वपूर्ण निर्देश (STRICT FORMATTING & WORD COUNT RULES - DO NOT IGNORE):
+1. रिपोर्ट की लंबाई ठीक 25 पन्नों की होनी चाहिए (Page 1 से Page 25 तक)।
+2. PAGE BREAK: हर नए पेज की शुरुआत में स्पष्ट रूप से "==================== PAGE BREAK ====================" लिखें।
+3. NO SUB-HEADINGS & NO BULLETS: किसी भी पेज पर केवल एक मुख्य हेडिंग (Top Heading) होगी। इसके अलावा कोई भी सब-हेडिंग, A-B-C या बुलेट पॉइंट्स (Bullet points) बिल्कुल नहीं होंगे। 
+4. STRICT WORD COUNT & PARAGRAPH FORMAT: पेज 2 से लेकर पेज 25 तक, *हर एक पेज पर अनिवार्य रूप से 350 से 400 शब्द होने चाहिए*। इन 350-400 शब्दों को केवल 3 या 4 विस्तृत पैराग्राफ में बांटकर लिखें (हर पैराग्राफ लगभग 100 शब्दों का हो)। 
+5. केवल दिए गए D1, D9 और विम्शोत्तरी दशा डेटा के आधार पर विश्लेषण करें। अपनी तरफ से कुछ न जोड़ें।
 
 ━━━━━━━━━━━━━━━━━━━━
 जन्म विवरण
 ━━━━━━━━━━━━━━━━━━━━
-
 नाम: [नाम]
-
 जन्म तारीख: [DD/MM/YYYY]
-
 जन्म समय: [समय]
-
 जन्म स्थान: [स्थान]
 
+━━━━━━━━━━━━━━━━━━━━
+D1 और D9 की पूरी ग्रह स्थिति
+━━━━━━━━━━━━━━━━━━━━
+[यहां D1 और D9 की पूरी ग्रह स्थिति डालें]
 
 ━━━━━━━━━━━━━━━━━━━━
-D1 की पूरी ग्रह स्थिति
+विम्शोत्तरी दशा तालिका
 ━━━━━━━━━━━━━━━━━━━━
-
-[यहां D1 की पूरी ग्रह स्थिति डालें]
-
+[यहां Mahadasha और Antardasha की पूरी तालिका डालें]
 
 ━━━━━━━━━━━━━━━━━━━━
-D9 की पूरी ग्रह स्थिति
+रिपोर्ट की कुल संरचना (25-PAGE PDF STRUCTURE)
 ━━━━━━━━━━━━━━━━━━━━
 
-[यहां D9 की पूरी ग्रह स्थिति डालें]
+PAGE 1 — COVER & BIRTH DETAILS
+- मुख्य हेडिंग: "स्वास्थ्य, धन एवं जीवन-स्तर रूपरेखा"
+- इसमें केवल नाम, जन्म तारीख, समय, स्थान, D1/D9 लग्न और वर्तमान महादशा/अंतर्दशा सामान्य टेक्स्ट में लिखें (यहाँ कोई ज्योतिषीय विश्लेषण नहीं होगा)।
 
+==================== PAGE BREAK ====================
 
-━━━━━━━━━━━━━━━━━━━━
-पूरी विम्शोत्तरी दशा तालिका
-━━━━━━━━━━━━━━━━━━━━
-
-[यहां पूरी Mahadasha + Antardasha table डालें]
-
-
-━━━━━━━━━━━━━━━━━━━━
-REPORT का CORE APPROACH
-━━━━━━━━━━━━━━━━━━━━
-
-पूरी रिपोर्ट में केवल isolated ग्रहफल न दें।
-
-उदाहरण के लिए केवल यह न लिखें:
-
-“दूसरे भाव का स्वामी मजबूत है इसलिए धन अच्छा रहेगा।”
-
-इसके बजाय analyze करें:
-
-• दूसरा भाव
-• दूसरे भावेश की स्थिति
-• दूसरे भाव पर दृष्टि
-• दूसरे भावेश का संबंध 10th/11th/6th/8th/12th से
-• धन योग
-• D9 में दूसरे भावेश की स्थिति
-• income-producing planets
-• current Mahadasha
-• current Antardasha
-• financial stability
-• saving pattern
-• expenditure pattern
-
-इन सबको जोड़कर conclusion दें।
-
-इसी प्रकार Health के लिए:
-
-• Lagna
-• Lagnesh
-• 6th
-• 8th
-• 12th
-• Sun
-• Moon
-• Saturn
-• Mars
-• relevant aspects
-• D9
-• Mahadasha/Antardasha
-
-को integrated तरीके से देखें।
-
-
-━━━━━━━━━━━━━━━━━━━━
-PAGE 1 — BIRTH & REPORT PROFILE
-━━━━━━━━━━━━━━━━━━━━
-
-पहले पन्ने पर केवल:
-
-नाम
-DOB
-Birth Time
-Birth Place
-D1 Lagna
-D9 Lagna
-
-इसके नीचे एक छोटी professional line:
-
-“Health, Wealth & Quality of Life Analysis”
-
-इस पेज पर लंबा interpretation न दें।
-
-
-━━━━━━━━━━━━━━━━━━━━
 PAGE 2 — OVERALL QUALITY OF LIFE SNAPSHOT
-━━━━━━━━━━━━━━━━━━━━
-
-पूरी कुंडली का शुरुआती overview दें।
+- मुख्य हेडिंग: "जीवन के समग्र स्तर और गुणवत्ता का अवलोकन"
+- 350-400 शब्दों में 3-4 पैराग्राफ के अंदर पूरी कुंडली का सार लिखें कि व्यक्ति का धन, स्वास्थ्य और मानसिक शांति का स्तर कैसा रहने वाला है। 
 
-लगभग 800–1200 शब्दों में बताएं:
+==================== PAGE BREAK ====================
 
-• overall life quality pattern
-• wealth potential
-• income stability
-• saving capacity
-• debt sensitivity
-• property potential
-• health sensitivity
-• family support
-• emotional stability
-• personal growth
-• major life strengths
-• major pressure points
+PAGE 3 — 1ST HOUSE: HEALTH FOUNDATION & VITALITY
+- मुख्य हेडिंग: "प्रथम भाव - शारीरिक ऊर्जा, आत्मबल और स्वास्थ्य की नींव"
+- 350-400 शब्दों में 3-4 पैराग्राफ के अंदर समझाएं कि लग्न/लग्नेश के आधार पर व्यक्ति की शारीरिक क्षमता, इम्युनिटी और तनाव झेलने की शक्ति कैसी है।
 
-इसके बाद एक integrated explanation दें:
+==================== PAGE BREAK ====================
 
-“इस कुंडली में धन और स्वास्थ्य एक-दूसरे से किस प्रकार जुड़े हुए दिखाई देते हैं।”
-
-उदाहरण के लिए यदि work pressure financial growth को बढ़ाता है लेकिन health/lifestyle पर pressure डालता है, तो इस connection को explain करें।
+PAGE 4 — 2ND HOUSE: WEALTH FOUNDATION & SAVINGS
+- मुख्य हेडिंग: "द्वितीय भाव - संचित धन, पारिवारिक संपत्ति और बचत"
+- 350-400 शब्दों में 3-4 पैराग्राफ के अंदर समझाएं कि धन रोकने की क्षमता, बैंक बैलेंस और पैतृक/पारिवारिक संपत्ति से लाभ की क्या स्थिति है।
 
-किसी भी conclusion को बिना chart evidence के न बनाएं।
+==================== PAGE BREAK ====================
 
+PAGE 5 — 11TH HOUSE: INCOME POTENTIAL & CASH FLOW
+- मुख्य हेडिंग: "एकादश भाव - आय के स्रोत और नकदी प्रवाह (Cash Flow)"
+- 350-400 शब्दों में 3-4 पैराग्राफ के अंदर समझाएं कि नियमित आय, आय के कई स्रोत और नेटवर्क/संपर्कों के माध्यम से धन लाभ की क्या स्थिति है।
 
-━━━━━━━━━━━━━━━━━━━━
-PAGE 3 — LAGNA, LAGNESHA & BASIC LIFE VITALITY
-━━━━━━━━━━━━━━━━━━━━
-
-प्रथम भाव को Quality of Life का foundation मानकर analyze करें।
-
-विस्तार से देखें:
-
-• Lagna sign
-• Lagnesh
-• Lagna में ग्रह
-• Lagna पर दृष्टि
-• Lagnesh की राशि
-• Lagnesh का भाव
-• Lagnesh की dignity
-• Lagnesh की strength
-• Lagnesh के साथ युति
-• D9 में Lagnesh
-• D9 Lagna
-• D1-D9 consistency
-
-विशेष रूप से analyze करें:
-
-• physical constitution tendencies
-• vitality
-• confidence
-• resilience
-• stress handling
-• decision making
-• self-care
-• lifestyle discipline
-• life direction
+==================== PAGE BREAK ====================
 
-फिर explain करें कि Lagna की strength overall Quality of Life को कैसे प्रभावित करती है।
-
-
-━━━━━━━━━━━━━━━━━━━━
-PAGE 4 — WEALTH FOUNDATION: 2ND HOUSE
-━━━━━━━━━━━━━━━━━━━━
-
-दूसरे भाव का अत्यंत detailed financial analysis करें।
-
-देखें:
-
-• 2nd house sign
-• 2nd lord
-• 2nd lord placement
-• ग्रहों की युति
-• aspects
-• dignity
-• D9 position
-• धन योग
-• 2nd और 11th relationship
-• 2nd और 10th relationship
-• 2nd और 5th/9th relationship
-• 2nd और 6th/8th/12th relationship
-
-विश्लेषण करें:
-
-• धन कमाने की क्षमता
-• savings
-• family wealth
-• financial discipline
-• speech-related earning
-• accumulated wealth
-• financial stability
-• wealth retention
-• sudden financial pressure
-
-फिर स्पष्ट करें:
-
-“इस कुंडली में पैसा कमाना ज्यादा महत्वपूर्ण theme है या पैसा रोककर रखना?”
+PAGE 6 — 10TH HOUSE: CAREER TO WEALTH CONNECTION
+- मुख्य हेडिंग: "दशम भाव - करियर की सफलता और धन निर्माण का संबंध"
+- 350-400 शब्दों में 3-4 पैराग्राफ के अंदर समझाएं कि नौकरी या व्यापार में सफलता किस प्रकार से व्यक्ति की आर्थिक स्थिति को मजबूत करेगी।
 
-यदि दोनों अलग-अलग strengths हैं तो distinction बताएं।
+==================== PAGE BREAK ====================
 
+PAGE 7 — 6TH HOUSE: DEBT, SERVICE & HEALTH STRESS
+- मुख्य हेडिंग: "षष्ठ भाव - कर्ज, प्रतिस्पर्धा और स्वास्थ्य संबंधी चुनौतियां"
+- 350-400 शब्दों में 3-4 पैराग्राफ के अंदर कर्ज लेने की प्रवृत्ति, दुश्मनों से बचाव और कार्यक्षेत्र के तनाव से होने वाली स्वास्थ्य समस्याओं का विश्लेषण करें।
 
-━━━━━━━━━━━━━━━━━━━━
-PAGE 5 — INCOME & CASH FLOW: 11TH HOUSE
-━━━━━━━━━━━━━━━━━━━━
-
-एकादश भाव को income, gains, network और fulfilment of financial goals के रूप में analyze करें।
-
-देखें:
-
-• 11th sign
-• 11th lord
-• placement
-• aspects
-• conjunction
-• dignity
-• D9
-• relation with 2nd
-• relation with 10th
-• relation with 6th
-• relation with 5th/9th
-
-Analyze:
-
-• salary income
-• business income
-• commission
-• network-based gains
-• multiple income streams
-• professional contacts
-• long-term gains
-• financial opportunities
-• delayed gains
-• unstable gains
-
-फिर बताएं कि income का pattern:
-
-• steady
-• cyclical
-• delayed
-• sudden
-• multiple-source
-• effort-dependent
-
-में से किस प्रकार का दिखाई देता है और क्यों।
-
-
-━━━━━━━━━━━━━━━━━━━━
-PAGE 6 — CAREER TO WEALTH CONNECTION: 10TH HOUSE
-━━━━━━━━━━━━━━━━━━━━
-
-दशम भाव को केवल career के लिए नहीं बल्कि “career से wealth creation” के लिए analyze करें।
-
-देखें:
-
-• 10th house
-• 10th lord
-• placement
-• dignity
-• aspects
-• conjunction
-• D9
-• relation with 2nd
-• relation with 6th
-• relation with 11th
-• relation with 5th/9th
-
-Analyze:
-
-• job से income
-• business से income
-• authority
-• professional reputation
-• promotion
-• career stability
-• career changes
-• entrepreneurship
-• professional specialization
-• leadership
-• public dealing
-• long-term earning capacity
-
-विशेष रूप से बताएं:
-
-“Career में कौन-सी दिशा wealth accumulation के लिए comparatively supportive दिखाई देती है?”
-
-लेकिन इसे absolute profession recommendation की तरह न लिखें जब तक chart में स्पष्ट आधार न हो।
-
-
-━━━━━━━━━━━━━━━━━━━━
-PAGE 7 — JOB, SERVICE, DEBT & COMPETITION: 6TH HOUSE
-━━━━━━━━━━━━━━━━━━━━
-
-षष्ठ भाव का detailed analysis करें।
-
-देखें:
-
-• 6th house
-• 6th lord
-• placement
-• aspects
-• conjunction
-• dignity
-• D9
-• relation with 2nd
-• relation with 10th
-• relation with 11th
-• relation with 8th
-• relation with 12th
-
-Analyze:
-
-• job/service
-• competition
-• workplace pressure
-• debt
-• loans
-• repayment capacity
-• disputes
-• enemies
-• work routine
-• stress due to work
-• ability to overcome obstacles
-
-विशेष रूप से debt analysis करें:
-
-• debt लेने की tendency
-• debt accumulation
-• repayment discipline
-• debt से निकलने की क्षमता
-• किस प्रकार की financial planning जरूरी हो सकती है
-
-किसी व्यक्ति को बिना आधार “कर्ज में फंसेगा” जैसे absolute statements न दें।
-
-
-━━━━━━━━━━━━━━━━━━━━
-PAGE 8 — 8TH HOUSE: SUDDEN FINANCIAL EVENTS & TRANSFORMATION
-━━━━━━━━━━━━━━━━━━━━
-
-अष्टम भाव का deep financial analysis करें।
-
-देखें:
-
-• 8th house
-• 8th lord
-• placement
-• aspects
-• conjunction
-• dignity
-• D9
-• relation with 2nd
-• relation with 6th
-• relation with 11th
-• relation with 12th
-
-Analyze:
-
-• sudden gains
-• sudden expenses
-• inheritance
-• joint finances
-• spouse-related finances
-• insurance/tax-type themes जहां relevant हों
-• financial uncertainty
-• major transformations
-• hidden financial obligations
-• research/occult-related earning where chart supports it
-
-अष्टम भाव को केवल “bad house” न मानें।
-
-बताएं कि यह transformation, resilience और unexpected opportunities भी दे सकता है।
-
-
-━━━━━━━━━━━━━━━━━━━━
-PAGE 9 — EXPENSES, FOREIGN & FINANCIAL LEAKAGE: 12TH HOUSE
-━━━━━━━━━━━━━━━━━━━━
-
-द्वादश भाव का financial और Quality of Life analysis करें।
-
-देखें:
-
-• 12th house
-• 12th lord
-• placement
-• aspects
-• conjunction
-• dignity
-• D9
-• relation with 2nd
-• relation with 6th
-• relation with 8th
-• relation with 10th
-• relation with 11th
-
-Analyze:
-
-• expenses
-• unnecessary spending
-• lifestyle expenses
-• foreign expenses
-• travel
-• relocation
-• isolation
-• sleep
-• rest
-• spiritual spending
-• charity
-• hospital-related expenses only as a general astrological possibility, never as diagnosis
-
-विशेष रूप से बताएं:
-
-“पैसा कमाने से ज्यादा चुनौती पैसा रोकने में है या नहीं?”
-
-और यदि foreign connection strong हो तो wealth और expenses के साथ उसका संबंध बताएं।
-
-
-━━━━━━━━━━━━━━━━━━━━
+==================== PAGE BREAK ====================
+
+PAGE 8 — 8TH HOUSE: SUDDEN EVENTS & TRANSFORMATION
+- मुख्य हेडिंग: "अष्टम भाव - अचानक लाभ, हानि और जीवन में बदलाव"
+- 350-400 शब्दों में 3-4 पैराग्राफ के अंदर समझाएं कि बीमा, वसीयत, शेयर मार्केट या अचानक आने वाले खर्चों/बीमारियों की क्या संभावना है।
+
+==================== PAGE BREAK ====================
+
+PAGE 9 — 12TH HOUSE: EXPENSES, SLEEP & FOREIGN
+- मुख्य हेडिंग: "द्वादश भाव - व्यय, विदेश गमन और मानसिक शांति"
+- 350-400 शब्दों में 3-4 पैराग्राफ के अंदर खर्चों का पैटर्न, नींद/आराम की कमी और विदेश जाने से धन/स्वास्थ्य पर क्या असर पड़ेगा, यह बताएं।
+
+==================== PAGE BREAK ====================
+
 PAGE 10 — COMPLETE WEALTH MATRIX
-━━━━━━━━━━━━━━━━━━━━
+- मुख्य हेडिंग: "समग्र आर्थिक स्थिति और धन निर्माण का चक्र"
+- 350-400 शब्दों में 3-4 पैराग्राफ के अंदर 2nd, 6th, 8th, 10th और 11th भावों को मिलाकर एक स्पष्ट तस्वीर दें कि पैसा कहाँ से आएगा और कहाँ जाएगा।
 
-अब 2nd + 6th + 8th + 10th + 11th + 12th को एक साथ जोड़कर complete financial matrix बनाएं।
+==================== PAGE BREAK ====================
 
-यह सबसे महत्वपूर्ण financial synthesis sections में से एक होगा।
+PAGE 11 — FINANCIAL DISCIPLINE & DEBT RISK
+- मुख्य हेडिंग: "आर्थिक अनुशासन और कर्ज से बचाव की रणनीति"
+- 350-400 शब्दों में 3-4 पैराग्राफ के अंदर समझाएं कि व्यक्ति को धन के मामले में कहाँ लापरवाही नहीं करनी चाहिए और कर्ज से कैसे बचना चाहिए।
 
-Analyze:
+==================== PAGE BREAK ====================
 
-1. Earning capacity
-2. Income stability
-3. Saving capacity
-4. Wealth accumulation
-5. Debt
-6. Expenses
-7. Assets
-8. Property
-9. Business wealth
-10. Job wealth
-11. Sudden gains/losses
-12. Long-term financial stability
+PAGE 12 — PROPERTY & ASSET CREATION
+- मुख्य हेडिंग: "संपत्ति निर्माण और भौतिक सुखों का योग"
+- 350-400 शब्दों में 3-4 पैराग्राफ के अंदर 4थे भाव, मंगल और शुक्र के आधार पर घर, वाहन और रियल एस्टेट से लाभ की स्थिति बताएं।
 
-फिर स्पष्ट करें:
+==================== PAGE BREAK ====================
 
-“इस कुंडली में wealth creation का मुख्य engine क्या है?”
+PAGE 13 — HEALTH SENSITIVITIES & LIFESTYLE
+- मुख्य हेडिंग: "शारीरिक संवेदनशीलता और जीवनशैली का प्रभाव"
+- 350-400 शब्दों में 3-4 पैराग्राफ के अंदर बताएं कि व्यक्ति को अपनी दिनचर्या, खान-पान या किन विशेष अंगों/सिस्टम का ध्यान रखना चाहिए (मेडिकल डायग्नोसिस न दें)।
 
-और:
+==================== PAGE BREAK ====================
 
-“Financial leakage का मुख्य कारण क्या हो सकता है?”
+PAGE 14 — MENTAL PEACE & EMOTIONAL BALANCE
+- मुख्य हेडिंग: "मानसिक शांति और भावनात्मक संतुलन"
+- 350-400 शब्दों में 3-4 पैराग्राफ के अंदर चंद्रमा और चतुर्थ भाव के आधार पर व्यक्ति की ओवरथिंकिंग, तनाव झेलने की क्षमता और आंतरिक शांति का विश्लेषण करें।
 
-सिर्फ generic statement न दें। ग्रह और भाव के कारण समझाएं।
+==================== PAGE BREAK ====================
 
+PAGE 15 — D1 + D9 HEALTH & WEALTH SYNTHESIS
+- मुख्य हेडिंग: "आंतरिक शक्ति और बाहरी सफलताओं का समन्वय"
+- 350-400 शब्दों में 3-4 पैराग्राफ के अंदर D1 और D9 के मुख्य ग्रहों को मिलाकर धन और स्वास्थ्य की दीर्घकालिक (Long-term) स्थिरता का विश्लेषण करें।
 
-━━━━━━━━━━━━━━━━━━━━
-PAGE 11 — SAVINGS & FINANCIAL DISCIPLINE
-━━━━━━━━━━━━━━━━━━━━
+==================== PAGE BREAK ====================
 
-अलग से savings pattern analyze करें।
+PAGE 16 से PAGE 17 — 2 MAJOR HEALTH/WEALTH YOGAS (2 Pages Total)
+कुंडली में मौजूद 2 सबसे महत्वपूर्ण सकारात्मक धन या स्वास्थ्य योग चुनें। 
+- हर पेज की मुख्य हेडिंग: "सकारात्मक योग [नंबर]: [योग का नाम]"
+- शब्द सीमा: 350-400 शब्द (3-4 पैराग्राफ)। योग कैसे बन रहा है और जीवन में इसका क्या लाभ मिलेगा, यह पैराग्राफ में समझाएं।
 
-देखें:
+==================== PAGE BREAK ====================
 
-• 2nd house
-• 2nd lord
-• Moon
-• Venus
-• Jupiter
-• Saturn
-• 11th house
-• 12th house
+PAGE 18 से PAGE 19 — 2 CHALLENGING HEALTH/WEALTH COMBINATIONS (2 Pages Total)
+कुंडली में मौजूद 2 प्रमुख चुनौतीपूर्ण योग या दोष चुनें (खर्च, कर्ज या स्वास्थ्य से जुड़े)। 
+- हर पेज की मुख्य हेडिंग: "चुनौतीपूर्ण योग [नंबर]: [दोष का नाम]"
+- शब्द सीमा: 350-400 शब्द (3-4 पैराग्राफ)। यह दोष क्यों आ रहा है और इसे कैसे संभालना है, इसे बिना डराए पैराग्राफ में समझाएं।
 
-जहां relevant हो।
+==================== PAGE BREAK ====================
 
-Analyze:
+PAGE 20 — DASHA-BASED HEALTH & WEALTH TIMING
+- मुख्य हेडिंग: "दशाओं के अनुसार धन और स्वास्थ्य का चक्र"
+- 350-400 शब्दों में 3-4 पैराग्राफ के अंदर समझाएं कि कौन सी दशाएं धन वृद्धि और शारीरिक ऊर्जा के लिए सबसे अधिक अनुकूल समय बना रही हैं।
 
-• savings habit
-• impulsive spending
-• family expenses
-• lifestyle expenses
-• long-term planning
-• financial discipline
-• emergency fund tendency
-• delayed gratification
+==================== PAGE BREAK ====================
 
-अंत में practical financial habits बताएं।
+PAGE 21 — PREVIOUS MAHADASHA IMPACT
+- मुख्य हेडिंग: "पिछली दशा का धन और स्वास्थ्य पर प्रभाव"
+- 350-400 शब्दों में 3-4 पैराग्राफ के अंदर समझाएं कि पिछली महादशा ने व्यक्ति के जीवन-स्तर और बैंक बैलेंस में क्या आधार तैयार किया है।
 
-ये advice सामान्य financial discipline के रूप में हो, personalized investment advice के रूप में नहीं।
+==================== PAGE BREAK ====================
 
+PAGE 22 — CURRENT MAHADASHA DEEP ANALYSIS
+- मुख्य हेडिंग: "वर्तमान महादशा में जीवन-स्तर और प्रगति"
+- 350-400 शब्दों में 3-4 पैराग्राफ के अंदर बताएं कि मौजूदा महादशा स्वास्थ्य, संपत्ति और निवेश के लिए कैसे अवसर या संघर्ष लेकर आई है।
 
-━━━━━━━━━━━━━━━━━━━━
-PAGE 12 — DEBT, LOANS & FINANCIAL PRESSURE
-━━━━━━━━━━━━━━━━━━━━
+==================== PAGE BREAK ====================
 
-6th + 8th + 12th + 2nd + 11th को मिलाकर debt pattern analyze करें।
+PAGE 23 — CURRENT ANTARDASHA PRACTICAL ADVICE
+- मुख्य हेडिंग: "वर्तमान अंतर्दशा का व्यावहारिक प्रभाव"
+- 350-400 शब्दों में 3-4 पैराग्राफ के अंदर अभी चल रही अंतर्दशा का सूक्ष्म विश्लेषण करें। मौजूदा समय में धन और सेहत को लेकर क्या निर्णय लेने चाहिए, यह समझाएं।
 
-देखें:
+==================== PAGE BREAK ====================
 
-• loan tendency
-• debt burden
-• repayment
-• financial obligations
-• family liabilities
-• business debt
-• sudden financial pressure
-• recovery capacity
+PAGE 24 — LIFESTYLE & FINANCIAL REMEDIES (NO STONES)
+- मुख्य हेडिंग: "जीवन-स्तर को बेहतर बनाने के अचूक उपाय"
+- 350-400 शब्दों में 3-4 पैराग्राफ के अंदर केवल 4 व्यावहारिक उपाय (मंत्र, दान, कर्म, आर्थिक/शारीरिक अनुशासन) समझाएं। किसी भी प्रकार के रत्न (Gemstone) की सलाह न दें। कोई बुलेट पॉइंट्स न बनाएं।
 
-फिर बताएं:
+==================== PAGE BREAK ====================
 
-• debt का risk factor
-• debt management में किन habits की आवश्यकता है
-• कौन-से दशा periods में financial discipline ज्यादा जरूरी हो सकता है
-
-किसी निश्चित loan event की prediction तभी करें जब दशा और chart दोनों मजबूत संकेत दें।
-
-
-━━━━━━━━━━━━━━━━━━━━
-PAGE 13 — PROPERTY, HOME & ASSET CREATION
-━━━━━━━━━━━━━━━━━━━━
-
-Property और assets का detailed analysis करें।
-
-मुख्य रूप से:
-
-• 4th house
-• 4th lord
-• 2nd
-• 8th
-• 11th
-• 10th
-• Mars
-• Venus
-• Moon
-
-और D9 तथा दशा को आवश्यकता के अनुसार integrate करें।
-
-Analyze:
-
-• house
-• land
-• vehicle
-• property purchase
-• inherited property
-• family property
-• self-earned property
-• relocation
-• property-related expenses
-• asset accumulation
-
-यदि property योग supportive हो तो कारण बताएं।
-
-यदि delay/obstacle हो तो उसका कारण बताएं।
-
-
-━━━━━━━━━━━━━━━━━━━━
-PAGE 14 — HEALTH FOUNDATION
-━━━━━━━━━━━━━━━━━━━━
-
-यह पूरा section केवल ज्योतिषीय health tendencies के लिए होगा।
-
-मुख्य factors:
-
-• Lagna
-• Lagnesh
-• 6th
-• 6th lord
-• 8th
-• 8th lord
-• 12th
-• Sun
-• Moon
-• Mars
-• Saturn
-• relevant D9 positions
-• Mahadasha
-• Antardasha
-
-Analyze:
-
-• vitality
-• stamina
-• recovery tendency
-• stress sensitivity
-• routine sensitivity
-• lifestyle discipline
-• sleep pattern
-• emotional strain
-• physical resilience
-
-किसी disease का diagnosis न करें।
-
-किसी ग्रह को किसी specific disease का निश्चित कारण न बताएं।
-
-
-━━━━━━━━━━━━━━━━━━━━
-PAGE 15 — HEALTH SENSITIVITY & PRECAUTIONS
-━━━━━━━━━━━━━━━━━━━━
-
-यदि chart में किसी body system या lifestyle area की sensitivity दिखाई देती है तो उसे “संभावित संवेदनशीलता” के रूप में बताएं।
-
-उदाहरण:
-
-• stress
-• sleep
-• digestion
-• energy
-• hormonal balance जैसी broad tendencies
-
-लेकिन medical diagnosis न दें।
-
-हर sensitivity के साथ practical precaution दें।
-
-उदाहरण:
-
-• नियमित sleep
-• balanced diet
-• hydration
-• exercise
-• stress management
-• routine medical check-up
-
-यदि कोई symptom या condition हो तो qualified medical professional की सलाह आवश्यक होने की बात स्पष्ट रखें।
-
-
-━━━━━━━━━━━━━━━━━━━━
-PAGE 16 — MIND, EMOTIONAL BALANCE & QUALITY OF LIFE
-━━━━━━━━━━━━━━━━━━━━
-
-Quality of Life का emotional dimension analyze करें।
-
-देखें:
-
-• Moon
-• 4th house
-• 4th lord
-• Lagna
-• Lagnesh
-• 5th
-• 8th
-• 12th
-• Saturn
-• Rahu/Ketu
-• D9
-• current Dasha
-
-Analyze:
-
-• emotional stability
-• inner peace
-• overthinking tendency
-• stress
-• emotional resilience
-• need for solitude
-• family environment
-• inner satisfaction
-• spiritual inclination
-
-किसी mental health diagnosis या label का उपयोग न करें।
-
-सिर्फ astrological tendencies और practical wellness advice दें।
-
-
-━━━━━━━━━━━━━━━━━━━━
-PAGE 17 — FAMILY & SUPPORT SYSTEM
-━━━━━━━━━━━━━━━━━━━━
-
-Family को Quality of Life के महत्वपूर्ण factor के रूप में analyze करें।
-
-देखें:
-
-• 2nd house
-• 4th house
-• 4th lord
-• 9th
-• 10th
-• Moon
-• Sun
-• Jupiter
-• D9
-• Dasha
-
-Analyze:
-
-• family support
-• family responsibilities
-• parents
-• siblings
-• spouse/family connection
-• financial responsibilities
-• emotional support
-• family-related stress
-
-बताएं कि family व्यक्ति की financial और emotional quality of life को कैसे प्रभावित कर सकती है।
-
-
-━━━━━━━━━━━━━━━━━━━━
-PAGE 18 — MARRIAGE / SPOUSE & QUALITY OF LIFE
-━━━━━━━━━━━━━━━━━━━━
-
-7th house और related factors को quality of life से जोड़कर analyze करें।
-
-देखें:
-
-• 7th
-• 7th lord
-• Venus
-• Jupiter
-• D9
-• spouse-related financial themes
-• 2nd
-• 8th
-• 11th
-• current/future Dasha
-
-Analyze:
-
-• relationship stability
-• spouse support
-• joint finances
-• emotional compatibility
-• partnership
-• business partnership
-• marriage-related expenses/responsibilities
-
-यदि marriage topic chart में major नहीं है तो उसे unnecessary exaggerate न करें।
-
-
-━━━━━━━━━━━━━━━━━━━━
-PAGE 19 — PERSONAL GROWTH & LIFE DIRECTION
-━━━━━━━━━━━━━━━━━━━━
-
-व्यक्ति की personal growth का analysis करें।
-
-देखें:
-
-• Lagna
-• Lagnesh
-• 5th
-• 9th
-• 10th
-• 12th
-• Jupiter
-• Saturn
-• Rahu/Ketu
-• D9
-
-Analyze:
-
-• maturity
-• discipline
-• self-awareness
-• learning
-• spirituality
-• leadership
-• independence
-• adaptability
-• resilience
-• purpose
-
-फिर बताएं कि व्यक्ति की quality of life किस प्रकार personal growth के साथ improve हो सकती है।
-
-
-━━━━━━━━━━━━━━━━━━━━
-PAGE 20 — CAREER, BUSINESS & QUALITY OF LIFE
-━━━━━━━━━━━━━━━━━━━━
-
-Career और health/wealth के बीच relationship analyze करें।
-
-देखें:
-
-• 6th
-• 10th
-• 11th
-• 2nd
-• Lagna
-• Lagnesh
-• D9
-• Mahadasha
-• Antardasha
-
-Analyze:
-
-• job vs business tendencies
-• work pressure
-• earning potential
-• career satisfaction
-• professional growth
-• work-life balance
-• burnout-like pressure को केवल lifestyle stress के रूप में discuss करें
-• career changes
-• skill development
-• long-term professional stability
-
-बताएं कि कौन-सा career environment quality of life को comparatively support कर सकता है, लेकिन unsupported specific profession recommendation न दें।
-
-
-━━━━━━━━━━━━━━━━━━━━
-PAGE 21 — DASHA-BASED HEALTH & WEALTH ANALYSIS
-━━━━━━━━━━━━━━━━━━━━
-
-विम्शोत्तरी दशा को Health और Wealth के साथ integrate करें।
-
-विशेष रूप से देखें:
-
-• current Mahadasha
-• current Antardasha
-• next important Antardasha
-• previous Mahadasha
-• next Mahadasha
-
-हर relevant period में analyze करें:
-
-Career
-Income
-Savings
-Debt
-Property
-Health
-Family
-Personal Growth
-
-वर्तमान Mahadasha को सबसे ज्यादा importance दें।
-
-यदि किसी ग्रह की दशा 2nd/6th/8th/10th/11th/12th से strongly connected हो तो उसका financial/health impact explain करें।
-
-Exact event prediction से बचें जब तक पर्याप्त ज्योतिषीय आधार न हो।
-
-
-━━━━━━━━━━━━━━━━━━━━
-PAGE 22 — CURRENT DASHA: DEEP QUALITY OF LIFE ANALYSIS
-━━━━━━━━━━━━━━━━━━━━
-
-Current Mahadasha और Antardasha को लेकर लगभग 1500–2000 शब्दों का deep analysis करें।
-
-इसमें बताएं:
-
-• अभी wealth का मुख्य theme
-• income
-• savings
-• debt
-• career
-• property
-• health
-• family
-• emotional balance
-• personal growth
-
-फिर current Antardasha के संदर्भ में बताएं:
-
-“अभी किन 5 क्षेत्रों में सबसे ज्यादा awareness रखना उपयोगी होगा?”
-
-और:
-
-“अभी किन 5 practical habits से quality of life बेहतर maintain की जा सकती है?”
-
-
-━━━━━━━━━━━━━━━━━━━━
-PAGE 23 — 5 MAJOR POSITIVE STRENGTHS
-━━━━━━━━━━━━━━━━━━━━
-
-पूरी कुंडली के आधार पर 5 सबसे महत्वपूर्ण strengths चुनें।
-
-हर strength के लिए लगभग 250–400 शब्दों में explanation दें।
-
-हर strength को:
-
-• ग्रह
-• भाव
-• भावेश
-• D9
-• योग
-• दशा
-
-से connect करें।
-
-Strengths केवल generic personality traits न हों।
-
-विशेष रूप से देखें:
-
-• wealth strength
-• earning strength
-• recovery/resilience
-• career strength
-• property strength
-• family support
-• emotional stability
-• long-term growth
-
-जहां वास्तविक chart support हो वहीं strength शामिल करें।
-
-
-━━━━━━━━━━━━━━━━━━━━
-PAGE 24 — 5 MAIN CHALLENGES + 4 REMEDIES
-━━━━━━━━━━━━━━━━━━━━
-
-पहले 5 मुख्य challenges बताएं।
-
-हर challenge के लिए:
-
-• ग्रह
-• भाव
-• भावेश
-• D1
-• D9
-• दशा
-• life area
-• practical manifestation
-
-समझाएं।
-
-इसके बाद केवल 4 सबसे जरूरी remedies दें।
-
-हर remedy में:
-
-1. किस ग्रह/भाव के लिए
-2. क्यों आवश्यक
-3. कैसे करना है
-4. किस दिन
-5. कितने समय तक
-6. मंत्र/दान/पूजा/सेवा यदि relevant हो
-7. practical lifestyle correction
-
-बताएं।
-
-बहुत सारी remedies न दें।
-
-रत्न तभी सुझाएं जब chart से स्पष्ट support हो।
-
-
-━━━━━━━━━━━━━━━━━━━━
 PAGE 25 — FINAL QUALITY OF LIFE CONCLUSION
-━━━━━━━━━━━━━━━━━━━━
-
-अंतिम पन्ने पर पूरी रिपोर्ट का consolidated conclusion दें।
-
-इसमें निम्न sections हों:
-
-OVERALL WEALTH OUTLOOK
-
-धन का मुख्य pattern।
-
-INCOME OUTLOOK
-
-आय के मुख्य sources और stability।
-
-SAVINGS OUTLOOK
-
-पैसा रोकने की क्षमता।
-
-DEBT OUTLOOK
-
-कर्ज और financial discipline की tendency।
-
-PROPERTY OUTLOOK
-
-Assets/property creation।
-
-CAREER OUTLOOK
-
-Job/business/career से wealth connection।
-
-HEALTH OUTLOOK
-
-General astrological sensitivity और lifestyle priorities।
-
-FAMILY OUTLOOK
-
-Family support और responsibilities।
-
-PERSONAL GROWTH
-
-Long-term development।
-
-QUALITY OF LIFE
-
-पूरी कुंडली के आधार पर जीवन की quality को बेहतर बनाने वाले मुख्य factors।
-
-
-इसके बाद:
-
-5 सबसे बड़ी सकारात्मक ताकतें
-
-1.
-2.
-3.
-4.
-5.
-
-5 मुख्य चुनौतियां
-
-1.
-2.
-3.
-4.
-5.
-
-
-अंत में:
-
-“इस कुंडली में बेहतर Quality of Life के लिए सबसे महत्वपूर्ण 7 practical principles”
-
-देें।
-
-अंतिम conclusion balanced, realistic और practical होना चाहिए।
-
-
-━━━━━━━━━━━━━━━━━━━━
-WEALTH ANALYSIS RULES
-━━━━━━━━━━━━━━━━━━━━
-
-धन का analysis करते समय केवल Jupiter और 2nd house न देखें।
-
-कम से कम इन connections को देखें:
-
-2nd ↔ 11th
-2nd ↔ 10th
-2nd ↔ 6th
-2nd ↔ 8th
-2nd ↔ 12th
-5th ↔ 9th
-5th ↔ 11th
-9th ↔ 10th
-10th ↔ 11th
-
-जहां relevant हो वहां:
-
-• Jupiter
-• Venus
-• Mercury
-• Saturn
-• Mars
-• Sun
-• Moon
-
-की भूमिका भी explain करें।
-
-Functional nature को हमेशा Lagna के आधार पर judge करें।
-
-
-━━━━━━━━━━━━━━━━━━━━
-HEALTH ANALYSIS RULES
-━━━━━━━━━━━━━━━━━━━━
-
-Health analysis में:
-
-• Lagna
-• Lagnesh
-• 6th
-• 6th lord
-• 8th
-• 8th lord
-• 12th
-• Sun
-• Moon
-• Mars
-• Saturn
-• Rahu/Ketu
-• D9
-• Mahadasha
-• Antardasha
-
-को आवश्यकता के अनुसार integrate करें।
-
-किसी ग्रह को देखकर निश्चित disease prediction न करें।
-
-किसी medical condition का diagnosis न दें।
-
-यदि chart में health sensitivity दिखाई देती है तो उसे:
-
-“इस क्षेत्र में अतिरिक्त care रखना उपयोगी हो सकता है”
-
-जैसी responsible language में समझाएं।
-
-
-━━━━━━━━━━━━━━━━━━━━
-D1 + D9 INTEGRATION RULE
-━━━━━━━━━━━━━━━━━━━━
-
-D1 = बाहरी जीवन और परिस्थितियों का primary framework।
-
-D9 = ग्रहों की deeper strength, maturity, long-term manifestation और relationship/dharma-related confirmation।
-
-D9 को D1 का replacement न बनाएं।
-
-यदि D1 और D9 दोनों strong हों:
-
-→ consistency और sustained manifestation explain करें।
-
-यदि D1 strong लेकिन D9 weak हो:
-
-→ बाहरी opportunity और internal stability के बीच अंतर explain करें।
-
-यदि D1 weak लेकिन D9 supportive हो:
-
-→ delayed maturity, improvement और later stabilization की possibility explain करें।
-
-यदि दोनों challenging हों:
-
-→ challenge को clearly explain करें और mitigating factors खोजें।
-
-
-━━━━━━━━━━━━━━━━━━━━
-DASHA INTEGRATION RULE
-━━━━━━━━━━━━━━━━━━━━
-
-दशा को केवल अंत में अलग section में न रखें।
-
-पूरी report में जहां relevant हो वहां Mahadasha और Antardasha को संबंधित:
-
-• Wealth
-• Career
-• Health
-• Property
-• Family
-• Personal Growth
-
-से जोड़ें।
-
-Current Mahadasha और Current Antardasha को सबसे ज्यादा importance दें।
-
-यदि किसी दशा ग्रह का संबंध 2nd, 6th, 8th, 10th, 11th या 12th से है तो उसके wealth/health consequences को specifically analyze करें।
-
-
-━━━━━━━━━━━━━━━━━━━━
-QUALITY OF LIFE SYNTHESIS RULE
-━━━━━━━━━━━━━━━━━━━━
-
-अंत में केवल यह न बताएं कि “धन अच्छा” या “स्वास्थ्य सामान्य” है।
-
-बल्कि यह समझाएं:
-
-क्या व्यक्ति के जीवन में धन बढ़ने के साथ pressure भी बढ़ सकता है?
-
-क्या high income लेकिन high expenses का pattern है?
-
-क्या career growth health routine को प्रभावित कर सकती है?
-
-क्या family responsibilities financial growth को प्रभावित करती हैं?
-
-क्या property wealth बनाने में मदद कर सकती है?
-
-क्या debt income growth को absorb कर सकता है?
-
-क्या व्यक्ति को discipline से ज्यादा benefit मिलता है या risk-taking से?
-
-इन सभी conclusions को chart evidence से जोड़ें।
-
-
-━━━━━━━━━━━━━━━━━━━━
-PRACTICAL ADVICE RULE
-━━━━━━━━━━━━━━━━━━━━
-
-जहां financial challenge हो वहां:
-
-• budgeting
-• emergency fund
-• debt discipline
-• unnecessary borrowing से सावधानी
-• long-term planning
-• documentation
-• professional financial advice
-
-जैसी सामान्य practical habits सुझाई जा सकती हैं।
-
-किसी specific stock, mutual fund, cryptocurrency, investment product या guaranteed financial return की सलाह न दें।
-
-जहां health challenge हो वहां:
-
-• sleep
-• exercise
-• balanced nutrition
-• stress management
-• regular check-ups
-• medical consultation when needed
-
-जैसी सामान्य सावधानियां बताएं।
-
-
-━━━━━━━━━━━━━━━━━━━━
-WRITING STYLE
-━━━━━━━━━━━━━━━━━━━━
-
-पूरी report:
-
-• Hindi/Hinglish में हो।
-• Professional और premium consultation-report जैसी हो।
-• “आप” का प्रयोग करें।
-• भाषा साफ और natural हो।
-• बहुत ज्यादा कठिन technical Sanskrit terminology न रखें।
-• Technical astrology term आए तो उसका अर्थ भी समझाएं।
-• हर section paragraph-wise detailed हो।
-• केवल छोटे one-line points से report न भरें।
-• Repetition से बचें।
-• एक ही ग्रह का same interpretation copy-paste न करें।
-• हर section में नया analytical perspective दें।
-• डराने वाली भाषा न हो।
-• Medical diagnosis न हो।
-• Financial guarantee न हो।
-• Absolute predictions से बचें।
-• जहां संकेत मजबूत हों वहां स्पष्टता रखें।
-
-
-━━━━━━━━━━━━━━━━━━━━
-LENGTH REQUIREMENT
-━━━━━━━━━━━━━━━━━━━━
-
-पूरी रिपोर्ट लगभग 20,000–60,000 characters तक हो सकती है।
-
-60,000 characters एक maximum content ceiling है, जिसे केवल filler से पूरा नहीं करना है।
-
-जहां analysis की आवश्यकता हो वहां detail बढ़ाएं।
-
-विशेष रूप से:
-
-• Wealth Matrix
-• Debt
-• Career-to-Wealth
-• Health Foundation
-• Health Sensitivity
-• Emotional Quality of Life
-• Dasha-based Health & Wealth
-• Current Dasha
-• Positive Strengths
-• Main Challenges
-
-इन sections में पर्याप्त depth रखें।
-
-
-━━━━━━━━━━━━━━━━━━━━
-PAGE BREAK REQUIREMENT
-━━━━━━━━━━━━━━━━━━━━
-
-हर major page के अंत में:
-
-PAGE BREAK
-
-लिखें।
-
-Report को Page 1 से Page 25 तक क्रमवार तैयार करें।
-
-यदि किसी section का content page से थोड़ा अधिक हो जाए तो केवल information काटकर अर्थ खराब न करें; content को logically अगले page में continue करें।
-
+- मुख्य हेडिंग: "संपूर्ण स्वास्थ्य, धन एवं जीवन-स्तर का अंतिम निष्कर्ष"
+- 350-400 शब्दों में 3-4 पैराग्राफ के अंदर पूरी रिपोर्ट का निचोड़ लिखें। व्यक्ति का वित्तीय भविष्य, शारीरिक ऊर्जा, 5 ताकतें और 5 कमजोरियां पैराग्राफ के अंदर ही पिरोकर लिखें (बुलेट लिस्ट न बनाएं)। एक सुखी और समृद्ध जीवन का अंतिम मंत्र दें।
 
 ━━━━━━━━━━━━━━━━━━━━
 FINAL INSTRUCTION
 ━━━━━━━━━━━━━━━━━━━━
-
-अब दिए गए:
-
-• Birth Details
-• D1
-• D9
-• Vimshottari Mahadasha
-• Antardasha
-
-के आधार पर पूरी 25-page “HEALTH, WEALTH & QUALITY OF LIFE REPORT” तैयार करें।
-
-सबसे पहले D1 और D9 को internally analyze करें।
-
-फिर Wealth, Health और Quality of Life के मुख्य ग्रह-भाव connections identify करें।
-
-इसके बाद पूरी report Page 1 से Page 25 तक तैयार करें।
-
-हर conclusion को D1 + D9 + Bhavesh + Planetary Strength + Aspect + Yoga + Dasha के आधार पर explain करें।
-
-रिपोर्ट को इतना detailed रखें कि इसे सीधे professional paid astrology consultation PDF में इस्तेमाल किया जा सके।
-
-सिर्फ generic horoscope न लिखें।
-
-हर महत्वपूर्ण conclusion के पीछे स्पष्ट ज्योतिषीय reasoning दें।
+अब ऊपर दिए गए सभी नियमों का कड़ाई से पालन करें। "हर पेज पर 350 से 400 शब्द" और "बिना सब-हेडिंग के 3-4 पैराग्राफ" वाले नियम को किसी भी हाल में न तोड़ें। सबसे पहले Page 1 से शुरू करें और क्रमवार Page 25 तक पूरी रिपोर्ट तैयार करें।
