@@ -4,3 +4,7 @@ jinja2
 pyswisseph
 python-multipart
 geopy
+requests
+google-genai
+weasyprint==60.1
+matplotlib
