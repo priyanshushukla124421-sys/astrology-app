@@ -90,6 +90,62 @@
         .text-blue { color: #3b82f6 !important; }
         .text-gray { color: #94a3b8 !important; }
         #raw-json { display: none; }
+
+        /* ---- रिपोर्ट फॉर्मेट चुनाव (TXT / PDF) ---- */
+        .fmt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px; }
+        .fmt-card { background: #0f172a; border: 2px solid #334155; border-radius: 10px; padding: 16px 12px; text-align: center; cursor: pointer; transition: 0.25s; }
+        .fmt-card:hover { border-color: #10b981; transform: translateY(-2px); }
+        .fmt-card.pdf { border-color: #7f1d1d; background: linear-gradient(135deg, #450a0a, #0f172a); }
+        .fmt-card.pdf:hover { border-color: #fbbf24; }
+        .fmt-card .fmt-ico { font-size: 2rem; }
+        .fmt-card h4 { margin: 6px 0 4px 0; color: #fbbf24; font-size: 1.05rem; }
+        .fmt-card p { margin: 0; font-size: 0.8rem; color: #94a3b8; line-height: 1.45; }
+        .fmt-card.disabled { opacity: 0.45; pointer-events: none; }
+        .pbar { height: 14px; background: #0f172a; border: 1px solid #334155; border-radius: 8px; overflow: hidden; margin-top: 16px; }
+        #pbar-fill { height: 100%; width: 3%; background: linear-gradient(90deg, #dc2626, #fbbf24); transition: width 0.6s; }
+        #pbar-msg { margin-top: 8px; color: #f8fafc; font-size: 0.9rem; }
+        #pbar-note { margin-top: 4px; color: #94a3b8; font-size: 0.78rem; }
+        /* ---- गाइडेंस (AI चैट) ---- */
+        .chat-box { display: flex; flex-direction: column; height: 70vh; max-height: 560px; }
+        .chat-messages { flex: 1; overflow-y: auto; background: #0f172a; border: 1px solid #334155; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+        .msg { max-width: 85%; padding: 10px 14px; border-radius: 12px; line-height: 1.55; font-size: 0.95rem; white-space: pre-wrap; word-wrap: break-word; }
+        .msg.bot { align-self: flex-start; background: #1e293b; border: 1px solid #334155; color: #f8fafc; }
+        .msg.user { align-self: flex-end; background: #fbbf24; color: #0f172a; }
+        .msg.err { align-self: flex-start; background: #450a0a; color: #fecaca; border: 1px solid #7f1d1d; }
+        .copy-btn { display: block; margin-top: 8px; background: transparent; border: 1px solid #475569; color: #94a3b8; border-radius: 6px; padding: 3px 10px; font-size: 0.78rem; cursor: pointer; }
+        .copy-btn:hover { border-color: #fbbf24; color: #fbbf24; }
+        .msg.note { align-self: center; background: transparent; color: #94a3b8; font-size: 0.8rem; border: 1px dashed #334155; }
+        .chat-chips { display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0; }
+        .chip { background: #0f172a; border: 1px solid #fbbf24; color: #fbbf24; border-radius: 16px; padding: 5px 12px; font-size: 0.8rem; cursor: pointer; }
+        .chip:hover { background: #fbbf24; color: #0f172a; }
+        .chat-input-row { display: flex; gap: 8px; }
+        .chat-input-row input { flex: 1; }
+        .chat-send { background: #fbbf24; color: #0f172a; border: none; border-radius: 5px; padding: 0 20px; font-weight: bold; cursor: pointer; }
+        .chat-send:disabled { opacity: 0.5; cursor: wait; }
+        .tier-badge { font-size: 0.75rem; padding: 2px 10px; border-radius: 12px; vertical-align: middle; margin-left: 8px; font-weight: bold; }
+        .tier-badge.pro { background: #fbbf24; color: #0f172a; }
+        .tier-badge.free { background: #334155; color: #cbd5e1; }
+        /* ---- साइड डाउनलोड बार ---- */
+        #dl-fab { position: fixed; right: 14px; bottom: 110px; width: 52px; height: 52px; border-radius: 50%; background: #10b981; color: #0f172a; font-size: 1.5rem; display: none; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 14px rgba(0,0,0,0.6); z-index: 2500; border: 2px solid #0f172a; }
+        #dl-fab .dl-badge { position: absolute; top: -6px; right: -6px; background: #dc2626; color: #fff; font-size: 0.7rem; font-weight: bold; border-radius: 10px; padding: 1px 6px; }
+        #dl-panel { position: fixed; right: 14px; bottom: 172px; width: 330px; max-width: calc(100% - 28px); max-height: 60vh; overflow-y: auto; background: #1e293b; border: 2px solid #10b981; border-radius: 10px; padding: 12px; z-index: 2500; display: none; box-shadow: 0 6px 20px rgba(0,0,0,0.6); }
+        #dl-panel h4 { margin: 0 0 8px 0; color: #10b981; font-size: 0.95rem; display: flex; justify-content: space-between; }
+        #dl-panel h4 span { cursor: pointer; color: #ef4444; }
+        .dl-item { background: #0f172a; border: 1px solid #334155; border-radius: 8px; padding: 9px 10px; margin-bottom: 8px; }
+        .dl-item .dl-name { color: #f8fafc; font-size: 0.88rem; font-weight: bold; }
+        .dl-item .dl-msg { color: #94a3b8; font-size: 0.76rem; margin-top: 3px; }
+        .dl-item .pbar { margin-top: 7px; height: 9px; }
+        .dl-item .dl-btn { margin-top: 8px; width: 100%; background: #10b981; color: #0f172a; border: none; border-radius: 5px; padding: 7px; font-weight: bold; cursor: pointer; font-size: 0.9rem; }
+        .dl-meta { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 6px; font-size: 0.74rem; color: #cbd5e1; }
+        .dl-issues { margin-top: 6px; font-size: 0.72rem; color: #cbd5e1; }
+        .dl-issues summary { cursor: pointer; color: #fbbf24; font-size: 0.74rem; }
+        .dl-issues div { max-height: 130px; overflow-y: auto; margin-top: 4px; padding: 6px; background: #020617; border-radius: 5px; line-height: 1.5; }
+        .dl-item.err .dl-msg { color: #fca5a5; }
+        .dl-row { display: flex; gap: 6px; margin-top: 8px; }
+        .dl-stop { flex: 1; background: transparent; border: 1px solid #ef4444; color: #fca5a5; border-radius: 5px; padding: 6px; cursor: pointer; font-size: 0.85rem; }
+        .dl-stop:hover { background: #7f1d1d; color: #fff; }
+        .dl-remove { background: transparent; border: 1px solid #475569; color: #94a3b8; border-radius: 5px; padding: 6px 10px; cursor: pointer; font-size: 0.85rem; }
+        @media (max-width: 640px) { .fmt-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -215,9 +271,9 @@
                     <div class="icon">🛠️</div>
                     <div>सर्विसेज</div>
                 </div>
-                <div class="action-btn" onclick="openSavedModal()">
-                    <div class="icon">📁</div>
-                    <div>सेव्ड</div>
+                <div class="action-btn" style="border-color: #fbbf24;" onclick="openChatModal()">
+                    <div class="icon" style="color: #fbbf24;">🔮</div>
+                    <div style="color: #fbbf24;">गाइडेंस</div>
                 </div>
             </div>
 
@@ -261,45 +317,98 @@
             <h3 style="color:#10b981; margin-top:0;">📄 वैदिक रिपोर्ट्स</h3>
 
             <div class="pdf-grid">
-                <div class="pdf-card" onclick="downloadReportPrompt('D1 Report')">
+                <div class="pdf-card" onclick="chooseReport('d1','D1 Report')">
                     <h4>1. D1 Report (लग्न रिपोर्ट)</h4>
                     <p>मुख्य लग्न और 12 भाव विश्लेषण</p>
                 </div>
-                <div class="pdf-card" onclick="downloadReportPrompt('करियर रिपोर्ट')">
+                <div class="pdf-card" onclick="chooseReport('career','करियर रिपोर्ट')">
                     <h4>2. करियर रिपोर्ट</h4>
                     <p>आजीविका और व्यवसाय</p>
                 </div>
-                <div class="pdf-card" onclick="downloadReportPrompt('मैरिज और लव रिपोर्ट')">
+                <div class="pdf-card" onclick="chooseReport('marriage','मैरिज और लव रिपोर्ट')">
                     <h4>3. मैरिज और लव रिपोर्ट</h4>
                     <p>वैवाहिक जीवन और प्रेम संबंध</p>
                 </div>
-                <div class="pdf-card" onclick="downloadReportPrompt('हेल्थ एंड क्वालिटी ऑफ लाइफ')">
+                <div class="pdf-card" onclick="chooseReport('health','हेल्थ एंड क्वालिटी ऑफ लाइफ')">
                     <h4>4. हेल्थ एंड क्वालिटी ऑफ लाइफ</h4>
                     <p>स्वास्थ्य और जीवन-स्तर</p>
                 </div>
-                <div class="pdf-card" onclick="downloadReportPrompt('महादशा अंतर्दशा एनालिसिस')">
+                <div class="pdf-card" onclick="chooseReport('mahadasha','महादशा अंतर्दशा एनालिसिस')">
                     <h4>5. महादशा अंतर्दशा एनालिसिस</h4>
                     <p>दशा पदानुक्रम और भविष्य</p>
                 </div>
-                <div class="pdf-card" onclick="downloadReportPrompt('प्रीमियम कुंडली रिपोर्ट')">
+                <div class="pdf-card" onclick="chooseReport('premium','प्रीमियम कुंडली रिपोर्ट')">
                     <h4>6. प्रीमियम कुंडली रिपोर्ट (60 Pages)</h4>
                     <p>विस्तृत व्यापक महा-कुंडली</p>
                 </div>
-                <div class="pdf-card" onclick="downloadReportPrompt('Indu Lagna Report')">
+                <div class="pdf-card" onclick="chooseReport('wealth','Indu Lagna Report')">
                     <h4>7. Indu Lagna Report</h4>
                     <p>धन और समृद्धि योग</p>
                 </div>
-                <div class="pdf-card" onclick="downloadReportPrompt('एजुकेशन रिपोर्ट')">
+                <div class="pdf-card" onclick="chooseReport('education','एजुकेशन रिपोर्ट')">
                     <h4>8. एजुकेशन रिपोर्ट</h4>
                     <p>शिक्षा, D24 और बौद्धिक क्षमता</p>
                 </div>
-                <div class="pdf-card" onclick="downloadReportPrompt('वार्षिक राशिफल 2027')">
+                <div class="pdf-card" onclick="chooseReport('annual','वार्षिक राशिफल 2027')">
                     <h4>9. वार्षिक राशिफल 2027 (Annual)</h4>
                     <p>30-पेज वार्षिक गोचर एवं मासिक फल</p>
                 </div>
-                <div class="pdf-card book-card" onclick="downloadReportPrompt('कॉल कंसल्टेशन रिपोर्ट')">
+                <div class="pdf-card book-card" onclick="chooseReport('call','कॉल कंसल्टेशन रिपोर्ट')">
                     <h4>10. 📖 कॉल कंसल्टेशन रिपोर्ट (30-Page Book Template Prompt)</h4>
                     <p>30-पेज रॉयल ब्लैक-रेड बुक टेम्पलेट + वैदिक डेटा प्रॉम्प्ट</p>
+                </div>
+                <div class="pdf-card" onclick="chooseReport('numerology','न्यूमरोलॉजी रिपोर्ट')">
+                    <h4>11. 🔢 न्यूमरोलॉजी रिपोर्ट (अंक ज्योतिष)</h4>
+                    <p>मूलांक, भाग्यांक, नामांक, लो-शू ग्रिड और 2027 का व्यक्तिगत वर्ष (30 पेज)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- साइड डाउनलोड बार -->
+    <div id="dl-fab" title="डाउनलोड्स" onclick="toggleDlPanel()">⬇<span class="dl-badge" id="dl-badge">0</span></div>
+    <div id="dl-panel">
+        <h4>⬇ रिपोर्ट डाउनलोड्स <span onclick="toggleDlPanel()">✖</span></h4>
+        <div id="dl-list"></div>
+    </div>
+
+    <!-- रिपोर्ट फॉर्मेट चुनाव: TXT या PDF -->
+    <div id="fmt-modal" class="modal">
+        <div class="modal-content" style="max-width: 580px;">
+            <span class="close-modal" onclick="closeModal('fmt-modal')">✖ बंद करें</span>
+            <h3 id="fmt-title" style="color:#10b981; margin-top:0;">📄 रिपोर्ट</h3>
+            <div style="color:#94a3b8; font-size:0.9rem;">आपको कौन-सा फॉर्मेट चाहिए?</div>
+            <div class="fmt-grid">
+                <div class="fmt-card" id="fmt-txt" onclick="downloadReportTxt()">
+                    <div class="fmt-ico">📝</div>
+                    <h4>TXT फाइल</h4>
+                    <p>प्रॉम्प्ट + वैदिक इंजन का डेटा, तुरंत डाउनलोड। इसे आप खुद Gemini में डालें।</p>
+                </div>
+                <div class="fmt-card pdf" id="fmt-pdf" onclick="startReportPdf()">
+                    <div class="fmt-ico">📕</div>
+                    <h4>PDF रिपोर्ट</h4>
+                    <p>Gemini पूरा विश्लेषण करके रॉयल टेम्पलेट में तैयार PDF देगा। इसमें समय लगता है।</p>
+                </div>
+            </div>
+            <div id="fmt-progress" style="display:none;">
+                <div class="pbar"><div id="pbar-fill"></div></div>
+                <div id="pbar-msg">शुरू हो रहा है...</div>
+                <div id="pbar-note">PDF बनने तक यह पेज खुला रखें। रिपोर्ट तैयार होते ही अपने-आप डाउनलोड हो जाएगी।</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- गाइडेंस (AI) चैट -->
+    <div id="chat-modal" class="modal">
+        <div class="modal-content" style="max-width: 720px;">
+            <span class="close-modal" onclick="closeModal('chat-modal')">✖ बंद करें</span>
+            <h3 style="color:#fbbf24; margin-top:0;">🔮 गाइडेंस - AstroPulse AI <span id="chat-tier" class="tier-badge">...</span></h3>
+            <div class="chat-box">
+                <div id="chat-messages" class="chat-messages"></div>
+                <div id="chat-chips" class="chat-chips"></div>
+                <div class="chat-input-row">
+                    <input type="text" id="chat-input" placeholder="अपना ज्योतिषीय सवाल लिखें..." maxlength="800" onkeydown="if(event.key==='Enter'){sendChat();}">
+                    <button class="chat-send" id="chat-send" onclick="sendChat()">भेजें</button>
                 </div>
             </div>
         </div>
@@ -381,6 +490,7 @@
                 
                 if(data.status === "success") {
                     globalChartData = data.data;
+                    resetChat();
                     renderDashboard(globalChartData);
                 } else { showAstroAlert("Error: " + data.message); }
             } catch (error) { showAstroAlert("Error connecting to Engine."); }
@@ -486,33 +596,229 @@
             document.getElementById('pdf-modal').style.display = 'flex';
         }
 
-        async function downloadReportPrompt(reportName) {
+        /* ================= रिपोर्ट: TXT या PDF ================= */
+        let pendingReport = null;
+        let dlJobs = [];
+
+        function getBirth() {
+            const v = id => document.getElementById(id).value;
+            return {
+                name: v('name') || "जातक", gender: v('gender'),
+                day: parseInt(v('day')), month: parseInt(v('month')), year: parseInt(v('year')),
+                hour: parseInt(v('hour')), minute: parseInt(v('minute')), city: v('city'), tz: 5.5
+            };
+        }
+        function escHTML(t) { const d = document.createElement('div'); d.textContent = t == null ? '' : String(t); return d.innerHTML; }
+        function safeFile(t) { return String(t).replace(/[\\\/:*?"<>|\s]+/g, '_'); }
+        function saveBlob(blob, filename) {
+            const a = document.createElement('a');
+            a.href = window.URL.createObjectURL(blob);
+            a.download = filename;
+            document.body.appendChild(a); a.click(); a.remove();
+        }
+
+        function chooseReport(id, label) {
             if (!globalChartData) { showAstroAlert("कृपया पहले कुंडली बनाएं!"); return; }
-            
-            const name = document.getElementById('name').value || "राहुल शर्मा";
-            const d = document.getElementById('day').value;
-            const m = document.getElementById('month').value;
-            const y = document.getElementById('year').value;
-            const h = document.getElementById('hour').value;
-            const min = document.getElementById('minute').value;
-            const city = document.getElementById('city').value;
-            const gender = document.getElementById('gender').value;
+            pendingReport = { id: id, label: label };
+            document.getElementById('fmt-title').innerText = '📄 ' + label;
+            document.getElementById('fmt-modal').style.display = 'flex';
+        }
 
-            const url = `/generate_report/${encodeURIComponent(reportName)}?year=${y}&month=${m}&day=${d}&hour=${h}&minute=${min}&city=${encodeURIComponent(city)}&name=${encodeURIComponent(name)}&gender=${encodeURIComponent(gender)}`;
-
+        async function downloadReportTxt() {
+            if (!pendingReport) return;
+            const b = getBirth();
+            const url = `/generate_report/${encodeURIComponent(pendingReport.id)}?year=${b.year}&month=${b.month}&day=${b.day}&hour=${b.hour}&minute=${b.minute}&city=${encodeURIComponent(b.city)}&name=${encodeURIComponent(b.name)}&gender=${encodeURIComponent(b.gender)}&mode=txt`;
             try {
-                let response = await fetch(url);
-                let blob = await response.blob();
-                let downloadUrl = window.URL.createObjectURL(blob);
-                let a = document.createElement('a');
-                a.href = downloadUrl;
-                a.download = `AstroPulse_${reportName.replace(/\s+/g, '_')}_${name.replace(/\s+/g, '_')}.txt`;
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
+                const response = await fetch(url);
+                if (!response.ok) { showAstroAlert("TXT बनाने में समस्या: " + (await response.text()).slice(0, 200)); return; }
+                saveBlob(await response.blob(), `AstroPulse_${safeFile(pendingReport.label)}_${safeFile(b.name)}.txt`);
             } catch (e) {
                 showAstroAlert("रिपोर्ट प्रॉम्प्ट डाउनलोड करने में समस्या आई।");
             }
+        }
+
+        function toggleDlPanel(force) {
+            const p = document.getElementById('dl-panel');
+            p.style.display = (force !== undefined ? force : p.style.display !== 'block') ? 'block' : 'none';
+        }
+        function renderDl() {
+            document.getElementById('dl-fab').style.display = dlJobs.length ? 'flex' : 'none';
+            const running = dlJobs.filter(j => j.state === 'running').length;
+            const ready = dlJobs.filter(j => j.state === 'done').length;
+            document.getElementById('dl-badge').innerText = running || ready || dlJobs.length;
+            document.getElementById('dl-list').innerHTML = dlJobs.slice().reverse().map(j => {
+                const i = dlJobs.indexOf(j);
+                let body = '';
+                if (j.state === 'running') body = `<div class="pbar"><div style="height:100%;width:${j.pct}%;background:linear-gradient(90deg,#dc2626,#fbbf24);transition:width .6s"></div></div><div class="dl-row"><button class="dl-stop" onclick="stopDl(${i})">⏹ PDF रोकें</button></div>`;
+                if (j.state === 'done') body = `<div class="dl-row"><button class="dl-btn" style="margin-top:0" onclick="saveDl(${i})">⬇ PDF डाउनलोड करें</button><button class="dl-remove" title="सूची से हटाएँ" onclick="removeDl(${i})">✖</button></div>`;
+                if (j.state === 'error' || j.state === 'cancelled') body = `<div class="dl-row"><button class="dl-remove" style="flex:1" onclick="removeDl(${i})">✖ सूची से हटाएँ</button></div>`;
+                let meta = '';
+                const st = j.st;
+                if (st && (j.state === 'running' || j.state === 'done')) {
+                    const fmt = x => { x = Math.max(0, x | 0); return Math.floor(x / 60) + ':' + String(x % 60).padStart(2, '0'); };
+                    const col = x => x == null ? '#94a3b8' : (x >= 90 ? '#10b981' : (x >= 75 ? '#fbbf24' : '#ef4444'));
+                    meta = `<div class="dl-meta"><span>⏱ ${fmt(st.elapsed)}${st.eta ? ' · ~' + fmt(st.eta) + ' बाकी' : ''}</span><span>⚡ ${st.ppm || '-'} पेज/मिनट</span><span>🤖 ${escHTML(st.model || '-')}</span></div>`
+                        + `<div class="dl-meta"><span style="color:${col(st.quality)}">🎯 गुणवत्ता ${st.quality == null ? '-' : st.quality + '%'}</span><span style="color:${col(st.verify)}">🛡 डेटा-मिलान ${st.verify == null ? '-' : st.verify + '%'}</span><span>🔁 ${st.retries || 0} रीट्राई</span></div>`;
+                    if ((st.issues || []).length) meta += `<details class="dl-issues" ${j.openIssues ? 'open' : ''} ontoggle="dlJobs[${i}].openIssues=this.open"><summary>${st.issues.length} टिप्पणियाँ / चेतावनी</summary><div>${st.issues.map(escHTML).join('<br>')}</div></details>`;
+                }
+                return `<div class="dl-item ${j.state === 'error' ? 'err' : ''}"><div class="dl-name">📕 ${escHTML(j.label)} - ${escHTML(j.name)}</div><div class="dl-msg">${escHTML(j.msg)}</div>${meta}${body}</div>`;
+            }).join('');
+        }
+        async function stopDl(i) {
+            const j = dlJobs[i];
+            if (!j || j.state !== 'running') return;
+            if (!confirm('इस PDF को रोक दें? अब तक की मेहनत बेकार जाएगी।')) return;
+            j.state = 'cancelled'; j.msg = '⏹ रोक दी गई'; renderDl();
+            try { await fetch('/pipeline/cancel/' + j.jobId, { method: 'POST' }); } catch (e) {}
+        }
+        function removeDl(i) {
+            dlJobs.splice(i, 1); renderDl();
+            if (!dlJobs.length) toggleDlPanel(false);
+        }
+        function saveDl(i) {
+            const j = dlJobs[i];
+            if (j && j.blob) saveBlob(j.blob, `AstroPulse_${safeFile(j.label)}_${safeFile(j.name)}.pdf`);
+        }
+
+        async function startReportPdf() {
+            if (!pendingReport) return;
+            const rep = pendingReport, b = getBirth();
+            try {
+                const ks = await (await fetch('/ai_keys_status')).json();
+                if (!ks.keys) { showAstroAlert("PDF के लिए Gemini key नहीं मिली। 'API KEYS' फोल्डर में key फाइल रखकर सर्वर दोबारा चालू करें।"); return; }
+            } catch (e) { showAstroAlert("सर्वर से जुड़ नहीं पाया।"); return; }
+
+            let jobId = null;
+            try {
+                const res = await fetch('/pipeline/start', {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ report_id: rep.id, year: b.year, month: b.month, day: b.day, hour: b.hour, minute: b.minute, city: b.city, name: b.name, gender: b.gender, tz: b.tz })
+                });
+                const data = await res.json();
+                if (data.status !== 'success') { showAstroAlert(data.message || "PDF शुरू नहीं हो पाई।"); return; }
+                jobId = data.job_id;
+            } catch (e) { showAstroAlert("सर्वर से जुड़ने में समस्या।"); return; }
+
+            const item = { label: rep.label, name: b.name, state: 'running', pct: 4, msg: 'शुरू हो रहा है...', blob: null, jobId: jobId };
+            dlJobs.push(item);
+            closeModal('fmt-modal'); closeModal('pdf-modal');
+            renderDl(); toggleDlPanel(true);
+
+            const poll = async () => {
+                if (item.state === 'cancelled') return;
+                try {
+                    const st = await (await fetch('/pipeline/status/' + jobId)).json();
+                    item.st = st;
+                    if (item.state === 'cancelled') return;
+                    if (st.status === 'error') { item.state = 'error'; item.msg = '❌ ' + (st.message || 'रिपोर्ट बनाने में समस्या आई।'); renderDl(); return; }
+                    if (st.status === 'done') {
+                        item.pct = 98; item.msg = 'PDF तैयार की जा रही है...'; renderDl();
+                        const r = await fetch('/pipeline/download/' + jobId + '?fmt=pdf');
+                        if (!r.ok) { item.state = 'error'; item.msg = '❌ PDF बनाने में समस्या: ' + (await r.text()).slice(0, 150); renderDl(); return; }
+                        item.blob = await r.blob(); item.state = 'done'; item.pct = 100; item.msg = '✅ रिपोर्ट तैयार है'; renderDl();
+                        return;
+                    }
+                    item.pct = st.total ? Math.round((st.done / st.total) * 94) + 4 : 5;
+                    item.msg = st.message || 'बन रही है...';
+                    renderDl();
+                } catch (e) { /* छोटी नेटवर्क रुकावट: फिर कोशिश */ }
+                setTimeout(poll, 3000);
+            };
+            setTimeout(poll, 2500);
+        }
+
+        /* ================= गाइडेंस (AI चैट) ================= */
+        let chatHistory = [];
+        const CHAT_SAMPLES = ["मेरी वर्तमान Mahadasha कैसी चल रही है?", "मेरी कुंडली में Manglik Dosha है?", "करियर में सुधार कब हो सकता है?", "D9 Chart में विवाह के क्या संकेत हैं?", "मेरी कुंडली के मजबूत और कमजोर ग्रह कौन से हैं?"];
+
+        function copyText(text) {
+            if (navigator.clipboard && window.isSecureContext) { return navigator.clipboard.writeText(text); }
+            return new Promise((resolve, reject) => {
+                const ta = document.createElement('textarea');
+                ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+                document.body.appendChild(ta); ta.select();
+                try { document.execCommand('copy') ? resolve() : reject(); } catch (e) { reject(e); }
+                ta.remove();
+            });
+        }
+        function attachCopy(el, text) {
+            const old = el.querySelector('.copy-btn'); if (old) old.remove();
+            el.dataset.text = text;
+            const b = document.createElement('button');
+            b.className = 'copy-btn'; b.textContent = '📋 कॉपी करें';
+            b.onclick = () => copyText(el.dataset.text).then(() => {
+                b.textContent = '✅ कॉपी हो गया'; setTimeout(() => { b.textContent = '📋 कॉपी करें'; }, 1500);
+            }).catch(() => { b.textContent = '❌ कॉपी नहीं हुआ'; setTimeout(() => { b.textContent = '📋 कॉपी करें'; }, 1500); });
+            el.appendChild(b);
+        }
+        function addChatMsg(text, cls, copyable) {
+            const box = document.getElementById('chat-messages');
+            const el = document.createElement('div');
+            el.className = 'msg ' + cls; el.textContent = text;
+            if (cls === 'bot' && copyable !== false) attachCopy(el, text);
+            box.appendChild(el); box.scrollTop = box.scrollHeight;
+            return el;
+        }
+        function resetChat() {
+            chatHistory = [];
+            document.getElementById('chat-messages').innerHTML = '';
+            document.getElementById('chat-chips').innerHTML = '';
+        }
+        async function openChatModal() {
+            if (!globalChartData) { showAstroAlert("कृपया पहले किसी जातक की कुंडली बनाएं!"); return; }
+            document.getElementById('chat-modal').style.display = 'flex';
+            refreshTier();
+            const box = document.getElementById('chat-messages');
+            if (!box.children.length) {
+                let cfg = { welcome: "नमस्ते! AstroPulse AI में आपका स्वागत है।", samples: CHAT_SAMPLES };
+                try { cfg = await (await fetch('/chat_config?name=' + encodeURIComponent(getBirth().name))).json(); } catch (e) {}
+                if (!box.children.length) {
+                    addChatMsg(cfg.welcome, 'bot');
+                    document.getElementById('chat-chips').innerHTML = cfg.samples.map(q => `<span class="chip" onclick="askSample(this)">${escHTML(q)}</span>`).join('');
+                }
+            }
+        }
+        function setTier(tier, left) {
+            const b = document.getElementById('chat-tier');
+            if (!b) return;
+            b.className = 'tier-badge ' + (tier === 'pro' ? 'pro' : 'free');
+            b.textContent = tier === 'pro' ? `PRO · ${left} सवाल बाकी` : 'FREE';
+        }
+        async function refreshTier() {
+            try { const r = await (await fetch('/chat_status')).json(); setTier(r.tier, r.pro_left); } catch (e) {}
+        }
+        function askSample(el) { document.getElementById('chat-input').value = el.textContent; sendChat(); }
+
+        async function sendChat() {
+            const input = document.getElementById('chat-input');
+            const btn = document.getElementById('chat-send');
+            const q = input.value.trim();
+            if (!q || btn.disabled) return;
+            input.value = ''; document.getElementById('chat-chips').innerHTML = '';
+            addChatMsg(q, 'user');
+            const wait = addChatMsg('सोच रहा हूँ...', 'bot', false);
+            btn.disabled = true;
+            try {
+                const res = await fetch('/chat', {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ ...getBirth(), question: q, history: chatHistory.slice(-24) })
+                });
+                const data = await res.json();
+                if (data.status === 'success') {
+                    const msgs = (data.messages && data.messages.length) ? data.messages : [data.answer];
+                    wait.textContent = msgs[0]; attachCopy(wait, msgs[0]);
+                    for (let k = 1; k < msgs.length; k++) {
+                        const tmp = addChatMsg('...', 'bot', false);
+                        await new Promise(r => setTimeout(r, 750));
+                        tmp.textContent = msgs[k]; attachCopy(tmp, msgs[k]);
+                        const bx = document.getElementById('chat-messages'); bx.scrollTop = bx.scrollHeight;
+                    }
+                    chatHistory.push({ role: 'user', text: q }, { role: 'model', text: data.history_text || data.answer });
+                    setTier(data.tier, data.pro_left);
+                } else { wait.className = 'msg err'; wait.textContent = data.message || 'कुछ गड़बड़ हुई।'; }
+            } catch (e) { wait.className = 'msg err'; wait.textContent = 'सर्वर से कनेक्ट करने में विफल!'; }
+            btn.disabled = false; input.focus();
+            const box = document.getElementById('chat-messages'); box.scrollTop = box.scrollHeight;
         }
 
         async function runService(serviceType) {
