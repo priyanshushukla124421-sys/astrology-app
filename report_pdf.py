@@ -92,11 +92,9 @@ class AstroPDF(FPDF):
         self._next_special = False
         self.add_font("Hind", "", os.path.join(FONT_DIR, "Hind-Regular.ttf"))
         self.add_font("Hind", "B", os.path.join(FONT_DIR, "Hind-Bold.ttf"))
-        TIN_OK[0] = all(os.path.isfile(os.path.join(FONT_DIR, f)) for f in ("Tinos-Regular.ttf", "Tinos-Bold.ttf", "Tinos-Italic.ttf"))
-        if TIN_OK[0]:
-            self.add_font("Tin", "", os.path.join(FONT_DIR, "Tinos-Regular.ttf"))
-            self.add_font("Tin", "B", os.path.join(FONT_DIR, "Tinos-Bold.ttf"))
-            self.add_font("Tin", "I", os.path.join(FONT_DIR, "Tinos-Italic.ttf"))
+        self.add_font("Tin", "", os.path.join(FONT_DIR, "Tinos-Regular.ttf"))
+        self.add_font("Tin", "B", os.path.join(FONT_DIR, "Tinos-Bold.ttf"))
+        self.add_font("Tin", "I", os.path.join(FONT_DIR, "Tinos-Italic.ttf"))
         self.set_text_shaping(True)
         self.set_auto_page_break(True, margin=24)
         self.set_margins(20, 20, 20)
@@ -163,12 +161,11 @@ def _stamp_footers(pdf):
 # छोटे ड्रॉइंग हेल्पर
 # ---------------------------------------------------------------
 _DEV = re.compile(r"[\u0900-\u097F]")
-TIN_OK = [True]   # Tinos फॉन्ट फाइलें मिलीं या नहीं
 
 
 def _pick(font, style, text):
-    """Tinos में देवनागरी नहीं है; हिंदी अक्षर दिखें (या Tinos फाइल न हो) तो Hind इस्तेमाल करता है।"""
-    if font == "Tin" and (not TIN_OK[0] or _DEV.search(str(text))):
+    """Tinos में देवनागरी नहीं है; हिंदी अक्षर दिखें तो अपने-आप Hind इस्तेमाल करता है।"""
+    if font == "Tin" and _DEV.search(str(text)):
         return "Hind", ("B" if "B" in style else "")
     return font, style
 
@@ -576,8 +573,9 @@ def _page_num_years(pdf, n):
 # अध्याय पेज: टेक्स्ट से पन्ना 80-85% भरने के लिए अपने-आप फॉन्ट/स्पेस
 # ---------------------------------------------------------------
 CONTENT_TOP = 22.0
-FILL_BOTTOM = 270.0          # टेक्स्ट कम से कम यहाँ तक पहुँचे (पन्ने का ~90%)
-MAX_BOTTOM = 275.5           # इससे नीचे नहीं (फुटर की रेखा 282 पर है)
+CONTENT_BOTTOM = 273.0       # auto page-break की सीमा
+FILL_TARGET = 0.83           # पन्ने का भराव (80-85%)
+FILL_MAX = 0.885
 
 
 def _line_count(pdf, para, fs):
@@ -588,30 +586,25 @@ def _line_count(pdf, para, fs):
 
 
 def _layout(pdf, paras, body_top):
-    """(फॉन्ट साइज़, लाइन-ऊंचाई mm, पैराग्राफ-गैप mm) चुनता है ताकि टेक्स्ट पन्ने में 90-100% तक पहुँचे।
-    पहले सबसे बड़ा फॉन्ट (14.5 से 9.5) जो पन्ने में समाए; फिर भी जगह बचे तो लाइन-स्पेस और पैराग्राफ के बीच की जगह बढ़ाता है।"""
-    target = FILL_BOTTOM + 3.0 - body_top      # थोड़ा ऊपर का लक्ष्य
-    hi = MAX_BOTTOM - body_top
+    """(फॉन्ट साइज़, लाइन-ऊंचाई mm, पैराग्राफ-गैप mm) चुनता है ताकि टेक्स्ट पन्ने का ~83% भरे।"""
+    area = CONTENT_BOTTOM - CONTENT_TOP
+    target = CONTENT_TOP + FILL_TARGET * area - body_top
+    hi = CONTENT_TOP + FILL_MAX * area - body_top
     n = len(paras)
     fs, nl = 9.5, 0
-    for cand in (14.5, 14.0, 13.5, 13.0, 12.5, 12.0, 11.5, 11.0, 10.5, 10.0, 9.5):
+    for cand in (12.5, 12.0, 11.5, 11.0, 10.5, 10.0, 9.5):
         counts = sum(_line_count(pdf, p, cand) for p in paras)
         fs, nl = cand, counts
-        if counts * cand * 0.3528 * 1.55 + n * 3.0 <= hi:
+        if counts * cand * 0.3528 * 1.62 + n * 3.0 <= hi:
             break
-    r, gap = 1.55, 3.0
+    r, gap = 1.62, 3.0
 
     def height():
         return nl * fs * 0.3528 * r + n * gap
-    while height() < target and r < 2.45:
-        r += 0.03
-    while height() < target and gap < 26.0:
+    while height() < target and r < 2.0:
+        r += 0.04
+    while height() < target and gap < 10.0:
         gap += 0.5
-    # ऊपर निकल जाए तो थोड़ा घटाओ
-    while height() > hi and gap > 3.0:
-        gap -= 0.5
-    while height() > hi and r > 1.4:
-        r -= 0.02
     return fs, fs * 0.3528 * r, gap
 
 
@@ -623,7 +616,6 @@ def _chapter(pdf, page_text):
     body = lines[1:]
     if len(title) > 110 and not body:
         body, title = [title], "विश्लेषण"
-    pdf.set_auto_page_break(True, margin=17)      # अध्याय पन्ने पर 279mm तक लिख सकते हैं (फुटर 282 पर)
     pdf.add_page()
     pdf.start_section(title[:80], level=0)
     pdf.set_y(CONTENT_TOP)
@@ -646,7 +638,6 @@ def _chapter(pdf, page_text):
         pdf.multi_cell(166 if is_bullet else 170, lh, para, align="L" if is_bullet else "J",
                        new_x="LMARGIN", new_y="NEXT")
         pdf.ln(gap)
-    pdf.set_auto_page_break(True, margin=24)
 
 
 # ---------------------------------------------------------------
@@ -659,7 +650,7 @@ def build_report_pdf(title_hi, title_en, chart, info, chapter_pages, numerology=
     numerology        : न्यूमरोलॉजी रिपोर्ट के लिए numerology.compute() का dict (वरना None)
     लौटाता है: PDF के bytes
     """
-    for f in ("Hind-Regular.ttf", "Hind-Bold.ttf"):
+    for f in ("Hind-Regular.ttf", "Hind-Bold.ttf", "Tinos-Regular.ttf", "Tinos-Bold.ttf", "Tinos-Italic.ttf"):
         if not os.path.isfile(os.path.join(FONT_DIR, f)):
             raise FileNotFoundError(f"PDF के लिए फॉन्ट नहीं मिला: fonts/{f} (main.py वाले फोल्डर में 'fonts' फोल्डर रखें)")
     is_num = bool(numerology)
