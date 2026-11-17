@@ -151,7 +151,7 @@ def extract_exact_active_hierarchy(current_md):
         }
     }
 
-def calculate_comprehensive_dasha(moon_degree, birth_year, birth_month, birth_day):
+def calculate_comprehensive_dasha(moon_degree, birth_year, birth_month, birth_day, birth_hour=0, birth_minute=0):
     nakshatra_length = 360 / 27
     nakshatra_passed = moon_degree / nakshatra_length
     nakshatra_index = int(nakshatra_passed)
@@ -161,7 +161,7 @@ def calculate_comprehensive_dasha(moon_degree, birth_year, birth_month, birth_da
     fraction_left = 1.0 - fraction_passed
     balance_years = DASHA_YEARS[lord_index] * fraction_left
     
-    birth_date = datetime(birth_year, birth_month, birth_day)
+    birth_date = datetime(birth_year, birth_month, birth_day, int(birth_hour), int(birth_minute))
     dasha_start_date = birth_date - timedelta(days=(DASHA_YEARS[lord_index] - balance_years) * 365.2425)
     dasha_end_date = birth_date + timedelta(days=balance_years * 365.2425)
     
@@ -229,7 +229,7 @@ def calculate_indu_lagna(lagna_sign_idx, moon_sign_idx, planet_positions):
         "planets_in_indu_lagna": planets_in_indu
     }
 
-def calculate_doshas(planet_positions, lagna_d1_idx):
+def calculate_doshas(planet_positions, lagna_d1_idx, saturn_transit_idx=None):
     mars_house = planet_positions["Mars"]["d1_house"]
     is_manglik = mars_house in [1, 2, 4, 7, 8, 12]
     manglik_details = (
@@ -267,14 +267,37 @@ def calculate_doshas(planet_positions, lagna_d1_idx):
         "सूर्य और नवम भाव की स्थिति संतुलित है, कुंडली में कोई गंभीर पितृ दोष नहीं है।"
     )
 
+    moon_idx = planet_positions["Moon"]["d1_sign_index"]
     moon_sign = planet_positions["Moon"]["d1_sign"]
-    sade_sati_details = f"आपकी जन्म राशि {moon_sign} है। वर्तमान गोचर में शनि मीन राशि में संचरण कर रहे हैं।"
+    is_sade_sati = False
+    sade_phase = ""
+    if saturn_transit_idx is None:
+        sade_sati_details = f"आपकी जन्म राशि {moon_sign} है। वर्तमान शनि गोचर की गणना उपलब्ध नहीं हो सकी।"
+    else:
+        transit_sign = ZODIAC_SIGNS[saturn_transit_idx]
+        rel = (saturn_transit_idx - moon_idx) % 12   # 11 = चंद्र से 12वीं राशि, 0 = चंद्र राशि, 1 = चंद्र से 2री राशि
+        today_str = datetime.now().strftime("%d-%m-%Y")
+        base = f"आपकी जन्म राशि {moon_sign} है। आज ({today_str}) शनि {transit_sign} में गोचर कर रहे हैं।"
+        if rel == 11:
+            is_sade_sati, sade_phase = True, "पहला चरण"
+            sade_sati_details = base + " शनि चंद्र राशि से 12वीं राशि में हैं, इसलिए साढ़े साती का पहला चरण चल रहा है।"
+        elif rel == 0:
+            is_sade_sati, sade_phase = True, "दूसरा चरण (मध्य)"
+            sade_sati_details = base + " शनि आपकी जन्म राशि में ही हैं, इसलिए साढ़े साती का दूसरा (मध्य) चरण चल रहा है।"
+        elif rel == 1:
+            is_sade_sati, sade_phase = True, "तीसरा चरण"
+            sade_sati_details = base + " शनि चंद्र राशि से दूसरी राशि में हैं, इसलिए साढ़े साती का अंतिम (तीसरा) चरण चल रहा है।"
+        elif rel in (3, 7):
+            sade_phase = "शनि ढैय्या"
+            sade_sati_details = base + f" शनि चंद्र राशि से {'चौथी' if rel == 3 else 'आठवीं'} राशि में हैं, इसलिए शनि ढैय्या (छोटी पनौती) चल रही है। साढ़े साती नहीं है।"
+        else:
+            sade_sati_details = base + " इस समय साढ़े साती या शनि ढैय्या नहीं चल रही है।"
 
     return {
         "manglik": {"is_manglik": is_manglik, "details": manglik_details},
         "kaal_sarp": {"is_kaal_sarp": is_kaal_sarp, "details": kaal_sarp_details},
         "pitra_dosh": {"is_pitra": is_pitra, "details": pitra_details},
-        "sade_sati": {"details": sade_sati_details}
+        "sade_sati": {"is_sade_sati": is_sade_sati, "phase": sade_phase, "details": sade_sati_details}
     }
 
 def get_vedic_planets(year, month, day, hour, minute, city_name, tz_offset=5.5):
@@ -335,7 +358,7 @@ def get_vedic_planets(year, month, day, hour, minute, city_name, tz_offset=5.5):
     k_info["d24_house"] = ((k_info["d24_sign_index"] - lagna_d24_idx) % 12) + 1
     planet_positions["Ketu"] = k_info
 
-    dasha_info = calculate_comprehensive_dasha(moon_abs_deg, year, month, day)
+    dasha_info = calculate_comprehensive_dasha(moon_abs_deg, year, month, day, hour, minute)
 
     houses = {str(i): {"sign": ZODIAC_SIGNS[(lagna_d1_idx + i - 1) % 12], "lord": SIGN_LORDS[(lagna_d1_idx + i - 1) % 12], "planets": []} for i in range(1, 13)}
     d9_houses = {str(i): {"sign": ZODIAC_SIGNS[(lagna_d9_idx + i - 1) % 12], "lord": SIGN_LORDS[(lagna_d9_idx + i - 1) % 12], "planets": []} for i in range(1, 13)}
@@ -347,7 +370,14 @@ def get_vedic_planets(year, month, day, hour, minute, city_name, tz_offset=5.5):
         d24_houses[str(details["d24_house"])]["planets"].append(planet_name)
 
     indu_info = calculate_indu_lagna(lagna_d1_idx, planet_positions["Moon"]["d1_sign_index"], planet_positions)
-    doshas_info = calculate_doshas(planet_positions, lagna_d1_idx)
+    try:
+        _now = datetime.utcnow()
+        _jd_now = swe.julday(_now.year, _now.month, _now.day, _now.hour + _now.minute / 60.0)
+        _sat_now, _ = swe.calc_ut(_jd_now, swe.SATURN, flags)
+        saturn_transit_idx = int(_sat_now[0] // 30) % 12
+    except Exception:
+        saturn_transit_idx = None
+    doshas_info = calculate_doshas(planet_positions, lagna_d1_idx, saturn_transit_idx)
 
     return {
         "birth_details": {"city": city_name, "latitude": round(lat, 4), "longitude": round(lon, 4)},

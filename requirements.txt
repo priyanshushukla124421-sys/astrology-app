@@ -6,5 +6,6 @@ python-multipart
 geopy
 requests
 google-genai
-weasyprint==60.1
-matplotlib
+python-docx
+fpdf2
+uharfbuzz

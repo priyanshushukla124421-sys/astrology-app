@@ -1,13 +1,44 @@
 from fastapi import FastAPI, Request, Form
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse, Response
-from vedic_engine import get_vedic_planets
+from pydantic import BaseModel
+from functools import lru_cache
+import time
+from vedic_engine import get_vedic_planets, ZODIAC_SIGNS
 import sqlite3
 import urllib.parse
 import os
 
 app = FastAPI(title="AstroPulse India API")
 templates = Jinja2Templates(directory="templates")
+
+# ---- वैकल्पिक लॉगिन: Render में APP_PASSWORD सेट करने पर पूरा ऐप पासवर्ड माँगेगा (APP_USER डिफ़ॉल्ट: admin) ----
+import base64
+import secrets
+APP_PASSWORD = os.environ.get("APP_PASSWORD")
+
+
+@app.middleware("http")
+async def basic_auth_guard(request, call_next):
+    if not APP_PASSWORD or request.url.path == "/health":
+        return await call_next(request)
+    ok = False
+    hdr = request.headers.get("authorization", "")
+    if hdr.lower().startswith("basic "):
+        try:
+            user, _, pw = base64.b64decode(hdr[6:]).decode("utf-8").partition(":")
+            ok = secrets.compare_digest(pw, APP_PASSWORD) and secrets.compare_digest(user, os.environ.get("APP_USER", "admin"))
+        except Exception:
+            ok = False
+    if not ok:
+        return Response(content="Login required", status_code=401, headers={"WWW-Authenticate": 'Basic realm="AstroPulse India"'})
+    return await call_next(request)
+
+
+@app.get("/health")
+def health():
+    return {"status": "ok"}
+
 
 # --- Database Initialization ---
 def init_db():
@@ -463,12 +494,97 @@ D1 और D9 की पूरी ग्रह स्थिति
 }
 
 
+
+# ============================================================
+# AstroPulse India - रिपोर्ट पैकेजेस (डैशबोर्ड के कार्ड्स यहीं से बनते हैं)
+# कीमत / पेज बदलना हो तो सिर्फ यहीं बदलें।
+# delivery: "html" = 30-पेज रॉयल टेम्पलेट (Gemini आउटपुट पेस्ट करके PDF)
+#           "txt"  = Gemini के लिए पूरा प्रॉम्प्ट .txt डाउनलोड
+# parts: बड़ी रिपोर्ट को Gemini में कई हिस्सों में बनाने के लिए
+# ============================================================
+PACKAGES = {
+    "premium": {"title": "Premium Complete Life Report", "title_hi": "प्रीमियम कम्प्लीट लाइफ रिपोर्ट", "price": 1100, "pages": 90, "prompt_key": "premium", "delivery": "html", "parts": 4, "group": "top", "desc": "जीवन के हर क्षेत्र का सबसे विस्तृत 90-पेज विश्लेषण"},
+    "call": {"title": "Call Consultation Report", "title_hi": "कॉल कंसल्टेशन रिपोर्ट", "price": 299, "pages": 30, "prompt_key": "consultation", "delivery": "html", "parts": 1, "group": "top", "desc": "कॉल कंसल्टेशन के लिए रॉयल बुक रिपोर्ट"},
+    "kundli_analysis": {"title": "Kundli Analysis Report", "title_hi": "कुंडली एनालिसिस रिपोर्ट (लग्न + महादशा)", "price": 499, "pages": 60, "prompt_key": "kundli_analysis", "delivery": "html", "parts": 3, "group": "combined", "desc": "D1 लग्न + महादशा का संपूर्ण संयुक्त विश्लेषण"},
+    "career_health_wealth": {"title": "Career, Health & Wealth Report", "title_hi": "करियर, हेल्थ एंड वेल्थ रिपोर्ट", "price": 499, "pages": 60, "prompt_key": "career_health_wealth", "delivery": "html", "parts": 3, "group": "combined", "desc": "करियर, धन (इन्दु लग्न) और स्वास्थ्य एक रिपोर्ट में"},
+    "marriage_pro": {"title": "Complete Marriage Report", "title_hi": "संपूर्ण मैरिज और रिलेशनशिप रिपोर्ट", "price": 499, "pages": 60, "prompt_key": "marriage_pro", "delivery": "html", "parts": 3, "group": "combined", "desc": "विवाह और रिश्तों का 60-पेज गहन विश्लेषण"},
+    "health_longevity": {"title": "Health & Longevity Report", "title_hi": "हेल्थ एंड लॉन्गेविटी रिपोर्ट", "price": 499, "pages": 60, "prompt_key": "health_longevity", "delivery": "html", "parts": 3, "group": "combined", "desc": "स्वास्थ्य, आयु-संकेत, इन्दु लग्न और D1 का संयुक्त विश्लेषण"},
+    "education_career": {"title": "Education & Career Report", "title_hi": "एजुकेशन एंड करियर रिपोर्ट", "price": 499, "pages": 60, "prompt_key": "education_career", "delivery": "html", "parts": 3, "group": "combined", "desc": "शिक्षा (D24) और करियर का संयुक्त मार्गदर्शन"},
+    "d1": {"title": "D1 Lagna Report", "title_hi": "D1 लग्न रिपोर्ट", "price": 299, "pages": 30, "prompt_key": "d1", "delivery": "html", "parts": 1, "group": "single", "desc": "मुख्य लग्न, 12 भाव, योग और दशा संबंध"},
+    "mahadasha": {"title": "Mahadasha Report", "title_hi": "विम्शोत्तरी महादशा रिपोर्ट", "price": 299, "pages": 30, "prompt_key": "mahadasha", "delivery": "html", "parts": 1, "group": "single", "desc": "पिछली, वर्तमान और आगामी दशा, सभी अंतर्दशाएं"},
+    "career": {"title": "Career & Business Report", "title_hi": "करियर और बिज़नेस रिपोर्ट", "price": 299, "pages": 30, "prompt_key": "career", "delivery": "html", "parts": 1, "group": "single", "desc": "करियर, नौकरी बनाम व्यवसाय, दशा अनुसार समय"},
+    "wealth": {"title": "Indu Lagna & Wealth Report", "title_hi": "इन्दु लग्न और धन रिपोर्ट", "price": 299, "pages": 30, "prompt_key": "wealth", "delivery": "html", "parts": 1, "group": "single", "desc": "इन्दु लग्न, आय के स्रोत और धन वृद्धि"},
+    "marriage": {"title": "Marriage & Love Report", "title_hi": "मैरिज और लव लाइफ रिपोर्ट", "price": 299, "pages": 30, "prompt_key": "marriage", "delivery": "html", "parts": 1, "group": "single", "desc": "सप्तम भाव, D9, प्रेम और विवाह समय"},
+    "health": {"title": "Health & Quality of Life Report", "title_hi": "हेल्थ एंड क्वालिटी ऑफ लाइफ रिपोर्ट", "price": 299, "pages": 30, "prompt_key": "health", "delivery": "html", "parts": 1, "group": "single", "desc": "स्वास्थ्य, जीवनशैली और मानसिक शांति"},
+    "education": {"title": "Education Report", "title_hi": "एजुकेशन और इंटेलिजेंस रिपोर्ट", "price": 299, "pages": 30, "prompt_key": "education", "delivery": "html", "parts": 1, "group": "single", "desc": "शिक्षा, D24 और बौद्धिक क्षमता"},
+    "annual": {"title": "Annual Rashifal 2027", "title_hi": "वार्षिक राशिफल 2027", "price": 299, "pages": 30, "prompt_key": "annual", "delivery": "html", "parts": 1, "group": "single", "desc": "2027 के गोचर और 12 महीनों का मासिक फल"},
+    "numerology": {"title": "Numerology Report", "title_hi": "न्यूमरोलॉजी (अंक ज्योतिष) रिपोर्ट", "price": 299, "pages": 30, "prompt_key": "numerology", "delivery": "html", "parts": 1, "group": "single", "desc": "मूलांक, भाग्यांक, नामांक, लो-शू ग्रिड और 2027 का व्यक्तिगत वर्ष"},
+}
+_PACKAGE_BY_TITLE = {v["title"].lower(): k for k, v in PACKAGES.items()}
+_PACKAGE_BY_TITLE.update({v["title_hi"]: k for k, v in PACKAGES.items()})
+
+
+for _k, _v in PACKAGES.items():
+    _v.setdefault("group", "package")
+
+
+def resolve_package(name):
+    """रिपोर्ट के नाम/ID से पैकेज की ID लौटाता है (नहीं मिले तो None)।"""
+    if not name:
+        return None
+    if name in PACKAGES:
+        return name
+    return _PACKAGE_BY_TITLE.get(name.strip().lower()) or _PACKAGE_BY_TITLE.get(name.strip())
+
+
+def part_instruction(total_pages, parts, part):
+    """बड़ी रिपोर्ट के लिए 'केवल यह हिस्सा लिखें' निर्देश। Page 1-3 टेम्पलेट में पहले से हैं, इसलिए हिस्से Page 4 से शुरू होते हैं।"""
+    if parts <= 1 or part < 1 or part > parts:
+        return ""
+    first = 4
+    n = total_pages - first + 1
+    size = -(-n // parts)
+    start = first + (part - 1) * size
+    end = min(total_pages, start + size - 1)
+    return (f"\n\n━━━━━━━━━━━━━━━━━━━━\nPART INSTRUCTION (भाग {part}/{parts})\n━━━━━━━━━━━━━━━━━━━━\n"
+            f"इस बार अध्याय-सूची में से केवल Page {start} से Page {end} तक के पेज लिखें। "
+            f"Page {start} से ही शुरू करें और Page {end} पर रुक जाएं। इससे पहले या बाद के पेज न लिखें। "
+            f"हर पेज की शुरुआत में PAGE BREAK लाइन और ऊपर के सभी नियम पहले की तरह लागू रहेंगे।")
+
+
+COMBINED_PROMPTS_FILE = "all_prompts_combined.txt"
+_PROMPT_KEY_MAP = {"indu lagna": "indu_lagna"}  # कीवर्ड -> combined फाइल की key
+
+
+def load_combined_prompts():
+    """all_prompts_combined.txt को पढ़कर {key: prompt_text} देता है। फाइल न मिले तो खाली dict।"""
+    import re
+    for d in [".", "assets", "prompts"]:
+        path = os.path.join(d, COMBINED_PROMPTS_FILE)
+        if os.path.isfile(path):
+            try:
+                with open(path, "r", encoding="utf-8-sig") as f:
+                    text = f.read().replace("\r\n", "\n")
+            except Exception:
+                return {}
+            found = {}
+            pattern = r"#####\[PROMPT_START\] key=([^\s|]+)[^\n]*\n(.*?)#####\[PROMPT_END\] key=\1"
+            for m in re.finditer(pattern, text, flags=re.S):
+                body = m.group(2).strip()
+                if len(body) > 100:
+                    found[m.group(1)] = body
+            return found
+    return {}
+
+
 def get_prompt_content(report_type_decoded):
     """
     प्रोजेक्ट फोल्डर में मौजूद .txt प्रॉम्प्ट फाइल को ढूँढता है, या डिफ़ॉल्ट मास्टर प्रॉम्प्ट देता है।
     """
     report_lower = report_type_decoded.lower()
-    if "consultation" in report_lower or "कॉल" in report_lower or "10" in report_lower:
+    if "numerology" in report_lower or "न्यूमरोलॉजी" in report_lower or "अंक ज्योतिष" in report_lower:
+        target_keyword = "numerology"
+    elif "consultation" in report_lower or "कॉल" in report_lower or "10" in report_lower:
         target_keyword = "consultation"
     elif "annual" in report_lower or "वार्षिक" in report_lower or "2027" in report_lower or "राशिफल" in report_lower:
         target_keyword = "annual"
@@ -491,10 +607,23 @@ def get_prompt_content(report_type_decoded):
     else:
         target_keyword = "d1"
 
-    ignored_prefixes = ("requirements", "runtime", "code_artifact")
+    ignored_prefixes = ("requirements", "runtime", "code_artifact", "all_prompts", "consultation_clean")
     search_dirs = [".", "assets", "prompts"]
 
-    # कंसल्टेशन रिपोर्ट के लिए हम क्लीन टेक्स्ट प्रॉम्प्ट प्राथमिकता से देते हैं ताकि Page 3 की टेबल कभी न टूटे
+    # सबसे पहले एक ही combined फाइल (all_prompts_combined.txt) से प्रॉम्प्ट लेने की कोशिश
+    combined = load_combined_prompts()
+    pkg_id = resolve_package(report_type_decoded)
+    if pkg_id:
+        pkg_key = PACKAGES[pkg_id]["prompt_key"]
+        if pkg_key in combined:
+            return combined[pkg_key], f"{COMBINED_PROMPTS_FILE}#{pkg_key}"
+        if pkg_id != "call":  # call रिपोर्ट का प्रॉम्प्ट main.py के अंदर भी मौजूद है (fallback)
+            raise FileNotFoundError(f"{COMBINED_PROMPTS_FILE} में '{pkg_key}' प्रॉम्प्ट नहीं मिला। फाइल main.py वाले फोल्डर में रखें।")
+    combined_key = _PROMPT_KEY_MAP.get(target_keyword, target_keyword)
+    if combined_key in combined:
+        return combined[combined_key], f"{COMBINED_PROMPTS_FILE}#{combined_key}"
+
+    # कंसल्टेशन रिपोर्ट के लिए क्लीन टेक्स्ट प्रॉम्प्ट (combined फाइल न मिलने पर) ताकि Page 3 की टेबल कभी न टूटे
     if target_keyword == "consultation":
         return DEFAULT_PROMPTS["consultation"], "consultation_clean_prompt.txt"
 
@@ -586,6 +715,46 @@ def format_vedic_tables_for_prompt(chart_data):
     return d1_only_text, d9_only_text, combined_planets_text, dasha_summary_text
 
 
+def build_transit_year_text(year, chart_data):
+    """वर्ष भर के गोचर (राशि परिवर्तन) की गणना - ताकि वार्षिक राशिफल मनगढ़ंत गोचर पर न टिके।"""
+    import swisseph as swe
+    from datetime import date, timedelta
+    swe.set_sid_mode(swe.SIDM_LAHIRI)
+    flags = swe.FLG_SIDEREAL | swe.FLG_SWIEPH
+    lagna_idx = chart_data["lagna"]["d1_sign_index"]
+    moon_idx = chart_data["planets"]["Moon"]["d1_sign_index"]
+    bodies = [("Saturn", swe.SATURN), ("Jupiter", swe.JUPITER), ("Rahu", swe.MEAN_NODE), ("Mars", swe.MARS),
+              ("Sun", swe.SUN), ("Venus", swe.VENUS), ("Mercury", swe.MERCURY)]
+
+    def sign_of(planet, d):
+        jd = swe.julday(d.year, d.month, d.day, 0.0)
+        lon = swe.calc_ut(jd, planet, flags)[0][0]
+        return int(lon // 30) % 12
+
+    def label(idx):
+        return f"{ZODIAC_SIGNS[idx]} (लग्न से भाव {(idx - lagna_idx) % 12 + 1}, चंद्र से भाव {(idx - moon_idx) % 12 + 1})"
+
+    start = date(year, 1, 1)
+    out = [f"━━━━━━━━━━━━━━━━━━━━\nवर्ष {year} के गोचर (VERIFIED ENGINE DATA - Lahiri, राशि परिवर्तन की तारीखें)\n━━━━━━━━━━━━━━━━━━━━",
+           f"वर्ष के आरंभ ({start.isoformat()}) की स्थिति:"]
+    for nm, pid in bodies:
+        out.append(f"- {nm}: {label(sign_of(pid, start))}")
+    k = sign_of(swe.MEAN_NODE, start)
+    out.append(f"- Ketu: {label((k + 6) % 12)}")
+    out.append("\nवर्ष के दौरान राशि परिवर्तन:")
+    prev = {nm: sign_of(pid, start) for nm, pid in bodies}
+    d = start
+    end = date(year, 12, 31)
+    while d < end:
+        d += timedelta(days=1)
+        for nm, pid in bodies:
+            cur = sign_of(pid, d)
+            if cur != prev[nm]:
+                out.append(f"- {d.isoformat()}: {nm} -> {label(cur)}" + (f" | Ketu -> {label((cur + 6) % 12)}" if nm == "Rahu" else ""))
+                prev[nm] = cur
+    return "\n".join(out)
+
+
 def build_merged_prompt(master_prompt, chart_data, report_type_decoded, name, gender, day, month, year, hour, minute, city):
     d1_text, d9_text, combined_text, dasha_text = format_vedic_tables_for_prompt(chart_data)
     lagna = chart_data.get("lagna", {})
@@ -605,10 +774,24 @@ def build_merged_prompt(master_prompt, chart_data, report_type_decoded, name, ge
     filled_prompt = filled_prompt.replace("[यहां D1, D9 और D24 की पूरी ग्रह स्थिति डालें]", combined_text)
     filled_prompt = filled_prompt.replace("[यहां Mahadasha और Antardasha की पूरी तालिका डालें]", dasha_text)
 
-    if d1_text not in filled_prompt and combined_text not in filled_prompt:
+    is_numerology = ("numerology" in report_type_decoded.lower() or "न्यूमरोलॉजी" in report_type_decoded)
+    if is_numerology:
+        import numerology as _num
+        num_text = _num.format_for_prompt(_num.compute(name, day, month, year))
+        filled_prompt = filled_prompt.replace("[यहां अंक ज्योतिष डेटा डालें]", num_text)
+        if num_text not in filled_prompt:
+            filled_prompt += f"\n\n━━━━━━━━━━━━━━━━━━━━\nप्रमाणित अंक ज्योतिष डेटा\n━━━━━━━━━━━━━━━━━━━━\n{num_text}"
+
+    if not is_numerology and d1_text not in filled_prompt and combined_text not in filled_prompt:
         filled_prompt += f"\n\n━━━━━━━━━━━━━━━━━━━━\nD1, D9 एवं D24 की पूरी ग्रह स्थिति (VERIFIED ENGINE DATA)\n━━━━━━━━━━━━━━━━━━━━\n{combined_text}"
-    if dasha_text not in filled_prompt:
+    if not is_numerology and dasha_text not in filled_prompt:
         filled_prompt += f"\n\n━━━━━━━━━━━━━━━━━━━━\nविम्शोत्तरी दशा तालिका (VERIFIED DASHA TIMELINE)\n━━━━━━━━━━━━━━━━━━━━\n{dasha_text}"
+
+    if "2027" in report_type_decoded or "annual" in report_type_decoded.lower() or "वार्षिक" in report_type_decoded:
+        try:
+            filled_prompt += "\n\n" + build_transit_year_text(2027, chart_data)
+        except Exception:
+            pass
 
     header_block = f"""==================================================
 ASTROPULSE INDIA - VERIFIED BIRTH & KUNDLI HEADER
@@ -677,7 +860,10 @@ def generate_kundli_svg_server(chart_data, chart_type="D1"):
     return "".join(svg_parts)
 
 
-def build_full_30_page_consultation_html(chart_data, name, gender, day, month, year, hour, minute, city, report_title="कॉल कंसल्टेशन और मास्टर रिपोर्ट"):
+def build_full_30_page_consultation_html(chart_data, name, gender, day, month, year, hour, minute, city, report_title="कॉल कंसल्टेशन और मास्टर रिपोर्ट", total_pages=30, report_id=None, tz=5.5):
+    import html as _html
+    raw_name, raw_gender, raw_city = name, gender, city          # .txt प्रॉम्प्ट के लिए असली मान
+    name, gender, city = _html.escape(str(name)), _html.escape(str(gender)), _html.escape(str(city))  # HTML पेज के लिए सुरक्षित मान
     lagna = chart_data.get("lagna", {})
     indu = chart_data.get("indu_lagna", {})
     planets = chart_data.get("planets", {})
@@ -708,7 +894,7 @@ def build_full_30_page_consultation_html(chart_data, name, gender, day, month, y
 
     # .txt प्रॉम्प्ट को सीधे HTML पेज में डाउनलोड करने के लिए तैयार करें
     master_prompt, _ = get_prompt_content(report_title)
-    merged_txt_prompt = build_merged_prompt(master_prompt, chart_data, report_title, name, gender, day, month, year, hour, minute, city)
+    merged_txt_prompt = build_merged_prompt(master_prompt, chart_data, report_title, raw_name, raw_gender, day, month, year, hour, minute, raw_city)
     escaped_txt_prompt = (
         merged_txt_prompt.replace("\\", "\\\\")
         .replace("`", "\\`")
@@ -882,6 +1068,8 @@ def build_full_30_page_consultation_html(chart_data, name, gender, day, month, y
     ]
 
     pages_html = ""
+    if report_id not in (None, "call"):
+        chapters_data = []   # बाकी रिपोर्ट्स में Gemini का असली आउटपुट आएगा (ऑटो-जनरेट या पेस्ट)
     for idx, (ch_title, paras) in enumerate(chapters_data, start=4):
         paras_html = "".join([f'<p class="book-para">{p}</p>' for p in paras])
         pages_html += f"""
@@ -1431,6 +1619,57 @@ def build_full_30_page_consultation_html(chart_data, name, gender, day, month, y
 </body>
 </html>
 """
+    # ---- रिपोर्ट के अनुसार लेबल, कुल पेज और ऑटो-जनरेट बटन ----
+    import json as _json
+    book_label = _html.escape((PACKAGES[report_id]["title"] if report_id in PACKAGES else "Call Consultation & Master Report")).upper()
+    full_book_html = full_book_html.replace("CALL CONSULTATION & MASTER REPORT", book_label)
+    full_book_html = full_book_html.replace("of 30<", f"of {total_pages}<")
+    full_book_html = full_book_html.replace("scale: 2,", "scale: (pages.length > 40 ? 1.5 : 2),")
+    pipe_cfg = _json.dumps({"report_id": report_id, "year": year, "month": month, "day": day, "hour": hour, "minute": minute,
+                            "city": raw_city, "name": raw_name, "gender": raw_gender, "tz": tz, "total_pages": total_pages}, ensure_ascii=True).replace("</", "<\\/")
+    if report_id in PACKAGES:
+        full_book_html = full_book_html.replace(
+            '<button class="btn-download" style="background:#7c3aed;" onclick="openGeminiModal()">',
+            '<button id="btn-auto" class="btn-download" style="background:#059669;" onclick="startAutoGenerate()">⚙️ ऑटो-जनरेट (Gemini)</button>\n        <button class="btn-download" style="background:#7c3aed;" onclick="openGeminiModal()">', 1)
+        auto_js = """
+    <script>
+        const PIPE_CFG = __PIPE_CFG__;
+        let PIPE_JOB = null;
+        function setAutoMsg(t) { const b = document.getElementById('btn-auto'); if (b) b.innerHTML = t; }
+        async function startAutoGenerate() {
+            const b = document.getElementById('btn-auto');
+            if (b.disabled) return;
+            if (!confirm('Gemini से पूरी रिपोर्ट अपने-आप बनेगी। इसमें कई मिनट लग सकते हैं और पेज बंद न करें। शुरू करें?')) return;
+            b.disabled = true; setAutoMsg('⏳ शुरू हो रहा है...');
+            try {
+                const r = await (await fetch('/pipeline/start', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(PIPE_CFG)})).json();
+                if (r.status !== 'success') { alert(r.message || 'शुरू नहीं हो पाया'); b.disabled = false; setAutoMsg('⚙️ ऑटो-जनरेट (Gemini)'); return; }
+                PIPE_JOB = r.job_id; pollAuto();
+            } catch (e) { alert('सर्वर से कनेक्ट करने में विफल'); b.disabled = false; setAutoMsg('⚙️ ऑटो-जनरेट (Gemini)'); }
+        }
+        async function pollAuto() {
+            try {
+                const s = await (await fetch('/pipeline/status/' + PIPE_JOB)).json();
+                if (s.status === 'error') { alert(s.message); document.getElementById('btn-auto').disabled = false; setAutoMsg('⚙️ दोबारा कोशिश करें'); return; }
+                if (s.status === 'done') {
+                    const txt = await (await fetch('/pipeline/download/' + PIPE_JOB + '?fmt=txt')).text();
+                    document.getElementById('gemini-input-box').value = txt;
+                    applyGeminiContent();
+                    setAutoMsg('✅ रिपोर्ट तैयार');
+                    const bar = document.querySelector('.toolbar, .controls, #toolbar') || document.getElementById('btn-auto').parentElement;
+                    const box = document.createElement('span');
+                    box.innerHTML = ' <a class="btn-download" style="background:#334155;text-decoration:none;" href="/pipeline/download/' + PIPE_JOB + '?fmt=txt">⬇ .txt</a> <a class="btn-download" style="background:#334155;text-decoration:none;" href="/pipeline/download/' + PIPE_JOB + '?fmt=docx">⬇ Word</a>';
+                    bar.appendChild(box);
+                    if (s.warnings && s.warnings.length) { alert('रिपोर्ट बन गई। कुछ चेतावनियां:\\n' + s.warnings.slice(0, 6).join('\\n')); }
+                    return;
+                }
+                setAutoMsg('⏳ ' + (s.done || 0) + '/' + (s.total || '?') + ' हिस्से - ' + (s.message || ''));
+            } catch (e) { /* अस्थायी नेटवर्क समस्या: फिर कोशिश */ }
+            setTimeout(pollAuto, 4000);
+        }
+    </script>
+</body>""".replace("__PIPE_CFG__", pipe_cfg)
+        full_book_html = full_book_html.replace("</body>", auto_js, 1)
     return full_book_html
 
 
@@ -1440,9 +1679,9 @@ def home(request: Request):
 
 
 @app.get("/get_chart")
-def get_chart(year: int, month: int, day: int, hour: int, minute: int, city: str, name: str = "Unknown", gender: str = "Not Specified"):
+def get_chart(year: int, month: int, day: int, hour: int, minute: int, city: str, name: str = "Unknown", gender: str = "Not Specified", tz: float = 5.5):
     try:
-        data = get_vedic_planets(year, month, day, hour, minute, city)
+        data = get_vedic_planets(year, month, day, hour, minute, city, tz_offset=tz)
         return {"status": "success", "data": data}
     except Exception as e:
         return {"status": "error", "message": str(e)}
@@ -1507,38 +1746,801 @@ def check_service(service_type: str, year: int, month: int, day: int, hour: int,
         return {"status": "error", "message": str(e)}
 
 
+def build_docx_bytes(title, text):
+    """प्रॉम्प्ट/रिपोर्ट टेक्स्ट से Word (.docx) फाइल बनाता है (देवनागरी फॉन्ट के साथ)।"""
+    import io, re
+    from docx import Document
+    from docx.shared import Pt
+    from docx.oxml.ns import qn
+
+    doc = Document()
+    st = doc.styles["Normal"]
+    st.font.name = "Nirmala UI"
+    st.font.size = Pt(11)
+    rpr = st.element.get_or_add_rPr()
+    rfonts = rpr.find(qn("w:rFonts"))
+    if rfonts is None:
+        from docx.oxml import OxmlElement
+        rfonts = OxmlElement("w:rFonts")
+        rpr.append(rfonts)
+    for attr in ("w:ascii", "w:hAnsi", "w:cs", "w:eastAsia"):
+        rfonts.set(qn(attr), "Nirmala UI")
+
+    doc.add_heading(title, level=1)
+    for line in text.replace("\r\n", "\n").split("\n"):
+        stripped = line.strip()
+        if not stripped or re.fullmatch(r"[━=\-_ ]{4,}", stripped):
+            continue
+        if "PAGE BREAK" in stripped:
+            doc.add_page_break()
+            continue
+        doc.add_paragraph(stripped)
+    buf = io.BytesIO()
+    doc.save(buf)
+    return buf.getvalue()
+
+
+@app.get("/api/packages")
+def api_packages():
+    """डैशबोर्ड के रिपोर्ट कार्ड्स के लिए पैकेज लिस्ट।"""
+    return {"status": "success", "packages": [{"id": k, **v} for k, v in PACKAGES.items()]}
+
+
 @app.get("/generate_report/{report_type}")
 def generate_report(
     report_type: str,
     year: int, month: int, day: int, hour: int, minute: int,
     city: str, name: str = "जातक", gender: str = "पुरुष",
-    mode: str = "auto"
+    mode: str = "auto", part: int = 0, fmt: str = "txt", tz: float = 5.5
 ):
     try:
         report_type_decoded = urllib.parse.unquote(report_type)
-        chart_data = get_vedic_planets(year, month, day, hour, minute, city)
+        chart_data = get_vedic_planets(year, month, day, hour, minute, city, tz_offset=tz)
+        pkg_id = resolve_package(report_type_decoded)
 
-        is_tenth_report = ("consultation" in report_type_decoded.lower() or "कॉल" in report_type_decoded.lower() or "10" in report_type_decoded.lower())
+        if pkg_id:
+            pkg = PACKAGES[pkg_id]
+            use_html = (pkg["delivery"] == "html" and mode != "txt")
+            report_title = pkg["title_hi"] if pkg_id == "call" else pkg["title"]
+        else:
+            # पुराने (legacy) रिपोर्ट नाम भी चलते रहेंगे
+            is_tenth_report = ("consultation" in report_type_decoded.lower() or "कॉल" in report_type_decoded.lower() or "10" in report_type_decoded.lower())
+            use_html = (is_tenth_report and mode != "txt") or mode == "html"
+            report_title = report_type_decoded
 
-        # यदि mode="txt" मांगा गया हो या 1 से 9 नंबर की रिपोर्ट हो
-        if mode == "txt" or (not is_tenth_report and mode != "html"):
-            master_prompt, _ = get_prompt_content(report_type_decoded)
+        if not use_html:
+            master_prompt, _ = get_prompt_content(report_title)
             final_prompt_output = build_merged_prompt(
-                master_prompt, chart_data, report_type_decoded,
+                master_prompt, chart_data, report_title,
                 name, gender, day, month, year, hour, minute, city
             )
-            safe_filename = f"AstroPulse_{abs(hash(report_type_decoded))}.txt"
+            if pkg_id:
+                final_prompt_output += part_instruction(PACKAGES[pkg_id]["pages"], PACKAGES[pkg_id]["parts"], part)
+            base_name = f"AstroPulse_{pkg_id or abs(hash(report_type_decoded))}{'_part'+str(part) if part else ''}"
+            if (fmt or "").lower() in ("doc", "docx"):
+                return Response(
+                    content=build_docx_bytes(report_title, final_prompt_output),
+                    media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                    headers={"Content-Disposition": f'attachment; filename="{base_name}.docx"'}
+                )
             return Response(
                 content=final_prompt_output,
                 media_type="text/plain; charset=utf-8",
-                headers={"Content-Disposition": f'attachment; filename="{safe_filename}"'}
+                headers={"Content-Disposition": f'attachment; filename="{base_name}.txt"'}
             )
 
-        # 10वीं रिपोर्ट (या mode="html"): 30-पेज रॉयल टेम्पलेट + इन-बिल्ट .txt डाउनलोडर + 1-Click PDF एक्सपोर्टर
+        # 30-पेज रॉयल टेम्पलेट: Call Consultation और Astrology Special (इन-बिल्ट .txt डाउनलोडर + 1-Click PDF)
         full_html = build_full_30_page_consultation_html(
-            chart_data, name, gender, day, month, year, hour, minute, city, report_title=report_type_decoded
+            chart_data, name, gender, day, month, year, hour, minute, city, report_title=report_title,
+            total_pages=(PACKAGES[pkg_id]["pages"] if pkg_id else 30), report_id=pkg_id, tz=tz
         )
         return HTMLResponse(content=full_html)
 
     except Exception as e:
         return Response(content=f"Report Generation Error: {str(e)}", status_code=500)
+
+
+# ============================================================
+# दोष विश्लेषण मॉड्यूल (Vedic Engine के डेटा से चारों दोष एक साथ)
+# ============================================================
+@lru_cache(maxsize=64)
+def _cached_chart(year, month, day, hour, minute, city, tz=5.5):
+    return get_vedic_planets(year, month, day, hour, minute, city, tz_offset=tz)
+
+
+@app.get("/dosha_analysis")
+def dosha_analysis(year: int, month: int, day: int, hour: int, minute: int, city: str, tz: float = 5.5):
+    try:
+        d = _cached_chart(year, month, day, hour, minute, city, tz).get("doshas", {})
+        m, k, p, s = d.get("manglik", {}), d.get("kaal_sarp", {}), d.get("pitra_dosh", {}), d.get("sade_sati", {})
+        items = [
+            {"id": "manglik", "icon": "🔴", "title": "मंगल दोष (Manglik)", "present": bool(m.get("is_manglik")), "details": m.get("details", "")},
+            {"id": "kaal_sarp", "icon": "🐍", "title": "काल सर्प दोष", "present": bool(k.get("is_kaal_sarp")), "details": k.get("details", "")},
+            {"id": "pitra", "icon": "⚱️", "title": "पितृ दोष", "present": bool(p.get("is_pitra")), "details": p.get("details", "")},
+            {"id": "sade_sati", "icon": "🪐", "title": "शनि साढ़े साती", "present": bool(s.get("is_sade_sati")), "details": s.get("details", ""), "note": s.get("phase", "")},
+        ]
+        return {"status": "success", "doshas": items}
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+
+# ============================================================
+# AstroPulse AI - कुंडली आधारित चैटबॉट (Gemini)
+# GEMINI_API_KEY को Render के Environment Variables में सेट करें।
+# नियम: चैटबॉट खुद गणना नहीं करता, केवल Vedic Engine का डेटा पढ़कर जवाब देता है।
+# ============================================================
+# Pro मोड: बेहतर मॉडल, रोज़ की सीमित संख्या तक। लिमिट खत्म (या Google का कोटा खत्म) होते ही Free मोड (तेज़/हल्का मॉडल) अपने-आप चालू।
+# ============================================================
+# GEMINI API KEYS (एक से ज्यादा key की अदला-बदली)
+# key कोड में नहीं लिखी जाती। ये यहाँ से पढ़ी जाती हैं:
+#   1) Environment: GEMINI_API_KEY, GEMINI_API_KEY_2, GEMINI_API_KEY_3, GOOGLE_API_KEY, या GEMINI_API_KEYS="k1,k2"
+#   2) "API KEYS" फोल्डर की .txt फाइलें (हर फाइल में एक key; main.py के बगल में)
+# एक key की सीमा (429/quota) खत्म हो तो अपने-आप अगली key चलती है।
+# ============================================================
+import threading as _th
+
+_KEY_COOLDOWN = {}
+_LAST_ERR = {}
+_KEY_RR = [0]
+_KEY_LOCK = _th.Lock()
+_BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+
+def _gemini_keys():
+    keys = []
+    for var in ("GEMINI_API_KEY", "GEMINI_API_KEY_2", "GEMINI_API_KEY_3", "GOOGLE_API_KEY"):
+        v = (os.environ.get(var) or "").strip()
+        if v:
+            keys.append(v)
+    for v in (os.environ.get("GEMINI_API_KEYS") or "").split(","):
+        if v.strip():
+            keys.append(v.strip())
+    for base in (".", _BASE_DIR):
+        for dname in ("API KEYS", "API_KEYS", "api keys", "api_keys"):
+            d = os.path.join(base, dname)
+            if not os.path.isdir(d):
+                continue
+            for fn in sorted(os.listdir(d)):
+                if not fn.lower().endswith(".txt"):
+                    continue
+                try:
+                    with open(os.path.join(d, fn), "r", encoding="utf-8-sig") as f:
+                        for line in f.read().splitlines():
+                            line = line.strip()
+                            if not line or line.startswith("#"):
+                                continue
+                            if "=" in line:
+                                line = line.split("=")[-1].strip()
+                            keys.append(line.split()[0].strip("\"'"))
+                except Exception:
+                    pass
+    seen, out = set(), []
+    for k in keys:
+        if k and k not in seen:
+            seen.add(k)
+            out.append(k)
+    return out
+
+
+_CLIENTS = {}
+_KEY_MODE = {}
+
+
+def _client_for(k, mode):
+    """हर key+तरीके का एक ही client बनाकर रखते हैं (बीच में बंद न हो, इसलिए cache)।"""
+    ck = (k, mode)
+    if ck not in _CLIENTS:
+        from google import genai
+        _CLIENTS[ck] = genai.Client(vertexai=True, api_key=k) if mode == "vertex" else genai.Client(api_key=k)
+    return _CLIENTS[ck]
+
+
+def _generate(k, model, contents, config):
+    """'AQ.' key पहले Vertex से, फेल हो (403/401/404) तो सामान्य Gemini API से आज़माई जाती है; जो चले वही याद रखी जाती है।"""
+    modes = [_KEY_MODE[k]] if k in _KEY_MODE else (["vertex", "dev"] if k.startswith("AQ.") else ["dev"])
+    errs = []
+    for m in modes:
+        try:
+            r = _client_for(k, m).models.generate_content(model=model, contents=contents, config=config)
+            _KEY_MODE[k] = m
+            return r
+        except Exception as e:
+            msg = str(e)
+            errs.append(f"[{m}] {msg[:170]}")
+            retry = any(t in msg for t in ("403", "401", "404", "PERMISSION_DENIED", "UNAUTHENTICATED", "NOT_FOUND")) or "not valid" in msg.lower()
+            if len(modes) > 1 and retry and m != modes[-1]:
+                continue
+            if len(errs) > 1:
+                raise RuntimeError(" | ".join(errs))
+            raise
+    raise RuntimeError(" | ".join(errs))
+
+
+def _quota_err(msg):
+    m = (msg or "").lower()
+    return "429" in m or "resource_exhausted" in m or "quota" in m or "rate limit" in m
+
+
+def _badkey_err(msg):
+    m = (msg or "").lower()
+    return "api key not valid" in m or "api_key_invalid" in m or "permission_denied" in m or "api key expired" in m
+
+
+def _gemini_run(fn, scope="", wait=True):
+    """fn(api_key) को बारी-बारी से हर key पर चलाता है। quota खत्म होने पर अगली key; सब व्यस्त हों तो थोड़ा रुककर दोबारा।"""
+    keys = _gemini_keys()
+    if not keys:
+        raise RuntimeError("कोई Gemini API key नहीं मिली। 'API KEYS' फोल्डर में key फाइल रखें या GEMINI_API_KEY सेट करें।")
+    last = None
+    for rnd in range(2):
+        now = time.time()
+        with _KEY_LOCK:
+            start = _KEY_RR[0]
+            _KEY_RR[0] += 1
+        order = [keys[(start + i) % len(keys)] for i in range(len(keys))]
+        usable = [k for k in order if _KEY_COOLDOWN.get((k, scope), 0) <= now]
+        if not usable:
+            if rnd == 0 and wait:
+                time.sleep(min(max(min(_KEY_COOLDOWN.get((k, scope), 0) for k in keys) - now, 1), 75))
+                continue
+            break
+        for k in usable:
+            try:
+                return fn(k)
+            except Exception as e:
+                msg = str(e)
+                last = e
+                _LAST_ERR[scope] = msg[:200]
+                if _quota_err(msg):
+                    _KEY_COOLDOWN[(k, scope)] = time.time() + 70
+                    continue
+                if _badkey_err(msg):
+                    _KEY_COOLDOWN[(k, scope)] = time.time() + 3600
+                    continue
+                raise
+    raise last or RuntimeError("सभी Gemini keys की सीमा (quota) अभी खत्म है, कुछ देर बाद कोशिश करें। Google का आखिरी जवाब: " + _LAST_ERR.get(scope, "-"))
+
+
+# मॉडल कतार: ऊपर से नीचे आज़माए जाते हैं। .env/सिस्टम में GEMINI_MODELS="m1,m2,..." से बदल सकते हैं।
+# जो नाम किसी key पर न मिले (404) या जिसकी free सीमा 0 हो, वह कुछ घंटे के लिए छोड़ दिया जाता है।
+_DEFAULT_MODELS = "gemini-3.5-flash,gemini-2.5-flash,gemini-3.1-flash-lite,gemini-2.5-flash-lite"
+_DEAD_MODELS = {}
+_GOOD_MODEL = [None]
+
+
+def _model_chain():
+    raw = os.environ.get("GEMINI_MODELS") or _DEFAULT_MODELS
+    out = []
+    for m in raw.split(","):
+        m = m.strip()
+        if m and m not in out:
+            out.append(m)
+    return out
+
+
+def _gen_chain(contents, config):
+    """कतार के मॉडलों पर (सभी keys के साथ) बारी-बारी कोशिश करता है। (response, मॉडल_नाम) लौटाता है।"""
+    now = time.time()
+    chain = _model_chain()
+    order = [m for m in chain if _DEAD_MODELS.get(m, 0) <= now] or chain
+    g = _GOOD_MODEL[0]
+    if g in order:
+        order = [g] + [m for m in order if m != g]
+    last = None
+    for m in order:
+        try:
+            r = _gemini_run(lambda k, m=m: _generate(k, m, contents, config), scope=m, wait=False)
+            _GOOD_MODEL[0] = m
+            return r, m
+        except Exception as e:
+            msg = str(e)
+            last = e
+            if "limit: 0" in msg or "NOT_FOUND" in msg or "404" in msg:
+                _DEAD_MODELS[m] = time.time() + 6 * 3600
+                continue
+            if _quota_err(msg) or "सीमा (quota)" in msg or _badkey_err(msg):
+                continue
+            raise
+    raise last or RuntimeError("कोई मॉडल उपलब्ध नहीं मिला।")
+
+
+@app.get("/ai_test")
+def ai_test():
+    """जाँच-पेज: localhost:9001/ai_test खोलें। बताता है कि कौन-सी key पर कौन-सा मॉडल चल रहा है (key दिखाई नहीं जाती)।"""
+    from google.genai import types
+    cfg = types.GenerateContentConfig(max_output_tokens=16, temperature=0)
+    keys = _gemini_keys()
+    report = {"keys_found": len(keys), "models": _model_chain(), "results": []}
+    for i, k in enumerate(keys, 1):
+        row = {"key": f"key{i} ({k[:3]}...)", "models": {}}
+        for m in _model_chain():
+            try:
+                r = _generate(k, m, "Reply with one word: OK", cfg)
+                row["models"][m] = "OK ✅ (" + (r.text or "").strip()[:20] + ")"
+            except Exception as e:
+                row["models"][m] = "FAIL ❌ " + str(e)[:220]
+        report["results"].append(row)
+    return report
+
+
+@app.get("/ai_keys_status")
+def ai_keys_status():
+    """UI के लिए: कितनी Gemini keys मिलीं (key दिखाई नहीं जाती)।"""
+    return {"keys": len(_gemini_keys())}
+
+
+PRO_MODEL = os.environ.get("GEMINI_PRO_MODEL", "gemini-2.5-pro")
+FREE_MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
+LITE_MODEL = os.environ.get("GEMINI_LITE_MODEL", "gemini-2.5-flash-lite")
+PRO_DAILY_LIMIT = int(os.environ.get("PRO_DAILY_LIMIT", "0"))  # 0 = चैट हमेशा Free मॉडल कतार से (Pro बंद)
+_PRO_USAGE = {"date": "", "count": 0}
+
+
+def _pro_left():
+    import datetime
+    today = datetime.date.today().isoformat()
+    if _PRO_USAGE["date"] != today:
+        _PRO_USAGE["date"], _PRO_USAGE["count"] = today, 0
+    return max(0, PRO_DAILY_LIMIT - _PRO_USAGE["count"])
+_CHAT_CALLS = []  # Free tier की सीमा से बचने के लिए सरल रेट-लिमिट
+CHAT_MAX_PER_MINUTE = int(os.environ.get("CHAT_MAX_PER_MINUTE", "12"))
+
+CHAT_SYSTEM_PROMPT = """आप "AstroPulse AI" हैं - AstroPulse India का वैदिक ज्योतिष सहायक।
+नियम:
+1. जवाब केवल नीचे दिए गए प्रमाणित कुंडली डेटा (D1, D9, D24, इन्दु लग्न, ग्रह स्थिति, दोष, विम्शोत्तरी दशा) के आधार पर दें। अपनी तरफ से कोई गणना न करें और कोई ग्रह स्थिति, भाव या दशा-तारीख न गढ़ें।
+2. अगर डेटा में जानकारी नहीं है तो साफ कहें कि यह जानकारी उपलब्ध डेटा में नहीं है।
+3. उपयोगकर्ता जिस भाषा में लिखे (Hindi / Hinglish / English) उसी में जवाब दें। जवाब स्पष्ट, संक्षिप्त और व्यावहारिक रखें।
+4. डराने वाली भाषा का प्रयोग न करें। चुनौती बताएं तो साथ में व्यावहारिक नजरिया दें।
+5. रत्न/Gemstone पहनने की सलाह कभी न दें। उपाय केवल मंत्र, दान, सेवा या जीवनशैली के हों।
+6. मृत्यु-समय, निश्चित बीमारी, कानूनी या निवेश के निश्चित निर्णय की भविष्यवाणी न करें; ज्योतिष को मार्गदर्शन के रूप में रखें और स्वास्थ्य/कानूनी/वित्तीय विषयों में विशेषज्ञ से सलाह की बात जोड़ें।
+7. केवल ज्योतिष और इस कुंडली से जुड़े प्रश्नों का उत्तर दें।
+
+=== प्रमाणित कुंडली डेटा ===
+"""
+
+
+CHAT_PROMPTS_FILE = "chatbot_prompts.txt"
+
+
+def load_chat_prompts():
+    """chatbot_prompts.txt से {key: text} पढ़ता है। फाइल न मिले तो खाली dict (तब कोड के अंदर वाले डिफ़ॉल्ट चलेंगे)।"""
+    import re
+    for d in [".", "assets", "prompts"]:
+        path = os.path.join(d, CHAT_PROMPTS_FILE)
+        if os.path.isfile(path):
+            try:
+                text = open(path, "r", encoding="utf-8-sig").read().replace("\r\n", "\n")
+            except Exception:
+                return {}
+            out = {}
+            for m in re.finditer(r"#####\[PROMPT_START\] key=([^\s|]+)[^\n]*\n(.*?)#####\[PROMPT_END\] key=\1", text, flags=re.S):
+                out[m.group(1)] = m.group(2).strip()
+            return out
+    return {}
+
+
+@app.get("/chat_config")
+def chat_config(name: str = "जातक"):
+    """स्वागत संदेश और सैंपल सवाल (chatbot_prompts.txt से; फाइल न हो तो डिफ़ॉल्ट)।"""
+    cp = load_chat_prompts()
+    welcome = cp.get("chat_welcome") or "नमस्ते {name} जी! मैं AstroPulse AI हूँ।\nआपकी कुंडली मेरे सामने है, जो भी पूछना चाहें पूछिए।"
+    samples = [x.strip() for x in (cp.get("chat_samples") or "").split("\n") if x.strip()] or [
+        "मेरी वर्तमान Mahadasha कैसी चल रही है?", "मेरी कुंडली में Manglik Dosha है?", "करियर में सुधार कब हो सकता है?",
+        "D9 Chart में विवाह के क्या संकेत हैं?", "मेरी कुंडली के मजबूत और कमजोर ग्रह कौन से हैं?"]
+    return {"welcome": welcome.replace("{name}", (name or "जातक").strip()[:40]), "samples": samples}
+
+
+@app.get("/chat_status")
+def chat_status():
+    left = _pro_left()
+    return {"tier": "pro" if left > 0 else "free", "pro_left": left, "pro_limit": PRO_DAILY_LIMIT}
+
+
+class ChatRequest(BaseModel):
+    question: str
+    year: int
+    month: int
+    day: int
+    hour: int
+    minute: int
+    city: str
+    name: str = "जातक"
+    gender: str = "Not Specified"
+    tz: float = 5.5
+    history: list = []
+
+
+def _split_chat_messages(answer, max_msgs=5, max_words=45):
+    """चैट का जवाब छोटे-छोटे संदेशों में तोड़ता है (हर संदेश ~30-45 शब्द)।
+    मॉडल संदेशों के बीच अकेली '---' लाइन लिखता है; न लिखे तो खाली-लाइन/वाक्य के हिसाब से तोड़ते हैं।"""
+    import re as _r
+    parts = [p.strip() for p in _r.split(r"\n\s*-{3,}\s*\n", answer or "") if p.strip()]
+    if len(parts) <= 1:
+        parts = [p.strip() for p in _r.split(r"\n\s*\n", answer or "") if p.strip()]
+    out = []
+    for p in parts:
+        p = _r.sub(r"^-{3,}\s*|\s*-{3,}$", "", p).strip()
+        if len(p.split()) <= max_words + 15:
+            out.append(p)
+            continue
+        cur = []
+        for sent in _r.split(r"(?<=[।!?\.])\s+", p):
+            if cur and len(" ".join(cur + [sent]).split()) > max_words:
+                out.append(" ".join(cur))
+                cur = [sent]
+            else:
+                cur.append(sent)
+        if cur:
+            out.append(" ".join(cur))
+    while len(out) > max_msgs:
+        out[-2] = out[-2] + " " + out[-1]
+        out.pop()
+    return [m for m in out if m] or ([answer] if answer else [])
+
+
+@app.post("/chat")
+def chat(req: ChatRequest):
+    if not _gemini_keys():
+        return {"status": "error", "message": "गाइडेंस (AI) अभी चालू नहीं है: 'API KEYS' फोल्डर में Gemini key फाइल रखें या GEMINI_API_KEY सेट करें।"}
+    question = (req.question or "").strip()
+    if not question:
+        return {"status": "error", "message": "कृपया अपना सवाल लिखें।"}
+    if len(question) > 800:
+        return {"status": "error", "message": "सवाल बहुत लंबा है, कृपया 800 अक्षरों के अंदर लिखें।"}
+
+    now = time.time()
+    _CHAT_CALLS[:] = [t for t in _CHAT_CALLS if now - t < 60]
+    if len(_CHAT_CALLS) >= CHAT_MAX_PER_MINUTE:
+        return {"status": "error", "message": "अभी बहुत सारे सवाल आ रहे हैं, कृपया एक मिनट बाद फिर कोशिश करें।"}
+    _CHAT_CALLS.append(now)
+
+    try:
+        from google import genai
+        from google.genai import types
+
+        chart = _cached_chart(req.year, req.month, req.day, req.hour, req.minute, req.city, req.tz)
+        d1_t, d9_t, combined_t, dasha_t = format_vedic_tables_for_prompt(chart)
+        lagna = chart.get("lagna", {})
+        context = (f"नाम: {req.name} | लिंग: {req.gender} | जन्म: {req.day:02d}/{req.month:02d}/{req.year} {req.hour:02d}:{req.minute:02d} | स्थान: {req.city}\n"
+                   f"D1 लग्न: {lagna.get('d1_sign')} | D9 लग्न: {lagna.get('d9_sign')}\n\n{combined_t}\n\n{dasha_t}\n")
+
+        contents = []
+        for h in (req.history or [])[-24:]:
+            if not isinstance(h, dict):
+                continue
+            role = "model" if h.get("role") in ("model", "assistant", "bot") else "user"
+            text = str(h.get("text", ""))[:1500]
+            if text:
+                contents.append(types.Content(role=role, parts=[types.Part(text=text)]))
+        contents.append(types.Content(role="user", parts=[types.Part(text=question)]))
+
+        _cp = load_chat_prompts()
+        _base = _cp.get("chat_system") or CHAT_SYSTEM_PROMPT.split("=== प्रमाणित कुंडली डेटा ===")[0].strip()
+        _tier_now = "pro" if _pro_left() > 0 else "free"
+        _mode = _cp.get("chat_pro" if _tier_now == "pro" else "chat_free", "")
+        _sys = f"{_base}\n\n{_mode}\n\n=== प्रमाणित कुंडली डेटा ===\n{context}"
+        cfg = types.GenerateContentConfig(system_instruction=_sys, temperature=0.4, max_output_tokens=4096)
+
+        def _ask_free():
+            r, _m = _gen_chain(contents, cfg)
+            return r
+
+        def _ask(model):
+            return _gemini_run(lambda k: _generate(k, model, contents, cfg), scope=model, wait=False)
+
+        tier, notice = ("pro" if _pro_left() > 0 else "free"), ""
+        if tier == "free":
+            notice = "" if PRO_DAILY_LIMIT == 0 else "आज की Pro लिमिट खत्म हो चुकी है, अब Free मोड में जवाब मिल रहे हैं।"
+            resp = _ask_free()
+        else:
+            try:
+                resp = _ask(PRO_MODEL)
+                _PRO_USAGE["count"] += 1
+            except Exception as pro_err:
+                msg = str(pro_err)
+                if "429" in msg or "RESOURCE_EXHAUSTED" in msg or "quota" in msg.lower() or "404" in msg or "NOT_FOUND" in msg:
+                    _PRO_USAGE["count"] = PRO_DAILY_LIMIT  # Google का Pro कोटा खत्म: आज के लिए Free पर
+                    notice = "Pro लिमिट खत्म हो गई, अब Free मोड में जवाब मिल रहे हैं।"
+                else:
+                    notice = "Pro मॉडल अभी उपलब्ध नहीं था, इस जवाब के लिए Free मोड इस्तेमाल हुआ।"
+                tier = "free"
+                resp = _ask_free()
+        answer = (resp.text or "").replace("**", "").strip()
+        messages = _split_chat_messages(answer)
+        answer = "\n\n".join(messages)
+        if not answer:
+            return {"status": "error", "message": "AI से जवाब नहीं मिल पाया, कृपया सवाल दोबारा लिखें।"}
+        return {"status": "success", "answer": answer, "messages": messages, "history_text": "\n---\n".join(messages),
+                "tier": tier, "pro_left": _pro_left(), "notice": notice}
+    except Exception as e:
+        return {"status": "error", "message": f"AI से जुड़ने में समस्या: {str(e)[:200]}"}
+
+
+# ============================================================
+# AUTO REPORT PIPELINE
+# कुंडली -> प्रॉम्प्ट -> Gemini (हिस्सों में) -> जाँच (validation) -> retry -> जोड़कर .txt / .docx
+# लंबा काम है, इसलिए बैकग्राउंड जॉब में चलता है: /pipeline/start -> /pipeline/status/{id} -> /pipeline/download/{id}
+# ============================================================
+import threading
+import uuid
+import re as _re
+
+PIPELINE_MODEL = os.environ.get("PIPELINE_MODEL") or FREE_MODEL
+PIPELINE_CHUNK_PAGES = max(3, int(os.environ.get("PIPELINE_CHUNK_PAGES", "10")))
+PIPELINE_MAX_RETRY = 2
+VERIFY_STRICT = os.environ.get("VERIFY_STRICT", "1") != "0"   # तथ्य की पक्की गलती मिले तो वही हिस्सा दोबारा बनवाओ
+PAGE_BREAK_LINE = "==================== PAGE BREAK ===================="
+_GEM_WORDS = ["माणिक्य", "माणिक", "मोती", "मूंगा", "पन्ना", "पुखराज", "हीरा", "नीलम", "गोमेद", "लहसुनिया", "ruby", "pearl", "emerald", "sapphire", "topaz", "diamond"]
+_JOBS = {}
+_JOBS_LOCK = threading.Lock()
+_JOB_SLOTS = threading.Semaphore(2)  # एक साथ अधिकतम 2 रिपोर्ट (Free Tier की सीमा के लिए)
+
+
+def _split_pages(text):
+    parts = _re.split(r"=+\s*PAGE\s*BREAK\s*=+", (text or "").replace("\r\n", "\n"), flags=_re.I)
+    return [p.strip() for p in parts if p.strip()]
+
+
+def _validate_pages(pages, expected, skip_words_for=()):
+    """(fatal_issues, warnings) लौटाता है। fatal होने पर वही हिस्सा दोबारा बनवाया जाता है।"""
+    fatal, warn = [], []
+    if len(pages) < expected:
+        fatal.append(f"आपने {len(pages)} पेज लिखे, जबकि {expected} पेज चाहिए थे")
+    for i, p in enumerate(pages[:expected]):
+        words = len(p.split())
+        if i not in skip_words_for:
+            if words < 200:
+                fatal.append(f"पेज {i + 1} बहुत छोटा है ({words} शब्द), 350-400 शब्द चाहिए")
+            elif words > 560:
+                warn.append(f"पेज {i + 1} लंबा है ({words} शब्द)")
+        low = p.lower()
+        hit = [g for g in _GEM_WORDS if g.lower() in low]
+        if hit:
+            fatal.append(f"पेज {i + 1} में रत्न का जिक्र है ({', '.join(hit[:2])}); रत्न की सलाह बिल्कुल न दें")
+        body_lines = p.split("\n")[1:]
+        if any(_re.match(r"^\s*([-•*]|\d+[.)])\s+", ln) for ln in body_lines):
+            warn.append(f"पेज {i + 1} में बुलेट/नंबर वाली सूची है")
+    return fatal, warn
+
+
+def _job_set(job_id, **kw):
+    with _JOBS_LOCK:
+        if job_id in _JOBS and not _JOBS[job_id].get("cancel"):   # रद्द हो चुके जॉब का स्टेटस दोबारा नहीं बदलता
+            _JOBS[job_id].update(kw)
+
+
+def _cancelled(job_id):
+    with _JOBS_LOCK:
+        return bool(_JOBS.get(job_id, {}).get("cancel"))
+
+
+def _gemini_text(api_key, prompt):
+    """api_key इस्तेमाल नहीं होती। मॉडल कतार (GEMINI_MODELS) में एक के बाद एक आज़माता है।"""
+    from google.genai import types
+    r, _m = _gen_chain(prompt, types.GenerateContentConfig(temperature=0.6, max_output_tokens=24000))
+    return (r.text or "").strip()
+
+
+def _run_pipeline(job_id, api_key, pkg_id, chart_data, name, gender, day, month, year, hour, minute, city):
+    with _JOB_SLOTS:
+        if _cancelled(job_id):
+            return
+        try:
+            pkg = PACKAGES[pkg_id]
+            report_title = pkg["title_hi"] if pkg_id == "call" else pkg["title"]
+            master_prompt, _ = get_prompt_content(report_title)
+            base_prompt = build_merged_prompt(master_prompt, chart_data, report_title, name, gender, day, month, year, hour, minute, city)
+
+            first = 4   # रॉयल टेम्पलेट में Page 1-3 पहले से बने हैं
+            last = pkg["pages"]
+            ranges, a = [], first
+            while a <= last:
+                b = min(a + PIPELINE_CHUNK_PAGES - 1, last)
+                ranges.append((a, b))
+                a = b + 1
+
+            import verifier as _vf
+            numdata = None
+            if pkg_id == "numerology":
+                import numerology as _num
+                numdata = _num.compute(name, day, month, year)
+            facts = _vf.build_facts(chart_data, numdata)
+            facts["dates"].add((day, month, year))
+            facts["birth"] = (day, month, year)
+            qs, claims, bad_claims, issues = [], 0, 0, []
+            _job_set(job_id, status="running", total=len(ranges), done=0, message="शुरू हो रहा है...",
+                     started=time.time(), chunk_secs=[], quality=None, verify=None, issues=[], retries=0, claims=0)
+            all_pages, warnings = [], []
+            for idx, (a, b) in enumerate(ranges, 1):
+                if _cancelled(job_id):
+                    return
+                n = b - a + 1
+                t_chunk = time.time()
+                prev_titles = [p.split("\n")[0][:80] for p in all_pages[-12:]]
+                ok_pages, last_issue = None, ""
+                for attempt in range(PIPELINE_MAX_RETRY + 1):
+                    if _cancelled(job_id):
+                        return
+                    extra = ""
+                    if attempt:
+                        with _JOBS_LOCK:
+                            if job_id in _JOBS:
+                                _JOBS[job_id]["retries"] = _JOBS[job_id].get("retries", 0) + 1
+                        extra = f"\nपिछली बार की गलती: {last_issue}। इस बार नियम कड़ाई से पूरे करें और केवल दिए गए प्रमाणित डेटा का प्रयोग करें।"
+                    chunk_prompt = (
+                        base_prompt
+                        + f"\n\n━━━━━━━━━━━━━━━━━━━━\nCHUNK INSTRUCTION (हिस्सा {idx}/{len(ranges)})\n━━━━━━━━━━━━━━━━━━━━\n"
+                        + f"इस बार पूरी संरचना में से केवल Page {a} से Page {b} तक ठीक {n} पेज लिखें। Page {a} से शुरू करें और Page {b} पर रुकें। "
+                        + f'हर पेज की शुरुआत "{PAGE_BREAK_LINE}" लाइन से करें। इससे पहले या बाद में कोई भूमिका, टिप्पणी या सारांश न लिखें।'
+                        + (f"\nइन पेजों के शीर्षक पहले लिखे जा चुके हैं, इनकी बातें दोहराएं नहीं: {' | '.join(prev_titles)}" if prev_titles else "")
+                        + extra
+                    )
+                    _job_set(job_id, message=f"हिस्सा {idx}/{len(ranges)} (Page {a}-{b}) बन रहा है" + (f" - दोबारा कोशिश {attempt}" if attempt else ""))
+                    try:
+                        text = _gemini_text(api_key, chunk_prompt)
+                    except Exception as e:
+                        em = str(e)
+                        last_issue = "Gemini से जवाब नहीं मिला"
+                        if "429" in em or "RESOURCE_EXHAUSTED" in em or "quota" in em.lower():
+                            _job_set(job_id, message="Gemini की सीमा (quota) खत्म: " + em[:140])
+                            time.sleep(45 * (attempt + 1))
+                        else:
+                            _job_set(job_id, message="Gemini error: " + em[:160])
+                            time.sleep(8)
+                        if attempt == PIPELINE_MAX_RETRY:
+                            raise RuntimeError(f"हिस्सा {idx} (Page {a}-{b}) नहीं बन पाया: {em[:160]}")
+                        continue
+                    pages = _split_pages(text)
+                    skip = ()
+                    fatal, warn = _validate_pages(pages, n, skip_words_for=skip)
+                    if VERIFY_STRICT:
+                        for i, p in enumerate(pages[:n]):
+                            for e in _vf.verify_page(p, facts, pkg_id)["errors"][:2]:
+                                fatal.append(f"पेज {i + 1} में तथ्य की गलती: {e}")
+                    if not fatal:
+                        ok_pages = pages[:n]
+                        warnings += [f"Page {a + int(w.split()[1]) - 1}: {w}" if w.startswith("पेज ") else w for w in warn]
+                        break
+                    last_issue = "; ".join(fatal[:3])
+                    if attempt == PIPELINE_MAX_RETRY:
+                        # आखिरी कोशिश के बाद जो मिला वही रखें, पर चेतावनी दर्ज करें
+                        ok_pages = (pages + [""] * n)[:n]
+                        warnings.append(f"हिस्सा {idx} (Page {a}-{b}) में समस्या बची: {last_issue}")
+                for j, p in enumerate(ok_pages):
+                    if not p:
+                        continue
+                    vr = _vf.verify_page(p, facts, pkg_id)
+                    q, notes = _vf.quality_page(p)
+                    qs.append(q)
+                    claims += vr["checked"]
+                    bad_claims += vr["bad"]
+                    pg = a + j
+                    issues += [f"पेज {pg}: ❌ {m}" for m in vr["errors"]] + [f"पेज {pg}: ⚠ {m}" for m in vr["warnings"]]
+                    issues += [f"पेज {pg}: गुणवत्ता — {m}" for m in notes]
+                all_pages += [p for p in ok_pages if p]
+                with _JOBS_LOCK:
+                    if job_id in _JOBS:
+                        _JOBS[job_id].setdefault("chunk_secs", []).append(round(time.time() - t_chunk, 1))
+                _job_set(job_id, done=idx, warnings=warnings[:30],
+                         quality=round(sum(qs) / len(qs), 1) if qs else None,
+                         verify=round(100.0 * (1 - bad_claims / claims), 1) if claims else 100.0,
+                         claims=claims, issues=issues[:40], pages_written=len(all_pages))
+                time.sleep(2)
+
+            final_text = ("\n\n" + PAGE_BREAK_LINE + "\n\n").join(all_pages)
+            _job_set(job_id, status="done", text=final_text, message="रिपोर्ट तैयार है", pages_written=len(all_pages), warnings=warnings[:30],
+                     finished=time.time())
+        except Exception as e:
+            _job_set(job_id, status="error", message=str(e)[:300])
+
+
+class PipelineStart(BaseModel):
+    report_id: str
+    year: int
+    month: int
+    day: int
+    hour: int
+    minute: int
+    city: str
+    name: str = "जातक"
+    gender: str = "पुरुष"
+    tz: float = 5.5
+
+
+@app.post("/pipeline/start")
+def pipeline_start(req: PipelineStart):
+    api_key = ""
+    if not _gemini_keys():
+        return {"status": "error", "message": "PDF के लिए Gemini key चाहिए: 'API KEYS' फोल्डर में key फाइल रखें या GEMINI_API_KEY सेट करें।"}
+    if req.report_id not in PACKAGES:
+        return {"status": "error", "message": "अज्ञात रिपोर्ट।"}
+    try:
+        chart_data = get_vedic_planets(req.year, req.month, req.day, req.hour, req.minute, req.city, tz_offset=req.tz)
+    except Exception as e:
+        return {"status": "error", "message": f"कुंडली गणना में समस्या: {e}"}
+
+    now = time.time()
+    with _JOBS_LOCK:
+        for k in [k for k, v in _JOBS.items() if now - v["created"] > 3 * 3600]:
+            del _JOBS[k]
+        if sum(1 for v in _JOBS.values() if v["status"] in ("queued", "running")) >= 4:
+            return {"status": "error", "message": "अभी बहुत रिपोर्ट बन रही हैं, कुछ देर बाद कोशिश करें।"}
+        job_id = uuid.uuid4().hex[:12]
+        _JOBS[job_id] = {"id": job_id, "status": "queued", "message": "कतार में है...", "total": 0, "done": 0,
+                         "warnings": [], "text": "", "created": now, "report_id": req.report_id, "name": req.name,
+                         "chart": chart_data,
+                         "info": {"name": req.name, "gender": req.gender, "dob": f"{req.day:02d}/{req.month:02d}/{req.year}",
+                                  "tob": f"{req.hour:02d}:{req.minute:02d}", "city": req.city,
+                                  "day": req.day, "month": req.month, "year": req.year}}
+    threading.Thread(
+        target=_run_pipeline, daemon=True,
+        args=(job_id, api_key, req.report_id, chart_data, req.name, req.gender, req.day, req.month, req.year, req.hour, req.minute, req.city),
+    ).start()
+    return {"status": "success", "job_id": job_id}
+
+
+@app.post("/pipeline/cancel/{job_id}")
+def pipeline_cancel(job_id: str):
+    """चल रही (या कतार वाली) रिपोर्ट रोकता है। Gemini की जो कॉल उस पल चल रही हो वह खत्म होती है, उसके बाद काम रुक जाता है।"""
+    with _JOBS_LOCK:
+        j = _JOBS.get(job_id)
+        if not j:
+            return {"status": "error", "message": "जॉब नहीं मिला।"}
+        if j["status"] in ("done", "error", "cancelled"):
+            return {"status": j["status"], "message": "यह रिपोर्ट पहले ही खत्म हो चुकी है।"}
+        j["cancel"] = True
+        j["status"] = "cancelled"
+        j["message"] = "रोक दी गई"
+    return {"status": "cancelled", "message": "रोक दी गई"}
+
+
+@app.get("/pipeline/status/{job_id}")
+def pipeline_status(job_id: str):
+    with _JOBS_LOCK:
+        j = _JOBS.get(job_id)
+        if not j:
+            return {"status": "error", "message": "जॉब नहीं मिला (सर्वर रीस्टार्ट या 3 घंटे बाद जॉब हट जाते हैं)।"}
+        now = time.time()
+        started = j.get("started")
+        end = j.get("finished") or now
+        elapsed = int(end - started) if started else 0
+        secs = j.get("chunk_secs", [])
+        remaining = max(0, j["total"] - j["done"])
+        eta = int(remaining * (sum(secs) / len(secs))) if secs and j["status"] == "running" else 0
+        pw = j.get("pages_written", 0)
+        ppm = round(pw / (elapsed / 60.0), 1) if elapsed > 20 and pw else 0
+        return {"status": j["status"], "message": j["message"], "total": j["total"], "done": j["done"],
+                "warnings": j["warnings"], "pages_written": pw,
+                "elapsed": elapsed, "eta": eta, "ppm": ppm, "model": _GOOD_MODEL[0] or "",
+                "quality": j.get("quality"), "verify": j.get("verify"), "claims": j.get("claims", 0),
+                "retries": j.get("retries", 0), "issues": j.get("issues", [])}
+
+
+@app.get("/pipeline/download/{job_id}")
+def pipeline_download(job_id: str, fmt: str = "txt"):
+    with _JOBS_LOCK:
+        j = _JOBS.get(job_id)
+        job = dict(j) if j else None
+    if not job or job["status"] != "done":
+        return Response(content="रिपोर्ट अभी तैयार नहीं है।", status_code=404)
+    pkg = PACKAGES[job["report_id"]]
+    base = f"AstroPulse_{job['report_id']}_{job_id}"
+    if (fmt or "").lower() == "pdf":
+        try:
+            from report_pdf import build_report_pdf
+            numdata = None
+            if job["report_id"] == "numerology":
+                import numerology as _num
+                inf = job["info"]
+                numdata = _num.compute(inf["name"], inf["day"], inf["month"], inf["year"])
+            pdf_bytes = build_report_pdf(pkg["title_hi"], pkg["title"], job["chart"], job["info"], _split_pages(job["text"]), numerology=numdata)
+        except Exception as e:
+            return Response(content=f"PDF बनाने में समस्या: {e}", status_code=500)
+        return Response(content=pdf_bytes, media_type="application/pdf",
+                        headers={"Content-Disposition": f'attachment; filename="{base}.pdf"'})
+    if (fmt or "").lower() in ("doc", "docx"):
+        return Response(content=build_docx_bytes(f"{pkg['title']} - {job['name']}", job["text"]),
+                        media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                        headers={"Content-Disposition": f'attachment; filename="{base}.docx"'})
+    return Response(content=job["text"], media_type="text/plain; charset=utf-8",
+                    headers={"Content-Disposition": f'attachment; filename="{base}.txt"'})
