@@ -1,9 +1,11 @@
 fastapi
 uvicorn
-google-genai
-python-dotenv
-pyswisseph
-geopy
-fpdf2
-python-docx
 jinja2
+pyswisseph
+python-multipart
+geopy
+requests
+google-genai
+python-docx
+fpdf2
+uharfbuzz

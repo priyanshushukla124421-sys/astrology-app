@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: astropulse-india
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /ai_keys_status
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      # नीचे की दोनों key Render के Dashboard -> Environment में अपने हाथ से डालें (यहाँ मत लिखें)
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY_2
+        sync: false

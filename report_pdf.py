@@ -70,6 +70,50 @@ def _dmy(iso):
     return f"{m.group(3)}-{m.group(2)}-{m.group(1)}" if m else str(iso or "-")
 
 
+_LAT = re.compile(r"[A-Za-z]")
+
+
+def _de_latin(text):
+    """इंजन की पंक्तियों में 'Taurus (वृषभ)' जैसे रूप को सिर्फ 'वृषभ' कर देता है (अंग्रेज़ी नाम हटाकर)।"""
+    return re.sub(r"[A-Za-z]+\s*\(([^)]*[\u0900-\u097F][^)]*)\)", r"\1", str(text))
+
+
+def _wrap(pdf, text, width):
+    """मौजूदा फॉन्ट में text को width चौड़ाई की लाइनों में बाँटता है।"""
+    return pdf.multi_cell(width, 1, text, align="L", dry_run=True, output=MethodReturnValue.LINES) or [""]
+
+
+def _draw_lines(pdf, lines, x, y, width, lh, justify=True):
+    """हर लाइन को शब्द-शब्द करके लिखता है (justify सहित)।
+    fpdf2 का multi_cell, अंग्रेज़ी अक्षरों वाली लाइन जो 'राशि' जैसे शब्द पर खत्म हो, उसकी 'ि' मात्रा बिगाड़ देता है;
+    शब्द अलग-अलग लिखने से यह गड़बड़ी नहीं आती। लौटाता है: अगली खाली y।"""
+    old = pdf.c_margin
+    pdf.c_margin = 0
+    sp = pdf.get_string_width(" ")
+    try:
+        for i, ln in enumerate(lines):
+            if y + lh > 280:                       # बहुत लंबा टेक्स्ट: अगले पन्ने पर जारी रखो
+                pdf.add_page()
+                y = CONTENT_TOP
+            words = [w for w in ln.split(" ") if w]
+            if not words:
+                y += lh
+                continue
+            widths = [pdf.get_string_width(w) for w in words]
+            gap = sp
+            if justify and i < len(lines) - 1 and len(words) > 1:
+                gap = max((width - sum(widths)) / (len(words) - 1), sp * 0.5)
+            cx = x
+            for w, wd in zip(words, widths):
+                pdf.set_xy(cx, y)
+                pdf.cell(wd + 0.2, lh, w)
+                cx += wd + gap
+            y += lh
+    finally:
+        pdf.c_margin = old
+    return y
+
+
 def clean_chapter_text(text):
     """Gemini आउटपुट से markdown/HTML के निशान हटाकर साफ पैराग्राफ-लिस्ट बनाता है।"""
     t = (text or "").replace("\r\n", "\n")
@@ -92,9 +136,11 @@ class AstroPDF(FPDF):
         self._next_special = False
         self.add_font("Hind", "", os.path.join(FONT_DIR, "Hind-Regular.ttf"))
         self.add_font("Hind", "B", os.path.join(FONT_DIR, "Hind-Bold.ttf"))
-        self.add_font("Tin", "", os.path.join(FONT_DIR, "Tinos-Regular.ttf"))
-        self.add_font("Tin", "B", os.path.join(FONT_DIR, "Tinos-Bold.ttf"))
-        self.add_font("Tin", "I", os.path.join(FONT_DIR, "Tinos-Italic.ttf"))
+        TIN_OK[0] = all(os.path.isfile(os.path.join(FONT_DIR, f)) for f in ("Tinos-Regular.ttf", "Tinos-Bold.ttf", "Tinos-Italic.ttf"))
+        if TIN_OK[0]:
+            self.add_font("Tin", "", os.path.join(FONT_DIR, "Tinos-Regular.ttf"))
+            self.add_font("Tin", "B", os.path.join(FONT_DIR, "Tinos-Bold.ttf"))
+            self.add_font("Tin", "I", os.path.join(FONT_DIR, "Tinos-Italic.ttf"))
         self.set_text_shaping(True)
         self.set_auto_page_break(True, margin=24)
         self.set_margins(20, 20, 20)
@@ -161,11 +207,12 @@ def _stamp_footers(pdf):
 # छोटे ड्रॉइंग हेल्पर
 # ---------------------------------------------------------------
 _DEV = re.compile(r"[\u0900-\u097F]")
+TIN_OK = [True]   # Tinos फॉन्ट फाइलें मिलीं या नहीं
 
 
 def _pick(font, style, text):
-    """Tinos में देवनागरी नहीं है; हिंदी अक्षर दिखें तो अपने-आप Hind इस्तेमाल करता है।"""
-    if font == "Tin" and _DEV.search(str(text)):
+    """Tinos में देवनागरी नहीं है; हिंदी अक्षर दिखें (या Tinos फाइल न हो) तो Hind इस्तेमाल करता है।"""
+    if font == "Tin" and (not TIN_OK[0] or _DEV.search(str(text))):
         return "Hind", ("B" if "B" in style else "")
     return font, style
 
@@ -462,7 +509,7 @@ def _page_charts(pdf, chart):
     for p, v in (chart.get("planets", {}) or {}).items():
         rows.append([_hi(p), f"{v.get('degree_within_sign', '-')}°", v.get("d1_house", "-"),
                      _sign_hi(v.get("d1_sign")), _hi(v.get("d1_lord")), v.get("d9_house", "-"), _sign_hi(v.get("d9_sign"))])
-    _table(pdf, ["ग्रह", "D1 अंश", "D1 भाव", "D1 राशि", "राशि स्वामी", "D9 भाव", "D9 राशि"], rows,
+    _table(pdf, ["ग्रह", "D1 अंश", "D1 भाव", "राशि (D1)", "राशि स्वामी", "D9 भाव", "राशि (D9)"], rows,
            (24, 24, 22, 28, 26, 22, 24), font_size=9, line_height=6.2)
 
 
@@ -492,10 +539,10 @@ def _page_dasha(pdf, chart):
     _section_title(pdf, "प्रमुख वैदिक दोष एवं योग प्रमाणीकरण")
     d = chart.get("doshas", {}) or {}
     drows = [
-        ["मांगलिक दोष", d.get("manglik", {}).get("details", "-")],
-        ["काल सर्प योग", d.get("kaal_sarp", {}).get("details", "-")],
-        ["पितृ दोष", d.get("pitra_dosh", {}).get("details", "-")],
-        ["शनि साढ़े साती", d.get("sade_sati", {}).get("details", "-")],
+        ["मांगलिक दोष", _de_latin(d.get("manglik", {}).get("details", "-"))],
+        ["काल सर्प योग", _de_latin(d.get("kaal_sarp", {}).get("details", "-"))],
+        ["पितृ दोष", _de_latin(d.get("pitra_dosh", {}).get("details", "-"))],
+        ["शनि साढ़े साती", _de_latin(d.get("sade_sati", {}).get("details", "-"))],
     ]
     _table(pdf, ["योग / दोष", "कुंडली में स्थिति"], drows, (34, 136), font_size=8.5, align="LEFT", line_height=5.2)
 
@@ -573,38 +620,43 @@ def _page_num_years(pdf, n):
 # अध्याय पेज: टेक्स्ट से पन्ना 80-85% भरने के लिए अपने-आप फॉन्ट/स्पेस
 # ---------------------------------------------------------------
 CONTENT_TOP = 22.0
-CONTENT_BOTTOM = 273.0       # auto page-break की सीमा
-FILL_TARGET = 0.83           # पन्ने का भराव (80-85%)
-FILL_MAX = 0.885
+FILL_BOTTOM = 270.0          # टेक्स्ट कम से कम यहाँ तक पहुँचे (पन्ने का ~90%)
+MAX_BOTTOM = 275.5           # इससे नीचे नहीं (फुटर की रेखा 282 पर है)
 
 
-def _line_count(pdf, para, fs):
+def _para_width(para):
+    return 166 if para.startswith("• ") else 170
+
+
+def _count_lines(pdf, paras, fs):
     pdf.set_font("Hind", "", fs)
-    w = 166 if para.startswith("• ") else 170
-    lines = pdf.multi_cell(w, 1, para, align="J", dry_run=True, output=MethodReturnValue.LINES)
-    return max(1, len(lines))
+    return sum(len(_wrap(pdf, p, _para_width(p))) for p in paras)
 
 
 def _layout(pdf, paras, body_top):
-    """(फॉन्ट साइज़, लाइन-ऊंचाई mm, पैराग्राफ-गैप mm) चुनता है ताकि टेक्स्ट पन्ने का ~83% भरे।"""
-    area = CONTENT_BOTTOM - CONTENT_TOP
-    target = CONTENT_TOP + FILL_TARGET * area - body_top
-    hi = CONTENT_TOP + FILL_MAX * area - body_top
+    """(फॉन्ट साइज़, लाइन-ऊंचाई mm, पैराग्राफ-गैप mm) चुनता है ताकि टेक्स्ट पन्ने में 90-100% तक पहुँचे।
+    पहले सबसे बड़ा फॉन्ट (14.5 से 9.5) जो पन्ने में समाए; फिर भी जगह बचे तो लाइन-स्पेस और पैराग्राफ के बीच की जगह बढ़ाता है।"""
+    target = FILL_BOTTOM + 3.0 - body_top
+    hi = MAX_BOTTOM - body_top
     n = len(paras)
     fs, nl = 9.5, 0
-    for cand in (12.5, 12.0, 11.5, 11.0, 10.5, 10.0, 9.5):
-        counts = sum(_line_count(pdf, p, cand) for p in paras)
+    for cand in (14.5, 14.0, 13.5, 13.0, 12.5, 12.0, 11.5, 11.0, 10.5, 10.0, 9.5):
+        counts = _count_lines(pdf, paras, cand)
         fs, nl = cand, counts
-        if counts * cand * 0.3528 * 1.62 + n * 3.0 <= hi:
+        if counts * cand * 0.3528 * 1.55 + n * 3.0 <= hi:
             break
-    r, gap = 1.62, 3.0
+    r, gap = 1.55, 3.0
 
     def height():
         return nl * fs * 0.3528 * r + n * gap
-    while height() < target and r < 2.0:
-        r += 0.04
-    while height() < target and gap < 10.0:
+    while height() < target and r < 2.45:
+        r += 0.03
+    while height() < target and gap < 26.0:
         gap += 0.5
+    while height() > hi and gap > 3.0:
+        gap -= 0.5
+    while height() > hi and r > 1.4:
+        r -= 0.02
     return fs, fs * 0.3528 * r, gap
 
 
@@ -616,28 +668,30 @@ def _chapter(pdf, page_text):
     body = lines[1:]
     if len(title) > 110 and not body:
         body, title = [title], "विश्लेषण"
+    pdf.set_auto_page_break(False)                 # लाइनें हम खुद रखते हैं
     pdf.add_page()
     pdf.start_section(title[:80], level=0)
-    pdf.set_y(CONTENT_TOP)
     pdf.set_font("Hind", "B", 16)
     pdf.set_text_color(*RED)
-    pdf.multi_cell(170, 9, title, align="L", new_x="LMARGIN", new_y="NEXT")
+    t_lines = _wrap(pdf, title, 170)
+    y = _draw_lines(pdf, t_lines, 20, CONTENT_TOP, 170, 9, justify=False)
     pdf.set_draw_color(*GOLD)
     pdf.set_line_width(0.6)
-    pdf.line(20, pdf.get_y() + 1, 190, pdf.get_y() + 1)
+    pdf.line(20, y + 1, 190, y + 1)
     pdf.set_draw_color(*RED_BRIGHT)
     pdf.set_line_width(0.3)
-    pdf.line(20, pdf.get_y() + 2.2, 80, pdf.get_y() + 2.2)
-    pdf.ln(7)
-    fs, lh, gap = _layout(pdf, body, pdf.get_y())
+    pdf.line(20, y + 2.2, 80, y + 2.2)
+    y += 7
+    fs, lh, gap = _layout(pdf, body, y)
     pdf.set_font("Hind", "", fs)
     pdf.set_text_color(*INK)
     for para in body:
         is_bullet = para.startswith("• ")
-        pdf.set_x(24 if is_bullet else 20)
-        pdf.multi_cell(166 if is_bullet else 170, lh, para, align="L" if is_bullet else "J",
-                       new_x="LMARGIN", new_y="NEXT")
-        pdf.ln(gap)
+        x, w = (24, 166) if is_bullet else (20, 170)
+        ls = _wrap(pdf, para, w)
+        y = _draw_lines(pdf, ls, x, y, w, lh, justify=not is_bullet)
+        y += gap
+    pdf.set_auto_page_break(True, margin=24)
 
 
 # ---------------------------------------------------------------
@@ -650,7 +704,7 @@ def build_report_pdf(title_hi, title_en, chart, info, chapter_pages, numerology=
     numerology        : न्यूमरोलॉजी रिपोर्ट के लिए numerology.compute() का dict (वरना None)
     लौटाता है: PDF के bytes
     """
-    for f in ("Hind-Regular.ttf", "Hind-Bold.ttf", "Tinos-Regular.ttf", "Tinos-Bold.ttf", "Tinos-Italic.ttf"):
+    for f in ("Hind-Regular.ttf", "Hind-Bold.ttf"):
         if not os.path.isfile(os.path.join(FONT_DIR, f)):
             raise FileNotFoundError(f"PDF के लिए फॉन्ट नहीं मिला: fonts/{f} (main.py वाले फोल्डर में 'fonts' फोल्डर रखें)")
     is_num = bool(numerology)
