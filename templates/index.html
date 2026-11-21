@@ -651,7 +651,8 @@
                 let body = '';
                 if (j.state === 'running') body = `<div class="pbar"><div style="height:100%;width:${j.pct}%;background:linear-gradient(90deg,#dc2626,#fbbf24);transition:width .6s"></div></div><div class="dl-row"><button class="dl-stop" onclick="stopDl(${i})">⏹ PDF रोकें</button></div>`;
                 if (j.state === 'done') body = `<div class="dl-row"><button class="dl-btn" style="margin-top:0" onclick="saveDl(${i})">⬇ PDF डाउनलोड करें</button><button class="dl-remove" title="सूची से हटाएँ" onclick="removeDl(${i})">✖</button></div>`;
-                if (j.state === 'error' || j.state === 'cancelled') body = `<div class="dl-row"><button class="dl-remove" style="flex:1" onclick="removeDl(${i})">✖ सूची से हटाएँ</button></div>`;
+                if (j.state === 'error') body = `<div class="dl-row"><button class="dl-btn" style="margin-top:0" onclick="retryDl(${i})">🔄 फिर बनाएँ</button><button class="dl-remove" title="सूची से हटाएँ" onclick="removeDl(${i})">✖</button></div>`;
+                if (j.state === 'cancelled') body = `<div class="dl-row"><button class="dl-btn" style="margin-top:0" onclick="retryDl(${i})">🔄 दोबारा शुरू करें</button><button class="dl-remove" title="सूची से हटाएँ" onclick="removeDl(${i})">✖</button></div>`;
                 let meta = '';
                 const st = j.st;
                 if (st && (j.state === 'running' || j.state === 'done')) {
@@ -680,9 +681,19 @@
             if (j && j.blob) saveBlob(j.blob, `AstroPulse_${safeFile(j.label)}_${safeFile(j.name)}.pdf`);
         }
 
+        function retryDl(i) {
+            const j = dlJobs[i];
+            if (!j || !j.rep) return;
+            dlJobs.splice(i, 1); renderDl();
+            launchPdf(j.rep, j.b);
+        }
+
         async function startReportPdf() {
             if (!pendingReport) return;
-            const rep = pendingReport, b = getBirth();
+            return launchPdf(pendingReport, getBirth());
+        }
+
+        async function launchPdf(rep, b) {
             try {
                 const ks = await (await fetch('/ai_keys_status')).json();
                 if (!ks.keys) { showAstroAlert("PDF के लिए Gemini key नहीं मिली। 'API KEYS' फोल्डर में key फाइल रखकर सर्वर दोबारा चालू करें।"); return; }
@@ -699,7 +710,7 @@
                 jobId = data.job_id;
             } catch (e) { showAstroAlert("सर्वर से जुड़ने में समस्या।"); return; }
 
-            const item = { label: rep.label, name: b.name, state: 'running', pct: 4, msg: 'शुरू हो रहा है...', blob: null, jobId: jobId };
+            const item = { label: rep.label, name: b.name, state: 'running', pct: 4, msg: 'शुरू हो रहा है...', blob: null, jobId: jobId, rep: rep, b: b };
             dlJobs.push(item);
             closeModal('fmt-modal'); closeModal('pdf-modal');
             renderDl(); toggleDlPanel(true);
@@ -789,13 +800,24 @@
         }
         function askSample(el) { document.getElementById('chat-input').value = el.textContent; sendChat(); }
 
-        async function sendChat() {
+        function addRetryBtn(el, q) {
+            const b = document.createElement('button');
+            b.className = 'copy-btn'; b.style.borderColor = '#fbbf24'; b.style.color = '#fbbf24';
+            b.textContent = '🔄 फिर कोशिश करें';
+            b.onclick = () => { el.remove(); sendChat(q); };
+            el.appendChild(b);
+        }
+
+        async function sendChat(retryQ) {
             const input = document.getElementById('chat-input');
             const btn = document.getElementById('chat-send');
-            const q = input.value.trim();
+            const isRetry = (typeof retryQ === 'string');
+            const q = isRetry ? retryQ : input.value.trim();
             if (!q || btn.disabled) return;
-            input.value = ''; document.getElementById('chat-chips').innerHTML = '';
-            addChatMsg(q, 'user');
+            if (!isRetry) {
+                input.value = ''; document.getElementById('chat-chips').innerHTML = '';
+                addChatMsg(q, 'user');
+            }
             const wait = addChatMsg('सोच रहा हूँ...', 'bot', false);
             btn.disabled = true;
             try {
@@ -813,10 +835,16 @@
                         tmp.textContent = msgs[k]; attachCopy(tmp, msgs[k]);
                         const bx = document.getElementById('chat-messages'); bx.scrollTop = bx.scrollHeight;
                     }
+                    if (data.ms) { addChatMsg('⚡ ' + (data.ms / 1000).toFixed(1) + ' सेकंड · ' + (data.model || ''), 'note'); }
                     chatHistory.push({ role: 'user', text: q }, { role: 'model', text: data.history_text || data.answer });
                     setTier(data.tier, data.pro_left);
-                } else { wait.className = 'msg err'; wait.textContent = data.message || 'कुछ गड़बड़ हुई।'; }
-            } catch (e) { wait.className = 'msg err'; wait.textContent = 'सर्वर से कनेक्ट करने में विफल!'; }
+                } else {
+                    wait.className = 'msg err'; wait.textContent = data.message || 'कुछ गड़बड़ हुई।';
+                    if (data.retry !== false) addRetryBtn(wait, q);
+                }
+            } catch (e) {
+                wait.className = 'msg err'; wait.textContent = 'सर्वर से कनेक्ट करने में विफल!'; addRetryBtn(wait, q);
+            }
             btn.disabled = false; input.focus();
             const box = document.getElementById('chat-messages'); box.scrollTop = box.scrollHeight;
         }
